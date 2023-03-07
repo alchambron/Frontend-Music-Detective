@@ -2,9 +2,11 @@ import data from '../data/70s.json'
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
-export default function Play() {
+export default function Play({ searchResults }) {
     const [currentSong, setCurrentSong] = useState(null);
     const [progress, setProgress] = useState(0);
+    const [title, setTitle] = useState('');
+    const [artist, setArtist] = useState('');
 
     const chooseRandomSong = () => {
         const randomIndex = Math.floor(Math.random() * data.items.length);
@@ -15,6 +17,11 @@ export default function Play() {
         const seconds = state.playedSeconds.toFixed(0);
         setProgress(seconds);
     }
+
+    useEffect(() => {
+        setTitle(searchResults.artist);
+        setArtist(searchResults.title);
+    }, [searchResults]);
 
     useEffect(() => {
         if (currentSong) {
@@ -46,6 +53,7 @@ export default function Play() {
                     <progress value={progress} max='20' />
                 </div>
             )}
+            {title} - {artist}
         </div>
     );
 }
