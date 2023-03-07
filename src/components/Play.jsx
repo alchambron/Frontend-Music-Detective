@@ -1,4 +1,4 @@
-import data from '../../data/70s.json'
+import data from '../data/70s.json'
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
