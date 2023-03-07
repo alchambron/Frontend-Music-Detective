@@ -1,5 +1,5 @@
 import React from 'react'
-import Play from '../../components/Play/Play'
+import Play from '../components/Play/Play'
 
 export default function Game() {
     return (
