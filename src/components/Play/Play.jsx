@@ -2,7 +2,6 @@ import data from '../../data/70s.json'
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
-
 export default function Play() {
     const [currentSong, setCurrentSong] = useState(null);
     const [progress, setProgress] = useState(0);
@@ -32,8 +31,7 @@ export default function Play() {
     }, [currentSong]);
 
     return (
-        <div>
-            {/* ----------------------------------------------------------------------------------------------- */}
+        <div className='play'>
             <button onClick={chooseRandomSong}>Jouer !</button>
             {currentSong && (
                 <div key={currentSong.snippet.resourceId.videoId}>
