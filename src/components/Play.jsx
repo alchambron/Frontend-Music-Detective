@@ -7,7 +7,7 @@ export default function Play({ searchResults }) {
   const [progress, setProgress] = useState(0);
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  const [songResult, setSongResult] = useState("")
+  const [songResult, setSongResult] = useState("");
 
   const chooseRandomSong = async () => {
     try {
@@ -21,7 +21,7 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setCurrentSong(randomSong);
-      setSongResult(randomSong)
+      setSongResult(randomSong);
     } catch (error) {
       console.error(error);
     }
@@ -63,30 +63,37 @@ export default function Play({ searchResults }) {
     setVolume(parseFloat(event.target.value));
   };
 
+
+  const handleNextSong = () => {
+    chooseRandomSong();
+  };
   return (
     <div className="play">
       <button onClick={chooseRandomSong}>Jouer !</button>
       {currentSong && (
-        <div key={currentSong.youtube_id}>
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
-            playing={true}
-            onProgress={handleProgress}
-            style={{ margin: "auto" }}
-            width="0"
-            height="0"
-            volume={volume}
-          />
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-          />
-          <progress value={progress} max="20" />
-        </div>
+        <>
+          <div key={currentSong.youtube_id}>
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
+              playing={true}
+              onProgress={handleProgress}
+              style={{ margin: "auto" }}
+              width="0"
+              height="0"
+              volume={volume}
+            />
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+            />
+            <progress value={progress} max="20" />
+          </div>
+          <button onClick={handleNextSong}>Suivant</button>
+        </>
       )}
       {matchingResults && <p>Les résultats correspondent !</p>}
     </div>
