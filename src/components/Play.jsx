@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import Compare from "../services/Compare";
+import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
 
 export default function Play({ searchResults }) {
@@ -9,6 +10,8 @@ export default function Play({ searchResults }) {
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [songResult, setSongResult] = useState("");
+
+
 
   const chooseRandomSong = async () => {
     try {
@@ -75,8 +78,13 @@ export default function Play({ searchResults }) {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  const handleCountdownFinish = () => {
+    chooseRandomSong();
+  }
+
   return (
     <div className="play">
+      <Countdown time={3} onFinish={handleCountdownFinish} />
       {currentSong && (
         <div key={currentSong.youtube_id}>
           <ReactPlayer
