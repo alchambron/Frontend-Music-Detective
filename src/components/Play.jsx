@@ -8,6 +8,8 @@ export default function Play({ searchResults }) {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
+const [volume, setVolume]= useState(0.5);
+
   const [songResult, setSongResult] = useState("")
 
   const chooseRandomSong = async () => {
@@ -47,7 +49,7 @@ export default function Play({ searchResults }) {
         clearInterval(intervalId);
         setProgress(0);
         setCurrentSong(null);
-      }, 5000);
+      }, 20000);
       return () => clearInterval(intervalId);
     }
   }, [currentSong]);
@@ -65,6 +67,12 @@ export default function Play({ searchResults }) {
     }
   }, [searchResults, songResult]);
 
+
+  const handleVolumeChange = (event) => {
+    setVolume(parseFloat(event.target.value));
+  };
+
+
   return (
     <div className="play">
       <button onClick={chooseRandomSong}>Jouer !</button>
@@ -77,8 +85,17 @@ export default function Play({ searchResults }) {
             style={{ margin: "auto" }}
             width="0"
             height="0"
+            volume={volume}
           />
-          <progress value={progress} max="5" />
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
+          />
+          <progress value={progress} max="20" />
         </div>
       )}
       {title} - {artist}
