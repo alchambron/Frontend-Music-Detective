@@ -63,7 +63,6 @@ export default function Play({ searchResults }) {
     setVolume(parseFloat(event.target.value));
   };
 
-
   const handleNextSong = () => {
     chooseRandomSong();
   };
@@ -71,30 +70,28 @@ export default function Play({ searchResults }) {
     <div className="play">
       <button onClick={chooseRandomSong}>Jouer !</button>
       {currentSong && (
-        <>
-          <div key={currentSong.youtube_id}>
-            <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
-              playing={true}
-              onProgress={handleProgress}
-              style={{ margin: "auto" }}
-              width="0"
-              height="0"
-              volume={volume}
-            />
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-            />
-            <progress value={progress} max="20" />
-          </div>
-          <button onClick={handleNextSong}>Suivant</button>
-        </>
-      )}
+        <div key={currentSong.youtube_id}>
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
+            playing={true}
+            onProgress={handleProgress}
+            style={{ margin: "auto" }}
+            width="0"
+            height="0"
+            volume={volume}
+          />
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
+          />
+          <progress value={progress} max="20" />
+        </div>
+      )}{" "}
+      <button onClick={handleNextSong}>Suivant</button>
       {matchingResults && <p>Les résultats correspondent !</p>}
     </div>
   );
