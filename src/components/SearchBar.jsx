@@ -25,11 +25,8 @@ export default function SearchBar({ onSearchResults }) {
     };
 
     const handleSearchClick = (result) => {
-        // On met à jour la barre de recherche avec le titre et l'artiste sélectionnés
         setSearchTerm(`${result.title} - ${result.artist}`);
-        // On vide la liste de résultats
         setSearchResults([]);
-        // On transmet les résultats de la recherche au composant parent
         const searchResult = { title: result.title, artist: result.artist };
         onSearchResults(searchResult);
     };
