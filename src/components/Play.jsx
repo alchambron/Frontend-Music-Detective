@@ -5,10 +5,8 @@ import Compare from "../services/Compare";
 export default function Play({ searchResults }) {
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [title, setTitle] = useState("");
-  const [artist, setArtist] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
-  const [volume, setVolume]= useState(0.5);
+  const [volume, setVolume] = useState(0.5);
   const [songResult, setSongResult] = useState("")
 
   const chooseRandomSong = async () => {
@@ -33,11 +31,6 @@ export default function Play({ searchResults }) {
     const seconds = state.playedSeconds.toFixed(0);
     setProgress(seconds);
   };
-
-  useEffect(() => {
-    setTitle(searchResults.title);
-    setArtist(searchResults.artist);
-  }, [searchResults]);
 
   useEffect(() => {
     if (currentSong) {
@@ -66,11 +59,9 @@ export default function Play({ searchResults }) {
     }
   }, [searchResults, songResult]);
 
-
   const handleVolumeChange = (event) => {
     setVolume(parseFloat(event.target.value));
   };
-
 
   return (
     <div className="play">
@@ -97,7 +88,6 @@ export default function Play({ searchResults }) {
           <progress value={progress} max="20" />
         </div>
       )}
-      {title} - {artist}
       {matchingResults && <p>Les résultats correspondent !</p>}
     </div>
   );
