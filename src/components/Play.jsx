@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import Compare from "../services/Compare";
+import Vinyl from "./Vinyl";
 
 export default function Play({ searchResults }) {
   const [currentSong, setCurrentSong] = useState(null);
@@ -66,9 +67,16 @@ export default function Play({ searchResults }) {
   const handleNextSong = () => {
     chooseRandomSong();
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      chooseRandomSong();
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div className="play">
-      <button onClick={chooseRandomSong}>Jouer !</button>
       {currentSong && (
         <div key={currentSong.youtube_id}>
           <ReactPlayer
@@ -89,7 +97,9 @@ export default function Play({ searchResults }) {
             onChange={handleVolumeChange}
           />
           <progress value={progress} max="20" />
+          <Vinyl />
         </div>
+
       )}{" "}
       <button onClick={handleNextSong}>Suivant</button>
       {matchingResults && <p>Les résultats correspondent !</p>}
