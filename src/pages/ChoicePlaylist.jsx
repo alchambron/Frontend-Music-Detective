@@ -7,7 +7,7 @@ export default function ChoicePlaylist() {
   const [isloading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  async function ChoicePlaylist(id) {
+  function ChoicePlaylist(id) {
     navigate(`/game/${id}`);
   }
 
