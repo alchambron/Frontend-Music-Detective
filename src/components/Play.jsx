@@ -66,9 +66,16 @@ export default function Play({ searchResults }) {
   const handleNextSong = () => {
     chooseRandomSong();
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      chooseRandomSong();
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <div className="play">
-      <button onClick={chooseRandomSong}>Jouer !</button>
       {currentSong && (
         <div key={currentSong.youtube_id}>
           <ReactPlayer
