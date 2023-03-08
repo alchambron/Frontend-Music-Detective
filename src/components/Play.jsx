@@ -8,8 +8,7 @@ export default function Play({ searchResults }) {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
-const [volume, setVolume]= useState(0.5);
-
+  const [volume, setVolume]= useState(0.5);
   const [songResult, setSongResult] = useState("")
 
   const chooseRandomSong = async () => {
