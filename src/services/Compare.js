@@ -22,10 +22,6 @@ export default function Compare(title1, title2) {
         }
     }
     console.log("fin = " + matchingWords);
-    // calculer le pourcentage de mots correspondants
-    // const matchPercentage = (matchingWords / Math.max(words1.length, words2.length)) * 100;
-    // console.log("% total = "+ matchPercentage)
-    // retourner vrai si au moins 2/3 des mots correspondent
-    // return matchPercentage >= 40;
+    
     return matchingWords >= 2;
 };
