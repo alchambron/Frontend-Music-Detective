@@ -9,6 +9,8 @@ export default function Play({ searchResults }) {
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [songResult, setSongResult] = useState("");
+  const [countdown, setCountdown] = useState(3);
+
 
   const chooseRandomSong = async () => {
     try {
@@ -75,8 +77,32 @@ export default function Play({ searchResults }) {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (countdown > 0) {
+        setCountdown(countdown - 1 >= 0 ? countdown - 1 : 0);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [countdown]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      chooseRandomSong();
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+
   return (
     <div className="play">
+
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '30em' }}>
+
+{countdown === 0 ? '' : countdown}
+      </div>
       {currentSong && (
         <div key={currentSong.youtube_id}>
           <ReactPlayer
