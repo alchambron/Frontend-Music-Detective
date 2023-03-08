@@ -1,4 +1,3 @@
-import data from '../data/70s.json'
 import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 
@@ -8,10 +7,20 @@ export default function Play({ searchResults }) {
     const [title, setTitle] = useState('');
     const [artist, setArtist] = useState('');
 
-    const chooseRandomSong = () => {
-        const randomIndex = Math.floor(Math.random() * data.items.length);
-        setCurrentSong(data.items[randomIndex]);
-    }
+    const chooseRandomSong = async () => {
+        try {
+            const playlistNumber = window.location.pathname.match(/\/(\d+)$/)[1];
+            const apiURL = `https://musicdetective.herokuapp.com/playlist_contents?playlist_id=${playlistNumber}`;
+            const response = await fetch(apiURL);
+            const data = await response.json();
+            const filteredData = data.filter(item => item.playlist_id === parseInt(playlistNumber));
+            const randomIndex = Math.floor(Math.random() * filteredData.length);
+            const randomSong = filteredData[randomIndex];
+            setCurrentSong(randomSong);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const handleProgress = (state) => {
         const seconds = state.playedSeconds.toFixed(0);
@@ -41,9 +50,9 @@ export default function Play({ searchResults }) {
         <div className='play'>
             <button onClick={chooseRandomSong}>Jouer !</button>
             {currentSong && (
-                <div key={currentSong.snippet.resourceId.videoId}>
+                <div key={currentSong.youtube_id}>
                     <ReactPlayer
-                        url={`https://www.youtube.com/watch?v=${currentSong.snippet.resourceId.videoId}`}
+                        url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
                         playing={true}
                         onProgress={handleProgress}
                         style={{ margin: 'auto' }}
