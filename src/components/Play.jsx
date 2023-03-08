@@ -8,6 +8,7 @@ export default function Play({ searchResults }) {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
+  const [songResult, setSongResult] = useState("")
 
   const chooseRandomSong = async () => {
     try {
@@ -21,6 +22,7 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setCurrentSong(randomSong);
+      setSongResult(randomSong)
     } catch (error) {
       console.error(error);
     }
@@ -53,15 +55,15 @@ export default function Play({ searchResults }) {
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
 
-    if (searchResults && currentSong) {
+    if (searchResults && songResult) {
       const matchingResults = Compare(
         searchSongResult,
-        currentSong.youtube_title
+        songResult.youtube_title
       );
       setMatchingResults(matchingResults);
       console.log(matchingResults);
     }
-  }, [searchResults, currentSong]);
+  }, [searchResults, songResult]);
 
   return (
     <div className="play">
