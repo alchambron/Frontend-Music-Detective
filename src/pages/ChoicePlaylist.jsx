@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Game from "./Game"
 
 export default function ChoicePlaylist() {
   const [playlists, setPlaylists] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-  async function ChoicePlaylist() {
-
-    
+  async function ChoicePlaylist(id) {
+    navigate(`/game/${id}`);
   }
 
   useEffect(() => {
@@ -22,7 +24,6 @@ export default function ChoicePlaylist() {
           }
         );
         const playlistsData = await response.json();
-        console.log(playlistsData);
 
         setPlaylists(playlistsData);
         setIsLoading(false);
@@ -42,7 +43,7 @@ export default function ChoicePlaylist() {
 
         {playlists.map((list) => (
           <div key={list.id}>
-            <button onClick={ChoicePlaylist}>
+            <button onClick={() => ChoicePlaylist(list.id)}>
               <div className="ResultChoice">
                 {list.country}
 
