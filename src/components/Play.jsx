@@ -11,6 +11,7 @@ export default function Play({ searchResults }) {
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.25);
   const [points, setPoints] = useState(100);
+  const [giveUp, setGiveUp] = useState(false);
 
   async function chooseRandomSong() {
     console.log("choose");
@@ -124,6 +125,15 @@ export default function Play({ searchResults }) {
       deletePoints();
     }
   }
+  function abandon() {
+    setGiveUp(true);
+    stopPlayer();
+    deletePoints();
+    setTimeout(() => {
+      handleNextSong();
+    }, 5000);
+    
+  }
 
   return (
     <div className="play">
@@ -154,10 +164,11 @@ export default function Play({ searchResults }) {
       <>
         <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
-        <button onClick={launchPlayer}>Launch</button>
         <button onClick={stopPlayer}>STOP</button>
+        <button onClick={abandon}>ABANDONNER</button>
       </>
       {matchingResults && <p>Felicitation</p>}
+      {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
       <p>Vous avez: {points} points/100</p>
     </div>
   );
