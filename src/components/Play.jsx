@@ -49,7 +49,7 @@ export default function Play({ searchResults }) {
     }, time);
   }
 
-  function stopPlayer() {
+  function handleStopPlayer() {
     setCurrentSong(null);
   }
 
@@ -125,7 +125,7 @@ export default function Play({ searchResults }) {
       deletePoints();
     }
   }
-  function abandon() {
+  function handleAbandon() {
     setGiveUp(true);
     stopPlayer();
     deletePoints();
@@ -164,8 +164,8 @@ export default function Play({ searchResults }) {
       <>
         <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
-        <button onClick={stopPlayer}>STOP</button>
-        <button onClick={abandon}>ABANDONNER</button>
+        <button onClick={handleStopPlayer}>STOP</button>
+        <button onClick={handleAbandon}>ABANDONNER</button>
       </>
       {matchingResults && <p>Felicitation</p>}
       {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
