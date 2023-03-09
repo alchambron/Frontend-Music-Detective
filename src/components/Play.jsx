@@ -5,15 +5,14 @@ import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
 
 export default function Play({ searchResults }) {
+  const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  const [songResult, setSongResult] = useState("");
 
-
-
-  const chooseRandomSong = async () => {
+  async function chooseRandomSong() {
+    console.log("choose");
     try {
       const playlistNumber = window.location.pathname.match(/\/(\d+)$/)[1];
       const apiURL = `https://musicdetective.herokuapp.com/playlist_contents?playlist_id=${playlistNumber}`;
@@ -24,61 +23,76 @@ export default function Play({ searchResults }) {
       );
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
-      setCurrentSong(randomSong);
-      setSongResult(randomSong);
+      setSelectSong(randomSong);
+      setNewRound(false)
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  const handleProgress = (state) => {
-    const seconds = state.playedSeconds.toFixed(0);
-    setProgress(seconds);
-  };
-
-  useEffect(() => {
+  function launchPlayer() {
+    console.log("heeuuuuu");
+    console.log(selectSong);
+    setCurrentSong(selectSong);
+    manageSongDuration(20000);
     if (currentSong) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
       }, 1000);
-      setTimeout(() => {
-        clearInterval(intervalId);
-        setProgress(0);
-        setCurrentSong(null);
-      }, 20000);
       return () => clearInterval(intervalId);
     }
-  }, [currentSong]);
+  }
+
+  function manageSongDuration(time) {
+    setTimeout(() => {
+      stopPlayer();
+    }, time);
+  }
+
+  function stopPlayer() {
+    setCurrentSong(null);
+  }
 
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
 
-    if (searchResults && songResult) {
+    if (searchResults && selectSong) {
       const matchingResults = Compare(
         searchSongResult,
-        songResult.youtube_title
+        selectSong.youtube_title
       );
       setMatchingResults(matchingResults);
       console.log(matchingResults);
     }
-  }, [searchResults, songResult]);
-
-  const handleVolumeChange = (event) => {
-    setVolume(parseFloat(event.target.value));
-  };
-
-  const handleNextSong = () => {
-    chooseRandomSong();
-  };
+  }, [searchResults, selectSong]);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      chooseRandomSong();
-    }, 3000);
-    return () => clearTimeout(timeoutId);
-  }, []);
+    if (matchingResults) {
+      stopPlayer();
+    }
+  }, [matchingResults]);
 
-  const handleCountdownFinish = () => {
+  function handleCountdownFinish() {
+    chooseRandomSong();
+  }
+
+  function handleReplay() {
+    stopPlayer();
+    setTimeout(() => {
+      launchPlayer();
+    }, 100);
+  }
+
+  function handleProgress(state) {
+    const seconds = state.playedSeconds.toFixed(0);
+    setProgress(seconds);
+  }
+
+  function handleVolumeChange(event) {
+    setVolume(parseFloat(event.target.value));
+  }
+
+  function handleNextSong() {
     chooseRandomSong();
   }
 
@@ -107,10 +121,14 @@ export default function Play({ searchResults }) {
           <progress value={progress} max="20" />
           <Vinyl />
         </div>
-
       )}{" "}
-      <button onClick={handleNextSong}>Suivant</button>
-      {matchingResults && <p>Les résultats correspondent !</p>}
+      <>
+        <button onClick={handleNextSong}>Suivant</button>
+        <button onClick={handleReplay}>Replay</button>
+        <button onClick={launchPlayer}>Launch</button>
+        <button onClick={stopPlayer}>STOP</button>
+      </>
+      {matchingResults && <p>Felicitation</p>}
     </div>
   );
 }
