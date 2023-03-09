@@ -24,15 +24,12 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
-      setNewRound(false)
     } catch (error) {
       console.error(error);
     }
   }
 
   function launchPlayer() {
-    console.log("heeuuuuu");
-    console.log(selectSong);
     setCurrentSong(selectSong);
     manageSongDuration(20000);
     if (currentSong) {
@@ -72,8 +69,17 @@ export default function Play({ searchResults }) {
     }
   }, [matchingResults]);
 
+  useEffect(() => {
+    if (selectSong) {
+      setCurrentSong(selectSong);
+    }
+  }, [selectSong]);
+
   function handleCountdownFinish() {
     chooseRandomSong();
+    if (selectSong) {
+      launchPlayer();
+    }
   }
 
   function handleReplay() {
