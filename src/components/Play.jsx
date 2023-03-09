@@ -30,8 +30,6 @@ export default function Play({ searchResults }) {
   }
 
   function launchPlayer() {
-    console.log("heeuuuuu");
-    console.log(selectSong);
     setCurrentSong(selectSong);
     manageSongDuration(20000);
     if (currentSong) {
@@ -41,8 +39,6 @@ export default function Play({ searchResults }) {
       return () => clearInterval(intervalId);
     }
   }
-
-
 
   function manageSongDuration(time) {
     setTimeout(() => {
@@ -72,6 +68,12 @@ export default function Play({ searchResults }) {
       stopPlayer();
     }
   }, [matchingResults]);
+
+  useEffect(() => {
+    if (selectSong) {
+      setCurrentSong(selectSong);
+    }
+  }, [selectSong]);
 
   function handleCountdownFinish() {
     chooseRandomSong();
