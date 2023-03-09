@@ -9,7 +9,8 @@ export default function Play({ searchResults }) {
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
   const [matchingResults, setMatchingResults] = useState(false);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.25);
+  const [points, setPoints] = useState(100);
 
   async function chooseRandomSong() {
     console.log("choose");
@@ -24,7 +25,7 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
-      setNewRound(false)
+      setNewRound(false);
     } catch (error) {
       console.error(error);
     }
@@ -39,6 +40,7 @@ export default function Play({ searchResults }) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
       }, 1000);
+      console.log(currentSong);
       return () => clearInterval(intervalId);
     }
   }
@@ -62,6 +64,7 @@ export default function Play({ searchResults }) {
         selectSong.youtube_title
       );
       setMatchingResults(matchingResults);
+
       console.log(matchingResults);
     }
   }, [searchResults, selectSong]);
@@ -69,6 +72,7 @@ export default function Play({ searchResults }) {
   useEffect(() => {
     if (matchingResults) {
       stopPlayer();
+      addPoints();
     }
   }, [matchingResults]);
 
@@ -81,6 +85,22 @@ export default function Play({ searchResults }) {
     setTimeout(() => {
       launchPlayer();
     }, 100);
+    deletePoints();
+  }
+
+  useEffect(() => {
+    if (points < 0) {
+      alert("Vous avez perdu !");
+      window.location.href = "/choice";
+    }
+  }, [points]);
+
+  function addPoints() {
+    setPoints(points + 20);
+  }
+
+  function deletePoints() {
+    setPoints(points - 5);
   }
 
   function handleProgress(state) {
@@ -94,6 +114,9 @@ export default function Play({ searchResults }) {
 
   function handleNextSong() {
     chooseRandomSong();
+    if (!matchingResults) {
+      deletePoints();
+    }
   }
 
   return (
@@ -129,6 +152,7 @@ export default function Play({ searchResults }) {
         <button onClick={stopPlayer}>STOP</button>
       </>
       {matchingResults && <p>Felicitation</p>}
+      <p>Vous avez: {points} points/100</p>
     </div>
   );
 }
