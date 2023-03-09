@@ -24,7 +24,6 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
-      setNewRound(false)
     } catch (error) {
       console.error(error);
     }
@@ -42,6 +41,8 @@ export default function Play({ searchResults }) {
       return () => clearInterval(intervalId);
     }
   }
+
+
 
   function manageSongDuration(time) {
     setTimeout(() => {
@@ -74,6 +75,9 @@ export default function Play({ searchResults }) {
 
   function handleCountdownFinish() {
     chooseRandomSong();
+    if (selectSong) {
+      launchPlayer();
+    }
   }
 
   function handleReplay() {
