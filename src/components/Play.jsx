@@ -4,7 +4,12 @@ import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
 
-export default function Play({ searchResults, manageSearchBar }) {
+export default function Play({
+  searchResults,
+  manageSearchBar,
+  activateSearchBar,
+}) {
+  const [display, setDisplay] = useState(false);
   const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -93,6 +98,8 @@ export default function Play({ searchResults, manageSearchBar }) {
 
   function handleCountdownFinish() {
     chooseRandomSong();
+    activateSearchBar(true);
+    setDisplay(true);
     if (selectSong) {
       launchPlayer();
     }
@@ -151,37 +158,44 @@ export default function Play({ searchResults, manageSearchBar }) {
   return (
     <div className="play">
       <Countdown time={3} onFinish={handleCountdownFinish} />
-      {currentSong && (
-        <div key={currentSong.youtube_id}>
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
-            playing={true}
-            onProgress={handleProgress}
-            style={{ margin: "auto" }}
-            width="0"
-            height="0"
-            volume={volume}
-          />
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-          />
-          <progress value={progress} max="20" />
+      {display && (
+        <div>
           <Vinyl />
+          {currentSong && (
+            <div key={currentSong.youtube_id}>
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
+                playing={true}
+                onProgress={handleProgress}
+                style={{ margin: "auto" }}
+                width="0"
+                height="0"
+                volume={volume}
+              />
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+              <progress value={progress} max="20" />
+            </div>
+          )}{" "}
+          <>
+            <button onClick={handleNextSong}>Suivant</button>
+            <button onClick={handleReplay}>Replay</button>
+            <button onClick={stopPlayer}>STOP</button>
+            <button onClick={handleAbandon}>ABANDONNER</button>
+            {matchingResults && <p>Felicitation</p>}
+            {giveUp && (
+              <p>Le titre de la musique est: {selectSong.youtube_title}</p>
+            )}
+            <p>Vous avez: {points} points/100</p>
+          </>
         </div>
       )}
-      <>
-        <button onClick={handleReplay}>Replay</button>
-        <button onClick={stopPlayer}>STOP</button>
-        <button onClick={handleAbandon}>ABANDONNER</button>
-      </>
-      {matchingResults && <p>Felicitation</p>}
-      {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
-      <p>Vous avez: {points} points/500</p>
     </div>
   );
 }
