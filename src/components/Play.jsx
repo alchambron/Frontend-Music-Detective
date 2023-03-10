@@ -35,7 +35,7 @@ export default function Play({ searchResults, manageSearchBar }) {
   function launchPlayer() {
     setCurrentSong(selectSong);
     console.log(selectSong.youtube_title);
-    manageSongDuration(20000);
+    manageSongDuration(20000)
     if (currentSong) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
@@ -45,14 +45,14 @@ export default function Play({ searchResults, manageSearchBar }) {
     }
   }
 
+  function stopPlayer() {
+    setCurrentSong(null);
+  }
+
   function manageSongDuration(time) {
     setTimeout(() => {
       stopPlayer();
     }, time);
-  }
-
-  function stopPlayer() {
-    setCurrentSong(null);
   }
 
   useEffect(() => {
@@ -82,8 +82,7 @@ export default function Play({ searchResults, manageSearchBar }) {
 
   useEffect(() => {
     if (selectSong) {
-      setCurrentSong(selectSong);
-      console.log(selectSong);
+      launchPlayer()
     }
   }, [selectSong]);
 
