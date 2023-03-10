@@ -27,7 +27,6 @@ export default function Play({ searchResults, manageSearchBar }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
-      console.log(selectSong)
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +34,7 @@ export default function Play({ searchResults, manageSearchBar }) {
 
   function launchPlayer() {
     setCurrentSong(selectSong);
+    console.log(selectSong.youtube_title)
     manageSongDuration(20000);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -51,7 +51,7 @@ export default function Play({ searchResults, manageSearchBar }) {
     }, time);
   }
 
-  function handleStopPlayer() {
+  function stopPlayer() {
     setCurrentSong(null);
   }
 
@@ -80,6 +80,7 @@ export default function Play({ searchResults, manageSearchBar }) {
   useEffect(() => {
     if (selectSong) {
       setCurrentSong(selectSong);
+      console.log(selectSong)
     }
   }, [selectSong]);
 
@@ -168,7 +169,7 @@ export default function Play({ searchResults, manageSearchBar }) {
       <>
         <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
-        <button onClick={handleStopPlayer}>STOP</button>
+        <button onClick={stopPlayer}>STOP</button>
         <button onClick={handleAbandon}>ABANDONNER</button>
         <p>Votre derniere réponse : {userChoice}</p>
       </>
