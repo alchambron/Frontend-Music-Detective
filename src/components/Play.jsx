@@ -18,6 +18,7 @@ export default function Play({
   const [volume, setVolume] = useState(0.25);
   const [points, setPoints] = useState(100);
   const [giveUp, setGiveUp] = useState(false);
+  const [songFinished, setSongFinished] = useState(false);
 
   async function chooseRandomSong() {
     console.log("choose");
@@ -42,7 +43,7 @@ export default function Play({
     setMatchingResults(false);
     console.log(selectSong.youtube_title);
     manageSongDuration(15000);
-
+    setSongFinished(false);
     if (currentSong) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
@@ -58,6 +59,7 @@ export default function Play({
 
   function manageSongDuration(time) {
     setTimeout(() => {
+      setSongFinished(true);
       stopPlayer();
     }, time);
   }
@@ -105,11 +107,11 @@ export default function Play({
   }
 
   function handleReplay() {
+    deletePoints();
     stopPlayer();
     setTimeout(() => {
       launchPlayer();
-    }, 100);
-    deletePoints();
+    }, 2000);
   }
 
   useEffect(() => {
@@ -182,7 +184,8 @@ export default function Play({
             </div>
           )}
           <>
-            <button onClick={handleReplay}>Replay</button>
+            {songFinished && <button onClick={handleReplay}>Replay</button>}
+
             <button onClick={stopPlayer}>STOP</button>
             <button onClick={handleAbandon}>ABANDONNER</button>
             {matchingResults && <p>Felicitation</p>}
