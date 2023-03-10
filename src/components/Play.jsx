@@ -34,9 +34,10 @@ export default function Play({ searchResults, manageSearchBar }) {
 
   function launchPlayer() {
     setCurrentSong(selectSong);
+    setMatchingResults(false);
     console.log(selectSong.youtube_title);
-    manageSongDuration(5000);
-    manageSongDuration(20000)
+    manageSongDuration(15000);
+
     if (currentSong) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
@@ -50,9 +51,6 @@ export default function Play({ searchResults, manageSearchBar }) {
     setCurrentSong(null);
   }
 
-  function stopPlayer() {
-    setCurrentSong(null);
-  }
 
   function manageSongDuration(time) {
     setTimeout(() => {
@@ -79,15 +77,17 @@ export default function Play({ searchResults, manageSearchBar }) {
     if (matchingResults) {
       stopPlayer();
       addPoints();
+       alert("Attention son suivant !");
+       
       setTimeout(() => {
-        handleNextSong();
+        NextSong();
       }, 5000);
     }
   }, [matchingResults]);
 
   useEffect(() => {
     if (selectSong) {
-      launchPlayer()
+      launchPlayer();
     }
   }, [selectSong]);
 
@@ -130,35 +130,21 @@ export default function Play({ searchResults, manageSearchBar }) {
     setVolume(parseFloat(event.target.value));
   }
 
-  function handleNextSong() {
-  if(matchingResults){
-    setGiveUp(false)
-    addPoints();
-    chooseRandomSong();
-  }
   
-  
-  }
+   function NextSong() {
     setGiveUp(false);
     chooseRandomSong();
     manageSearchBar(true);
     if (!matchingResults) {
       deletePoints();
-        setGiveUp(true);
-         setTimeout(() => {
-           setGiveUp(false);
-         }, 5000);
     }
   }
-
-
-   
   function handleAbandon() {
     setGiveUp(true);
     stopPlayer();
     deletePoints();
     setTimeout(() => {
-      handleNextSong();
+      NextSong();
     }, 5000);
   }
 
@@ -187,17 +173,15 @@ export default function Play({ searchResults, manageSearchBar }) {
           <progress value={progress} max="20" />
           <Vinyl />
         </div>
-      )}{" "}
+      )}
       <>
-        <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
         <button onClick={stopPlayer}>STOP</button>
         <button onClick={handleAbandon}>ABANDONNER</button>
-        <p>Votre derniere réponse : {userChoice}</p>
       </>
       {matchingResults && <p>Felicitation</p>}
       {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
-      <p>Vous avez: {points} points/100</p>
+      <p>Vous avez: {points} points/500</p>
     </div>
   );
 }
