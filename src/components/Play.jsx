@@ -56,7 +56,6 @@ export default function Play({
     setCurrentSong(null);
   }
 
-
   function manageSongDuration(time) {
     setTimeout(() => {
       stopPlayer();
@@ -82,8 +81,8 @@ export default function Play({
     if (matchingResults) {
       stopPlayer();
       addPoints();
-       alert("Attention son suivant !");
-       
+      alert("Attention son suivant !");
+
       setTimeout(() => {
         NextSong();
       }, 5000);
@@ -137,8 +136,7 @@ export default function Play({
     setVolume(parseFloat(event.target.value));
   }
 
-  
-   function NextSong() {
+  function NextSong() {
     setGiveUp(false);
     chooseRandomSong();
     manageSearchBar(true);
@@ -182,9 +180,8 @@ export default function Play({
               />
               <progress value={progress} max="20" />
             </div>
-          )}{" "}
+          )}
           <>
-            <button onClick={handleNextSong}>Suivant</button>
             <button onClick={handleReplay}>Replay</button>
             <button onClick={stopPlayer}>STOP</button>
             <button onClick={handleAbandon}>ABANDONNER</button>
