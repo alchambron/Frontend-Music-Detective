@@ -10,7 +10,9 @@ export default function Play({ searchResults, manageSearchBar }) {
   const [progress, setProgress] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
-  const [volume, setVolume] = useState(0.5);
+  const [volume, setVolume] = useState(0.25);
+  const [points, setPoints] = useState(100);
+  const [giveUp, setGiveUp] = useState(false);
 
   async function chooseRandomSong() {
     console.log("choose");
@@ -38,6 +40,7 @@ export default function Play({ searchResults, manageSearchBar }) {
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
       }, 1000);
+      console.log(currentSong);
       return () => clearInterval(intervalId);
     }
   }
@@ -48,7 +51,7 @@ export default function Play({ searchResults, manageSearchBar }) {
     }, time);
   }
 
-  function stopPlayer() {
+  function handleStopPlayer() {
     setCurrentSong(null);
   }
 
@@ -70,6 +73,7 @@ export default function Play({ searchResults, manageSearchBar }) {
   useEffect(() => {
     if (matchingResults) {
       stopPlayer();
+      addPoints();
     }
   }, [matchingResults]);
 
@@ -91,6 +95,22 @@ export default function Play({ searchResults, manageSearchBar }) {
     setTimeout(() => {
       launchPlayer();
     }, 100);
+    deletePoints();
+  }
+
+  useEffect(() => {
+    if (points < 0) {
+      alert("Vous avez perdu !");
+      window.location.href = "/choice";
+    }
+  }, [points]);
+
+  function addPoints() {
+    setPoints(points + 20);
+  }
+
+  function deletePoints() {
+    setPoints(points - 5);
   }
 
   function handleProgress(state) {
@@ -105,6 +125,18 @@ export default function Play({ searchResults, manageSearchBar }) {
   function handleNextSong() {
     chooseRandomSong();
     manageSearchBar(true);
+    if (!matchingResults) {
+      deletePoints();
+    }
+  }
+  function handleAbandon() {
+    setGiveUp(true);
+    stopPlayer();
+    deletePoints();
+    setTimeout(() => {
+      handleNextSong();
+    }, 5000);
+    
   }
 
   return (
@@ -136,11 +168,13 @@ export default function Play({ searchResults, manageSearchBar }) {
       <>
         <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
-        <button onClick={launchPlayer}>Launch</button>
-        <button onClick={stopPlayer}>STOP</button>
+        <button onClick={handleStopPlayer}>STOP</button>
+        <button onClick={handleAbandon}>ABANDONNER</button>
         <p>Votre derniere réponse : {userChoice}</p>
       </>
       {matchingResults && <p>Felicitation</p>}
+      {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
+      <p>Vous avez: {points} points/100</p>
     </div>
   );
 }
