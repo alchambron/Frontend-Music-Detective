@@ -42,7 +42,7 @@ export default function Play({
     setCurrentSong(selectSong);
     setMatchingResults(false);
     console.log(selectSong.youtube_title);
-    manageSongDuration(15000);
+    manageSongDuration(22000);
     setSongFinished(false);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -97,6 +97,12 @@ export default function Play({
     }
   }, [selectSong]);
 
+  useEffect(() => {
+    if (songFinished) {
+      setProgress(0)
+    }
+  })
+
   function handleCountdownFinish() {
     chooseRandomSong();
     activateSearchBar(true);
@@ -150,6 +156,7 @@ export default function Play({
     setGiveUp(true);
     stopPlayer();
     deletePoints();
+    setProgress(0)
     setTimeout(() => {
       NextSong();
     }, 5000);
@@ -158,6 +165,7 @@ export default function Play({
     stopPlayer();
     window.location.href = "/choice";
   }
+
   return (
     <div className="play">
       <Countdown time={3} onFinish={handleCountdownFinish} />
@@ -175,17 +183,18 @@ export default function Play({
                 height="0"
                 volume={volume}
               />
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-              />
-              <progress value={progress} max="20" />
             </div>
           )}
+          <div><input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
+          />
+            <progress value={progress} max="20" />
+          </div>
           <>
             {songFinished && <button onClick={handleReplay}>Replay</button>}
 
