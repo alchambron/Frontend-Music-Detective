@@ -172,17 +172,18 @@ export default function Play({
                 height="0"
                 volume={volume}
               />
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-              />
-              <progress value={progress} max="20" />
             </div>
           )}
+          <div><input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
+          />
+            <progress value={progress} max="20" />
+          </div>
           <>
             {songFinished && <button onClick={handleReplay}>Replay</button>}
 
