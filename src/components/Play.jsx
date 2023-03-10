@@ -97,6 +97,12 @@ export default function Play({
     }
   }, [selectSong]);
 
+  useEffect(() => {
+    if (songFinished) {
+      setProgress(0)
+    }
+  })
+
   function handleCountdownFinish() {
     chooseRandomSong();
     activateSearchBar(true);
@@ -158,6 +164,7 @@ export default function Play({
     stopPlayer();
     window.location.href = "/choice";
   }
+
   return (
     <div className="play">
       <Countdown time={3} onFinish={handleCountdownFinish} />
