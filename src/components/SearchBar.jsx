@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function SearchBar({ onSearchResults }) {
+export default function SearchBar({ onSearchResults, searchBarReset }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
@@ -30,6 +30,13 @@ export default function SearchBar({ onSearchResults }) {
         const searchResult = { title: result.title, artist: result.artist };
         onSearchResults(searchResult);
     };
+
+    useEffect(() => {
+        console.log(searchBarReset)
+        if(searchBarReset){
+            setSearchTerm(" ")
+        }
+    }, [searchBarReset])
 
     return (
         <div className='search-bar'>

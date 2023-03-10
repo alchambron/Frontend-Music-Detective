@@ -4,10 +4,11 @@ import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
 
-export default function Play({ searchResults }) {
+export default function Play({ searchResults, manageSearchBar }) {
   const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.25);
   const [points, setPoints] = useState(100);
@@ -33,6 +34,7 @@ export default function Play({ searchResults }) {
 
   function launchPlayer() {
     setCurrentSong(selectSong);
+    console.log(selectSong.youtube_title)
     manageSongDuration(20000);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -49,7 +51,7 @@ export default function Play({ searchResults }) {
     }, time);
   }
 
-  function handleStopPlayer() {
+  function stopPlayer() {
     setCurrentSong(null);
   }
 
@@ -61,11 +63,12 @@ export default function Play({ searchResults }) {
         searchSongResult,
         selectSong.youtube_title
       );
+      setUserChoice(searchSongResult);
       setMatchingResults(matchingResults);
-
+      manageSearchBar(true);
       console.log(matchingResults);
     }
-  }, [searchResults, selectSong]);
+  }, [searchResults]);
 
   useEffect(() => {
     if (matchingResults) {
@@ -77,6 +80,7 @@ export default function Play({ searchResults }) {
   useEffect(() => {
     if (selectSong) {
       setCurrentSong(selectSong);
+      console.log(selectSong)
     }
   }, [selectSong]);
 
@@ -121,6 +125,7 @@ export default function Play({ searchResults }) {
 
   function handleNextSong() {
     chooseRandomSong();
+    manageSearchBar(true);
     if (!matchingResults) {
       deletePoints();
     }
@@ -164,8 +169,9 @@ export default function Play({ searchResults }) {
       <>
         <button onClick={handleNextSong}>Suivant</button>
         <button onClick={handleReplay}>Replay</button>
-        <button onClick={handleStopPlayer}>STOP</button>
+        <button onClick={stopPlayer}>STOP</button>
         <button onClick={handleAbandon}>ABANDONNER</button>
+        <p>Votre derniere réponse : {userChoice}</p>
       </>
       {matchingResults && <p>Felicitation</p>}
       {giveUp && <p>Le titre de la musique est: {selectSong.youtube_title}</p>}
