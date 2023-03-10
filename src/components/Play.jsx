@@ -34,7 +34,7 @@ export default function Play({ searchResults, manageSearchBar }) {
 
   function launchPlayer() {
     setCurrentSong(selectSong);
-    console.log(selectSong.youtube_title)
+    console.log(selectSong.youtube_title);
     manageSongDuration(20000);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -74,13 +74,16 @@ export default function Play({ searchResults, manageSearchBar }) {
     if (matchingResults) {
       stopPlayer();
       addPoints();
+      setTimeout(() => {
+        handleNextSong();
+      }, 5000);
     }
   }, [matchingResults]);
 
   useEffect(() => {
     if (selectSong) {
       setCurrentSong(selectSong);
-      console.log(selectSong)
+      console.log(selectSong);
     }
   }, [selectSong]);
 
@@ -124,6 +127,7 @@ export default function Play({ searchResults, manageSearchBar }) {
   }
 
   function handleNextSong() {
+    setGiveUp(false);
     chooseRandomSong();
     manageSearchBar(true);
     if (!matchingResults) {
@@ -137,7 +141,6 @@ export default function Play({ searchResults, manageSearchBar }) {
     setTimeout(() => {
       handleNextSong();
     }, 5000);
-    
   }
 
   return (
