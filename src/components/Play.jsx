@@ -154,7 +154,10 @@ export default function Play({
       NextSong();
     }, 5000);
   }
-
+  function handleLeave() {
+    stopPlayer();
+    window.location.href = "/choice";
+  }
   return (
     <div className="play">
       <Countdown time={3} onFinish={handleCountdownFinish} />
@@ -188,6 +191,7 @@ export default function Play({
 
             <button onClick={stopPlayer}>STOP</button>
             <button onClick={handleAbandon}>ABANDONNER</button>
+            <button onClick={handleLeave}>QUITTER</button>
             {matchingResults && <p>Felicitation</p>}
             {giveUp && (
               <p>Le titre de la musique est: {selectSong.youtube_title}</p>
