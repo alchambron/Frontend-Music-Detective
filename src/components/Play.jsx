@@ -4,10 +4,11 @@ import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
 
-export default function Play({ searchResults }) {
+export default function Play({ searchResults, manageSearchBar }) {
   const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.5);
 
@@ -24,6 +25,7 @@ export default function Play({ searchResults }) {
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
+      console.log(selectSong)
     } catch (error) {
       console.error(error);
     }
@@ -58,10 +60,12 @@ export default function Play({ searchResults }) {
         searchSongResult,
         selectSong.youtube_title
       );
+      setUserChoice(searchSongResult);
       setMatchingResults(matchingResults);
+      manageSearchBar(true);
       console.log(matchingResults);
     }
-  }, [searchResults, selectSong]);
+  }, [searchResults]);
 
   useEffect(() => {
     if (matchingResults) {
@@ -100,6 +104,7 @@ export default function Play({ searchResults }) {
 
   function handleNextSong() {
     chooseRandomSong();
+    manageSearchBar(true);
   }
 
   return (
@@ -133,6 +138,7 @@ export default function Play({ searchResults }) {
         <button onClick={handleReplay}>Replay</button>
         <button onClick={launchPlayer}>Launch</button>
         <button onClick={stopPlayer}>STOP</button>
+        <p>Votre derniere réponse : {userChoice}</p>
       </>
       {matchingResults && <p>Felicitation</p>}
     </div>
