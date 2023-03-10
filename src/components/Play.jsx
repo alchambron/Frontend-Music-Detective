@@ -156,6 +156,7 @@ export default function Play({
     setGiveUp(true);
     stopPlayer();
     deletePoints();
+    setProgress(0)
     setTimeout(() => {
       NextSong();
     }, 5000);
