@@ -42,7 +42,7 @@ export default function Play({
     setCurrentSong(selectSong);
     setMatchingResults(false);
     console.log(selectSong.youtube_title);
-    manageSongDuration(15000);
+    manageSongDuration(22000);
     setSongFinished(false);
     if (currentSong) {
       const intervalId = setInterval(() => {
