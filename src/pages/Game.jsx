@@ -1,26 +1,39 @@
-import React, { useState } from 'react'
-import Play from '../components/Play'
-import SearchBar from '../components/SearchBar'
+import React, { useState } from "react";
+import Play from "../components/Play";
+import SearchBar from "../components/SearchBar";
 
 export default function Game() {
-    const [searchResults, setSearchResults] = useState([]);
-    const [searchBarReset, setSearchBarReset] = useState(false)
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchBarReset, setSearchBarReset] = useState(false);
+  const [display, setDisplay] = useState(false);
 
-    const handleSearchResults = (results) => {
-        setSearchResults(results);
-    };
+  function handleDisplaySearchBar(e) {
+    setDisplay(e);
+  }
+  const handleSearchResults = (results) => {
+    setSearchResults(results);
+  };
 
-    function handleResetSearchBar(e){
-        setSearchBarReset(e)
-        setTimeout(() => {
-            setSearchBarReset(false)
-        }, 2000)
-    }
+  function handleResetSearchBar(e) {
+    setSearchBarReset(e);
+    setTimeout(() => {
+      setSearchBarReset(false);
+    }, 2000);
+  }
 
-    return (
-        <div className='game'>
-            <Play searchResults={searchResults} manageSearchBar={e => handleResetSearchBar(e)} />
-            <SearchBar onSearchResults={handleSearchResults} searchBarReset={searchBarReset} />
-        </div>
-    )
+  return (
+    <div className="game">
+      <Play
+        searchResults={searchResults}
+        manageSearchBar={(e) => handleResetSearchBar(e)}
+        activateSearchBar={(e) => handleDisplaySearchBar(e)}
+      />
+      {display && (
+        <SearchBar
+          onSearchResults={handleSearchResults}
+          searchBarReset={searchBarReset}
+        />
+      )}
+    </div>
+  );
 }
