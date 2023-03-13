@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
-import useFetch from '../services/useFetch'
+import React, { useState } from 'react';
+import useFetch from '../services/useFetch';
+// import Cookies from 'js-cookie';
+
 export default function SignUpForm() {
     const [formData, setFormData] = useState({
-        email: " ",
-        password: " ",
+        email: "",
+        password: "",
     });
-    console.log("🚀 ~ file: SignUpForm.jsx:9 ~ SignUpForm ~ formData:", formData)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const sendData = {
             method: "POST",
             headers: {
@@ -16,13 +18,16 @@ export default function SignUpForm() {
             },
             body: JSON.stringify(formData)
         }
-        const apiURL = 'https://musicdetective.herokuapp.com/';
-        const data = await useFetch({ apiURL }, sendData)
-        const token = await data.token
+        const apiURL = 'https://musicdetective.herokuapp.com';
+        try {
+            const data = await useFetch({ apiURL }, sendData);
+            const token = data.token;
 
-        Cookies.set("user_token", token)
-        navigate("/");
-
+            // Cookies.set("user_token", token);
+        } catch (error) {
+            console.log(error.message);
+            alert("Une erreur s'est produite lors de la connexion.");
+        }
     }
 
     const handleChange = (e) => {
