@@ -31,12 +31,15 @@ export default function Register() {
             },
             body: JSON.stringify(form),
         };
+        try {
+            const data = await useFetch("https://musicdetective.herokuapp.com/users/", sendData);
+            const token = data.token;
 
-        const data = await useFetch("https://musicdetective.herokuapp.com/users/", sendData);
-        const token = data.token;
-
-        Cookies.set("user_token", token);
-        navigate("/");
+            Cookies.set("user_token", token);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
