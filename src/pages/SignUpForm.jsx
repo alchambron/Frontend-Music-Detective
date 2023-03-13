@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useFetch from '../services/useFetch';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
 export default function SignUpForm() {
     const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ export default function SignUpForm() {
             const data = await useFetch({ apiURL }, sendData);
             const token = data.token;
 
-            // Cookies.set("user_token", token);
+            Cookies.set("user_token", token);
         } catch (error) {
             console.log(error.message);
             alert("Une erreur s'est produite lors de la connexion.");
