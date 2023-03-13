@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useFetch from '../services/useFetch';
 import Cookies from 'js-cookie';
 
-export default function SignUpForm() {
+export default function Register() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
