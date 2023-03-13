@@ -26,7 +26,7 @@ export default function SignUpForm() {
             Cookies.set("user_token", token);
         } catch (error) {
             console.log(error.message);
-            alert("Une erreur s'est produite lors de la connexion.");
+            alert("An error occurred during the connection.");
         }
     }
 
