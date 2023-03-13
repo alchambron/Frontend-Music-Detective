@@ -64,7 +64,7 @@ export default function Register() {
                     id="password"
                     onChange={handleChange} />
 
-                <button type="submit">Login</button>
+                <button type="submit">Sign up</button>
             </form>
         </div>
     )
