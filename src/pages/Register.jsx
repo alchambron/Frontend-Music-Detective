@@ -18,7 +18,7 @@ export default function Register() {
             },
             body: JSON.stringify(formData)
         }
-        const apiURL = 'https://musicdetective.herokuapp.com';
+        const apiURL = 'https://musicdetective.herokuapp.com/users/';
         try {
             const data = await useFetch({ apiURL }, sendData);
             const token = data.token;
