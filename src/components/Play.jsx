@@ -20,6 +20,52 @@ export default function Play({
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
 
+  useEffect(() => {
+    const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
+
+    if (searchResults && selectSong) {
+      const matchingResults = Compare(
+        searchSongResult,
+        selectSong.youtube_title
+      );
+      setUserChoice(searchSongResult);
+      setMatchingResults(matchingResults);
+      manageSearchBar(true);
+      console.log(matchingResults);
+    }
+  }, [searchResults]);
+
+  useEffect(() => {
+    if (matchingResults) {
+      stopPlayer();
+      addPoints();
+      alert("Attention son suivant !");
+
+      setTimeout(() => {
+        NextSong();
+      }, 5000);
+    }
+  }, [matchingResults]);
+
+  useEffect(() => {
+    if (selectSong) {
+      launchPlayer();
+    }
+  }, [selectSong]);
+
+  useEffect(() => {
+    if (songFinished) {
+      setProgress(0)
+    }
+  })
+
+  useEffect(() => {
+    if (points < 0) {
+      alert("Vous avez perdu !");
+      window.location.href = "/choice";
+    }
+  }, [points]);
+
   async function chooseRandomSong() {
     console.log("choose");
     try {
@@ -64,45 +110,6 @@ export default function Play({
     }, time);
   }
 
-  useEffect(() => {
-    const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
-
-    if (searchResults && selectSong) {
-      const matchingResults = Compare(
-        searchSongResult,
-        selectSong.youtube_title
-      );
-      setUserChoice(searchSongResult);
-      setMatchingResults(matchingResults);
-      manageSearchBar(true);
-      console.log(matchingResults);
-    }
-  }, [searchResults]);
-
-  useEffect(() => {
-    if (matchingResults) {
-      stopPlayer();
-      addPoints();
-      alert("Attention son suivant !");
-
-      setTimeout(() => {
-        NextSong();
-      }, 5000);
-    }
-  }, [matchingResults]);
-
-  useEffect(() => {
-    if (selectSong) {
-      launchPlayer();
-    }
-  }, [selectSong]);
-
-  useEffect(() => {
-    if (songFinished) {
-      setProgress(0)
-    }
-  })
-
   function handleCountdownFinish() {
     chooseRandomSong();
     activateSearchBar(true);
@@ -119,13 +126,6 @@ export default function Play({
       launchPlayer();
     }, 2000);
   }
-
-  useEffect(() => {
-    if (points < 0) {
-      alert("Vous avez perdu !");
-      window.location.href = "/choice";
-    }
-  }, [points]);
 
   function addPoints() {
     setPoints(points + 20);
