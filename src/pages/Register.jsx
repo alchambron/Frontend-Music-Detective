@@ -10,6 +10,8 @@ export default function Register() {
             password: " ",
         },
     });
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate();
 
     function handleChange(e) {
@@ -24,6 +26,7 @@ export default function Register() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setIsLoading(true)
         const sendData = {
             method: "POST",
             headers: {
@@ -40,25 +43,29 @@ export default function Register() {
         } catch (error) {
             console.log(error);
         }
+        setIsLoading(false)
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-                type="email"
-                name=""
-                id="email"
-                onChange={handleChange} />
+        <div>
+            {isLoading && <p>Loading...</p>}
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="email"
+                    name=""
+                    id="email"
+                    onChange={handleChange} />
 
-            <label htmlFor="password">Password:</label>
-            <input
-                type="password"
-                name=""
-                id="password"
-                onChange={handleChange} />
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    name=""
+                    id="password"
+                    onChange={handleChange} />
 
-            <button type="submit">Login</button>
-        </form>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     )
 }
