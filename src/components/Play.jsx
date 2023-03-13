@@ -64,7 +64,7 @@ export default function Play({
   useEffect(() => {
     if (points < 0) {
       alert("Vous avez perdu !");
-     navigate("./choice");
+     navigate("choice");
     }
   }, [points]);
 
@@ -165,7 +165,7 @@ export default function Play({
   }
   function handleLeave() {
     stopPlayer();
-      navigate("./choice");
+      navigate("choice");
   }
 
   return (
