@@ -1,45 +1,42 @@
-import React, { useState } from 'react';
-import useFetch from '../services/useFetch';
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import useFetch from '../services/useFetch'
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+    const [form, setForm] = useState({
+        user: {
+            email: " ",
+            password: " ",
+        },
     });
-
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    function handleChange(e) {
+        setForm({
+            ...form,
+            user: {
+                ...form.user,
+                [e.target.id]: e.target.value,
+            },
+        });
+    }
 
+    async function handleSubmit(e) {
+        e.preventDefault();
         const sendData = {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-type": "application/json",
             },
-            body: JSON.stringify(formData)
-        }
-        const apiURL = 'https://musicdetective.herokuapp.com/users';
-        try {
-            const data = await useFetch({ apiURL }, sendData);
-            const token = data.token;
+            body: JSON.stringify(form),
+        };
 
-            Cookies.set("user_token", token);
-            navigate("/");
-        } catch (error) {
-            console.log(error.message);
-            alert("An error occurred during the connection.");
-        }
-    }
+        const data = await useFetch("https://musicdetective.herokuapp.com/users/", sendData);
+        const token = data.token;
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData.user,
-            [e.target.id]: e.target.value,
-        });
+        Cookies.set("user_token", token);
+        navigate("/");
     }
 
     return (
@@ -47,12 +44,14 @@ export default function Register() {
             <label htmlFor="email">Email:</label>
             <input
                 type="email"
+                name=""
                 id="email"
                 onChange={handleChange} />
 
             <label htmlFor="password">Password:</label>
             <input
                 type="password"
+                name=""
                 id="password"
                 onChange={handleChange} />
 
