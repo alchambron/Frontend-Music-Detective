@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import useFetch from '../services/useFetch';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Register() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,12 +22,13 @@ export default function Register() {
             },
             body: JSON.stringify(formData)
         }
-        const apiURL = 'https://musicdetective.herokuapp.com/users/';
+        const apiURL = 'https://musicdetective.herokuapp.com/users';
         try {
             const data = await useFetch({ apiURL }, sendData);
             const token = data.token;
 
             Cookies.set("user_token", token);
+            navigate("/");
         } catch (error) {
             console.log(error.message);
             alert("An error occurred during the connection.");
@@ -32,7 +37,7 @@ export default function Register() {
 
     const handleChange = (e) => {
         setFormData({
-            ...formData,
+            ...formData.user,
             [e.target.id]: e.target.value,
         });
     }
