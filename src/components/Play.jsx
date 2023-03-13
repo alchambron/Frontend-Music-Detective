@@ -3,6 +3,7 @@ import ReactPlayer from "react-player";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import Vinyl from "./Vinyl";
+import { useNavigate } from "react-router-dom";
 
 export default function Play({
   searchResults,
@@ -19,6 +20,7 @@ export default function Play({
   const [points, setPoints] = useState(100);
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
