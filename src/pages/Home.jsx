@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ChoicePlaylist from "./ChoicePlaylist";
+import ButtonMyAccount from "../components/ButtonMyAccount";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -11,6 +11,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      <ButtonMyAccount />
       <h1>Music Detective</h1>
 
       <h2>Le Concept</h2>
