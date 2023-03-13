@@ -3,12 +3,10 @@ import useFetch from '../services/useFetch'
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Login() {
     const [form, setForm] = useState({
-        user: {
-            email: " ",
-            password: " ",
-        },
+        email: " ",
+        password: " ",
     });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +33,7 @@ export default function Register() {
             body: JSON.stringify(form),
         };
         try {
-            const data = await useFetch("https://musicdetective.herokuapp.com/users/", sendData);
+            const data = await useFetch("https://musicdetective.herokuapp.com/users/sign_in", sendData);
             const token = data.token;
 
             Cookies.set("user_token", token);
@@ -64,7 +62,7 @@ export default function Register() {
                     id="password"
                     onChange={handleChange} />
 
-                <button type="submit">Sign up</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     )
