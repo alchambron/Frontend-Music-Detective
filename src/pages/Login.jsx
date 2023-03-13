@@ -1,57 +1,69 @@
-import React, { useState } from 'react';
-import useFetch from '../services/useFetch';
-import Cookies from 'js-cookie';
+import React, { useState } from "react";
+import useFetch from '../services/useFetch'
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
+    const [form, setForm] = useState({
+        email: " ",
+        password: " ",
     });
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const navigate = useNavigate();
 
-        const sendData = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
+    function handleChange(e) {
+        setForm({
+            ...form,
+            user: {
+                ...form.user,
+                [e.target.id]: e.target.value,
             },
-            body: JSON.stringify(formData)
-        }
-        const apiURL = 'https://musicdetective.herokuapp.com/users/sign_in';
-        try {
-            const data = await useFetch({ apiURL }, sendData);
-            const token = data.token;
-
-            Cookies.set("user_token", token);
-        } catch (error) {
-            console.log(error.message);
-            alert("An error occurred during the connection.");
-        }
-    }
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value,
         });
     }
 
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setIsLoading(true)
+        const sendData = {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(form),
+        };
+        try {
+            const data = await useFetch("https://musicdetective.herokuapp.com/users/sign_in", sendData);
+            const token = data.token;
+
+            Cookies.set("user_token", token);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+        setIsLoading(false)
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-                type="email"
-                id="email"
-                onChange={handleChange} />
+        <div>
+            {isLoading && <p>Loading...</p>}
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="email"
+                    name=""
+                    id="email"
+                    onChange={handleChange} />
 
-            <label htmlFor="password">Password:</label>
-            <input
-                type="password"
-                id="password"
-                onChange={handleChange} />
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    name=""
+                    id="password"
+                    onChange={handleChange} />
 
-            <button type="submit">Login</button>
-        </form>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     )
 }
