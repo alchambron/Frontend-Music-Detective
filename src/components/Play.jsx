@@ -57,14 +57,14 @@ export default function Play({
 
   useEffect(() => {
     if (songFinished) {
-      setProgress(0)
+      setProgress(0);
     }
-  })
+  });
 
   useEffect(() => {
     if (points < 0) {
       alert("Vous avez perdu !");
-     navigate("choice");
+      navigate("../pages/ChoicePlaylist.jsx");
     }
   }, [points]);
 
@@ -158,14 +158,14 @@ export default function Play({
     setGiveUp(true);
     stopPlayer();
     deletePoints();
-    setProgress(0)
+    setProgress(0);
     setTimeout(() => {
       NextSong();
     }, 5000);
   }
   function handleLeave() {
     stopPlayer();
-      navigate("choice");
+    navigate("../pages/ChoicePlaylist.jsx");
   }
 
   return (
@@ -187,14 +187,15 @@ export default function Play({
               />
             </div>
           )}
-          <div><input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-          />
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+            />
             <progress value={progress} max="20" />
           </div>
           <>
