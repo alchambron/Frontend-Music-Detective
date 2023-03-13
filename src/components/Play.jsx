@@ -123,7 +123,7 @@ export default function Play({
   useEffect(() => {
     if (points < 0) {
       alert("Vous avez perdu !");
-      window.location.href = "/choice";
+        navigate("./choice");
     }
   }, [points]);
 
@@ -163,7 +163,7 @@ export default function Play({
   }
   function handleLeave() {
     stopPlayer();
-    window.location.href = "/choice";
+      navigate("./choice");
   }
 
   return (
