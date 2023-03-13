@@ -18,7 +18,7 @@ export default function Login() {
             },
             body: JSON.stringify(formData)
         }
-        const apiURL = 'https://musicdetective.herokuapp.com/users/';
+        const apiURL = 'https://musicdetective.herokuapp.com/users/sign_in';
         try {
             const data = await useFetch({ apiURL }, sendData);
             const token = data.token;
