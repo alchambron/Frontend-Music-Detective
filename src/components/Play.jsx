@@ -16,7 +16,7 @@ export default function Play({
   const [progress, setProgress] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
-  const [volume, setVolume] = useState(0.25);
+  const [volume, setVolume] = useState(0.5);
   const [points, setPoints] = useState(100);
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
@@ -200,10 +200,13 @@ export default function Play({
           </div>
           <>
             {songFinished && <button onClick={handleReplay}>Replay</button>}
+            {songFinished && (
+              <button onClick={handleAbandon}>REPONCE</button>
+            )}
 
             <button onClick={stopPlayer}>STOP</button>
-            <button onClick={handleAbandon}>ABANDONNER</button>
-            <button onClick={handleLeave}>QUITTER</button>
+
+            <button onClick={handleLeave}>RETOUR PLAYLIST</button>
             {matchingResults && <p>Felicitation</p>}
             {giveUp && (
               <p>Le titre de la musique est: {selectSong.youtube_title}</p>
