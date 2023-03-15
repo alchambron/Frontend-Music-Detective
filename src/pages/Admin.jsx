@@ -31,7 +31,6 @@ export default function Admin() {
   }
 
   async function handleSubmit(e){
-    e.preventDefault();
     const params = {
       method: "POST",
       headers: {
