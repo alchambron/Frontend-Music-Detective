@@ -22,8 +22,11 @@ export default function MyAccount() {
 
     }, [])
 
-    const handleClick = () => {
+    const handleClickLogOut = () => {
         Cookies.remove('user_token');
+    }
+
+    const handleClickDeleteAccount = () => {
     }
 
     return (
@@ -41,8 +44,11 @@ export default function MyAccount() {
             ) : (
                 <>
                     <p>Nickname: {nickname}</p>
-                    <NavLink to="/" onClick={handleClick}>
+                    <NavLink to="/" onClick={handleClickLogOut}>
                         <button>Log out</button>
+                    </NavLink>
+                    <NavLink to="/" onClick={handleClickDeleteAccount}>
+                        <button>Delete my account</button>
                     </NavLink>
                 </>
             )}
