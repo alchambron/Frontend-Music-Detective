@@ -6,15 +6,23 @@ export default function MyAccount() {
     const [nickname, setNickname] = useState("");
     const token = Cookies.get("user_token");
 
+    const handleClickLogOut = () => {
+        Cookies.remove('user_token');
+    }
+
     const fetchData = async () => {
         const params = {
             headers: {
                 Authorization: `${token}`
             }
         }
-        const response = await fetch("https://musicdetective.herokuapp.com/member-data", params)
-        const data = await response.json();
-        setNickname(data.user.nickname);
+        try {
+            const response = await fetch("https://musicdetective.herokuapp.com/member-data", params)
+            const data = await response.json();
+            setNickname(data.user.nickname);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
@@ -22,8 +30,19 @@ export default function MyAccount() {
 
     }, [])
 
-    const handleClick = () => {
-        Cookies.remove('user_token');
+    async function handleClickDeleteAccount(e) {
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `${token}`,
+            },
+        };
+        try {
+            await fetch("https://musicdetective.herokuapp.com/users", params);
+            handleClickLogOut()
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -41,8 +60,11 @@ export default function MyAccount() {
             ) : (
                 <>
                     <p>Nickname: {nickname}</p>
-                    <NavLink to="/" onClick={handleClick}>
+                    <NavLink to="/" onClick={handleClickLogOut}>
                         <button>Log out</button>
+                    </NavLink>
+                    <NavLink to="/" onClick={handleClickDeleteAccount}>
+                        <button>Delete my account</button>
                     </NavLink>
                 </>
             )}
