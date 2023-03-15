@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonMyAccount from "../components/ButtonMyAccount";
+import homeSVG1 from "../assets/home_icon_1.svg"
+import homeSVG2 from "../assets/home_icon_2.svg"
+import homeSVG3 from "../assets/home_icon_3.svg"
 
 export default function Home() {
   const navigate = useNavigate();
@@ -11,30 +14,41 @@ export default function Home() {
 
   return (
     <div className="home">
-      <ButtonMyAccount />
-      <h1>Music Detective</h1>
-
-      <h2>Le Concept</h2>
-
-      <div className="hr">
-        <hr></hr>
+      <div className="navBar">
+        <ButtonMyAccount />
       </div>
+      <div className="home__body">
+        <div className="home__body__title">
+          <h1>Music Detective</h1>
+        </div>
 
-      <div className="ChoicePlaylistHome">
-        <img src=""></img>
-        <p>Choisi ta playlist!</p>
-      </div>
+        <div className="home__body__content">
+          <div className="home__body__content__title">
+            <h2>Le Concept</h2>
+            <hr />
+          </div>
 
-      <div className="ChoiceMusicHome">
-        <img src=""></img>
-        <p>Devine la musique!</p>
-      </div>
+          <div className="home__body__content__element1">
+            <img src={homeSVG1} alt="" />
+            <p>Choisi ta playlist! </p>
+          </div>
 
-      <div className="becomes the best">
-        <img src=""></img>
-        <p>Devien le meilleur!</p>
+          <div className="home__body__content__element2">
+            <img src={homeSVG2} alt="" />
+            <p>Devine la musique !</p>
+          </div>
+
+          <div className="home__body__content__element3">
+            <img src={homeSVG3} alt="" />
+            <p>Deviens le meilleur !</p>
+          </div>
+        </div>
+        <div className="home__cta">
+
+        <button onClick={Startplay}>Jouer</button>
+        </div>
       </div>
-      <button onClick={Startplay}>Jouer</button>
+      <div className="orange-background"></div>
     </div>
   );
 }
