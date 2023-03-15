@@ -29,16 +29,23 @@ export default function MyAccount() {
     return (
         <div>
             <h1>Mon compte</h1>
-            <p>Nickname: {nickname}</p>
-            <NavLink to="/register">
-                <button>Sign up</button>
-            </NavLink>
-            <NavLink to="/login">
-                <button>Login</button>
-            </NavLink>
-            <NavLink to="/" onClick={handleClick}>
-                <button>Log out</button>
-            </NavLink>
+            {token == null || token == undefined ? (
+                <>
+                    <NavLink to="/register">
+                        <button>Sign up</button>
+                    </NavLink>
+                    <NavLink to="/login">
+                        <button>Login</button>
+                    </NavLink>
+                </>
+            ) : (
+                <>
+                    <p>Nickname: {nickname}</p>
+                    <NavLink to="/" onClick={handleClick}>
+                        <button>Log out</button>
+                    </NavLink>
+                </>
+            )}
         </div>
     )
 }
