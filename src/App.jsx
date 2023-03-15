@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import Admin from './pages/Admin'
 import ChoicePlaylist from './pages/ChoicePlaylist'
 
 import Game from './pages/Game'
@@ -14,6 +15,7 @@ export default function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/admin' element={<Admin />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/choice" element={<ChoicePlaylist />} />
         <Route path="/results/:id" element={<Results />} />
