@@ -45,10 +45,7 @@ export default function ChoicePlaylist() {
           <div key={list.id}>
             <button onClick={() => ChoicePlaylist(list.id)}>
               <div className="ResultChoice">
-                {list.country}
-
-                {list.year}
-                {list.genre}
+                {list.title}
               </div>
             </button>
           </div>

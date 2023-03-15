@@ -95,7 +95,7 @@ export default function Admin() {
         <h1>liste des playlist</h1>
         <div>
           {playlistData.map((playlist, index) => (
-            <p key={index}>{playlist.genre}</p>
+            <p key={index}>{playlist.title}</p>
           ))}
         </div>
       </div>
