@@ -6,6 +6,10 @@ export default function MyAccount() {
     const [nickname, setNickname] = useState("");
     const token = Cookies.get("user_token");
 
+    const handleClickLogOut = () => {
+        Cookies.remove('user_token');
+    }
+
     const fetchData = async () => {
         const params = {
             headers: {
@@ -22,11 +26,19 @@ export default function MyAccount() {
 
     }, [])
 
-    const handleClickLogOut = () => {
-        Cookies.remove('user_token');
-    }
-
-    const handleClickDeleteAccount = () => {
+    async function handleClickDeleteAccount(e) {
+        const params = {
+            method: "DELETE",
+            headers: {
+                Authorization: `${token}`,
+            },
+        };
+        try {
+            await fetch("https://musicdetective.herokuapp.com/users", params);
+            handleClickLogOut()
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
