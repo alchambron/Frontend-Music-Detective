@@ -1,4 +1,31 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-family: 'Satoshi', sans-serif;
 }
+
+html {
+    background-color: #111D4A;
+}
+
+.root {
+    height: 100vh;
+    max-height: 100vh;
+}
+
+.orange-background {
+    position: absolute;
+    background-color: #F7C59F;
+    filter: blur(250px);
+    height: 55vh;
+    width: 90vw;
+    top: 25vh;
+    z-index: -1;
+
+}
+
+$bg-color: #111D4A;
+$bg-box :rgba(17, 29, 74, 0.4);
+$white: #FFFFFF;
+$orange: #F7C59F;
+$beige: #EFEFD0;

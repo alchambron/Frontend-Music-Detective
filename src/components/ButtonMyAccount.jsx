@@ -6,7 +6,7 @@ export default function ButtonMyAccount() {
     return (
         <div className='button-my-account'>
             <NavLink to="/myaccount">
-                <button>My account</button>
+                <h3>Mon compte</h3>
             </NavLink>
         </div>
     )
