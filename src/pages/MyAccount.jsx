@@ -16,9 +16,13 @@ export default function MyAccount() {
                 Authorization: `${token}`
             }
         }
-        const response = await fetch("https://musicdetective.herokuapp.com/member-data", params)
-        const data = await response.json();
-        setNickname(data.user.nickname);
+        try {
+            const response = await fetch("https://musicdetective.herokuapp.com/member-data", params)
+            const data = await response.json();
+            setNickname(data.user.nickname);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     useEffect(() => {
