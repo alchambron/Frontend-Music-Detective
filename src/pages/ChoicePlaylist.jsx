@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Game from "./Game";
+import { NavLink } from "react-router-dom";
 
 export default function ChoicePlaylist() {
   const [playlists, setPlaylists] = useState([]);
@@ -36,10 +37,14 @@ export default function ChoicePlaylist() {
 
   return (
     <>
-      {isloading ? (
-        null
-      ) : (
+      {isloading ? null : (
         <div className="playlist">
+          <div className="leave">
+            <NavLink to="/">
+              <p>Retour</p>
+            </NavLink>
+          </div>
+
           <div className="playlist__title">
             <h1>Choisi ta playlist !</h1>
           </div>
@@ -49,15 +54,11 @@ export default function ChoicePlaylist() {
             <div className="playlist__body__content">
               {playlists.map((list) =>
                 list.playlist_type == "Années" ? (
-                  <div
-                    key={list.id}
-                    className="playlist__body__content__card"
-                  >
+                  <div key={list.id} className="playlist__body__content__card">
                     <button
                       className="button"
                       onClick={() => ChoicePlaylist(list.id)}
-                    >
-                    </button>
+                    ></button>
                     <h3>{list.title}</h3>
                   </div>
                 ) : null
@@ -70,15 +71,11 @@ export default function ChoicePlaylist() {
             <div className="playlist__body__content">
               {playlists.map((list) =>
                 list.playlist_type == "Genre" ? (
-                  <div
-                    key={list.id}
-                    className="playlist__body__content__card"
-                  >
+                  <div key={list.id} className="playlist__body__content__card">
                     <button
                       className="button"
                       onClick={() => ChoicePlaylist(list.id)}
-                    >
-                    </button>
+                    ></button>
                     <h3>{list.title}</h3>
                   </div>
                 ) : null
