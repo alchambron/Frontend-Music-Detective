@@ -33,7 +33,7 @@ export default function Login() {
             body: JSON.stringify(form),
         };
         try {
-            const data = await useFetch("https://musicdetective.herokuapp.com/users/sign_in", sendData);
+            const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/sign_in", sendData);
             const token = data.token;
 
             Cookies.set("user_token", token);

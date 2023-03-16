@@ -7,7 +7,6 @@ export default function EditAccount() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
 
     const token = Cookies.get("user_token");
     const navigate = useNavigate();
@@ -32,10 +31,10 @@ export default function EditAccount() {
         event.preventDefault();
 
         const params = {
-            method: "PATCH",
+            method: 'PATCH',
             headers: {
-                "Content-Type": "application/json",
-                Authorization: `${token}`,
+                'Authorization': `${token}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 user: {
@@ -48,14 +47,9 @@ export default function EditAccount() {
         };
 
         try {
-            const response = await fetch("https://musicdetective.herokuapp.com/users", params);
-            if (response.ok) {
-                setErrorMessage("");
-                navigate("/")
-            } else {
-                const data = await response.json();
-                setErrorMessage(data.errors[0]);
-            }
+            const response = await fetch(import.meta.env.VITE_BASE_URL + "/users", params);
+            await response.json();
+            navigate("/")
         } catch (error) {
             console.error(error);
         }
@@ -68,7 +62,7 @@ export default function EditAccount() {
             },
         };
         try {
-            const response = await fetch("https://musicdetective.herokuapp.com/member-data", params);
+            const response = await fetch(import.meta.env.VITE_BASE_URL + "/member-data", params);
             const data = await response.json();
             setNickname(data.user.nickname);
             setEmail(data.user.email);
@@ -121,7 +115,6 @@ export default function EditAccount() {
                 <div>
                     <button type="submit">Save changes</button>
                 </div>
-                {errorMessage && <p>{errorMessage}</p>}
             </form>
         </div>
     );

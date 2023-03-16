@@ -15,7 +15,7 @@ export default function ChoicePlaylist() {
     async function getPlaylists() {
       try {
         const response = await fetch(
-          "https://musicdetective.herokuapp.com/playlists",
+          import.meta.env.VITE_BASE_URL + "/playlists",
           {
             method: "GET",
             headers: {
