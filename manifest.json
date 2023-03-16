@@ -12,6 +12,6 @@
       "sizes":"192x192"  
     }
   ],
-  "start_url" : "http://localhost:5173/?source=pwa",
+  "start_url" : "https://musicdetective.vercel.app/?source=pwa",
   "display": "standalone"
 }
