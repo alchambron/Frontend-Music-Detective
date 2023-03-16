@@ -1,10 +1,11 @@
-
 const cacheName = "hello-pwa";
 const filesToCache = [
- 
   "/",
   "/index.html",
   "/manifest.json",
+  "/package-lock.json",
+  "/package.json",
+  "/vercel.json",
   "/sw.js",
   "/vite.config.js",
 ];

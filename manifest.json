@@ -5,7 +5,8 @@
     {
       "src": "/src/assets/16x16.png",
       "type": "image/png",
-      "sizes":"16x16"  
+      "sizes":"16x16",
+       "purpose": "any maskable"
     },
     {
       "src": "/src/assets/128x128.png",
@@ -40,7 +41,7 @@
   ],
 
   "lang":"fr",
-  "start_url" : "http://localhost:5173/",
+  "start_url" : "https://musicdetective.vercel.app/",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
