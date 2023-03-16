@@ -42,6 +42,7 @@ export default function Admin() {
 
     try {
       const data = await fetch(import.meta.env.VITE_BASE_URL + "/playlists", params)
+      
       console.log(data)
 
     } catch (error) {

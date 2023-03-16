@@ -211,6 +211,7 @@ export default function Play({
             {giveUp && (
               <p>Le titre de la musique est: {selectSong.youtube_title}</p>
             )}
+            
             <p>Vous avez: {points} points/100</p>
           </>
         </div>
