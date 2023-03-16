@@ -39,19 +39,20 @@ export default function SearchBar({ onSearchResults, searchBarReset }) {
     }, [searchBarReset])
 
     return (
-        <div className='search-bar'>
+        <div className='search'>
             <input
-                className="search-input"
+                className="search__input"
                 type="text"
-                placeholder="TicTacTicTac...."
+                placeholder="Ecriver un titre..."
                 value={searchTerm}
                 onChange={handleSearchChange}
             />
-            <ul className="search-results">
+            <ul className="search__results">
                 {searchResults.map((result) => (
                     <li
                         key={`${result.title}-${result.artist}`}
                         onClick={() => handleSearchClick(result)}
+                        className="search__results__elements"
                     >
                         {result.title} - {result.artist}
                     </li>
