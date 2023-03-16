@@ -6,12 +6,13 @@
       "src": "/src/assets/16x16.png",
       "type": "image/png",
       "sizes": "16x16",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/src/assets/128x128.png",
       "type": "image/png",
-      "sizes": "128x128"
+      "sizes": "128x128",
+      "purpose": "any"
     },
     {
       "src": "/src/assets/144x144.png",
@@ -20,15 +21,21 @@
       "purpose": "any"
     },
     {
+      "src": "/src/assets/256x256.png",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "maskable"
+    },
+    {
       "src": "/src/assets/512x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
 
   "lang": "fr",
-  "start_url": "/",
-  "scope": ".",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
