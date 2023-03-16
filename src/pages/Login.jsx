@@ -8,7 +8,8 @@ export default function Login() {
         email: " ",
         password: " ",
     });
-    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     const navigate = useNavigate();
 
@@ -24,7 +25,6 @@ export default function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setIsLoading(true)
         const sendData = {
             method: "POST",
             headers: {
@@ -32,21 +32,18 @@ export default function Login() {
             },
             body: JSON.stringify(form),
         };
-        try {
-            const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/sign_in", sendData);
-            const token = data.token;
-
+        const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/sign_in", sendData);
+        const token = data.token;
+        if (token == null || token == undefined) {
+            setErrorMessage("Your email or password was incorrect")
+        } else {
             Cookies.set("user_token", token);
             navigate("/");
-        } catch (error) {
-            console.log(error);
         }
-        setIsLoading(false)
     }
 
     return (
         <div>
-            {isLoading && <p>Loading...</p>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>
                 <input
@@ -64,6 +61,7 @@ export default function Login() {
 
                 <button type="submit">Login</button>
             </form>
+            {errorMessage}
         </div>
     )
 }
