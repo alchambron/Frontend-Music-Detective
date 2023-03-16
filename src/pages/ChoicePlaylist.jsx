@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Game from "./Game"
+import Game from "./Game";
 
 export default function ChoicePlaylist() {
   const [playlists, setPlaylists] = useState([]);
@@ -34,23 +34,60 @@ export default function ChoicePlaylist() {
     getPlaylists();
   }, []);
 
-  return isloading ? (
-    "Wait Loading"
-  ) : (
+  return (
     <>
-      <div>
-        <h1>Choisissez une playlist de musique</h1>
-
-        {playlists.map((list) => (
-          <div key={list.id}>
-            <button onClick={() => ChoicePlaylist(list.id)}>
-              <div className="ResultChoice">
-                {list.title}
-              </div>
-            </button>
+      {isloading ? (
+        null
+      ) : (
+        <div className="playlist">
+          <div className="playlist__title">
+            <h1>Choisi ta playlist !</h1>
           </div>
-        ))}
-      </div>
+
+          <div className="playlist__body">
+            <h3> Par années</h3>
+            <div className="playlist__body__content">
+              {playlists.map((list) =>
+                list.playlist_type == "Années" ? (
+                  <div
+                    key={list.id}
+                    className="playlist__body__content__card"
+                  >
+                    <button
+                      className="button"
+                      onClick={() => ChoicePlaylist(list.id)}
+                    >
+                    </button>
+                    <h3>{list.title}</h3>
+                  </div>
+                ) : null
+              )}
+            </div>
+          </div>
+
+          <div className="playlist__body">
+            <h3> Par genre</h3>
+            <div className="playlist__body__content">
+              {playlists.map((list) =>
+                list.playlist_type == "Genre" ? (
+                  <div
+                    key={list.id}
+                    className="playlist__body__content__card"
+                  >
+                    <button
+                      className="button"
+                      onClick={() => ChoicePlaylist(list.id)}
+                    >
+                    </button>
+                    <h3>{list.title}</h3>
+                  </div>
+                ) : null
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="orange-background"></div>
     </>
   );
 }
