@@ -10,7 +10,7 @@ export default function Register() {
             password: " ",
         },
     });
-    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ export default function Register() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setIsLoading(true)
         const sendData = {
             method: "POST",
             headers: {
@@ -34,21 +33,18 @@ export default function Register() {
             },
             body: JSON.stringify(form),
         };
-        try {
-            const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/", sendData);
-            const token = data.token;
-
+        const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/", sendData);
+        const token = data.token;
+        if (token == null || token == undefined) {
+            setErrorMessage("Account creation failed.")
+        } else {
             Cookies.set("user_token", token);
             navigate("/");
-        } catch (error) {
-            console.log(error);
         }
-        setIsLoading(false)
     }
 
     return (
         <div>
-            {isLoading && <p>Loading...</p>}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>
                 <input
@@ -66,6 +62,7 @@ export default function Register() {
 
                 <button type="submit">Sign up</button>
             </form>
+            {errorMessage}
         </div>
     )
 }
