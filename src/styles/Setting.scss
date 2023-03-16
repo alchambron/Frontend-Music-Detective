@@ -1,3 +1,9 @@
+$bg-color: #111D4A;
+$bg-box :rgba(17, 29, 74, 0.4);
+$orange: #F7C59F;
+$beige: #EFEFD0;
+$white: #FFFFFF;
+
 * {
     padding: 0px;
     margin: 0px;
@@ -14,7 +20,7 @@ html {
 }
 
 .orange-background {
-    -webkit-transform:translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     position: absolute;
     background-color: #F7C59F;
     filter: blur(250px);
@@ -25,8 +31,29 @@ html {
 
 }
 
-$bg-color: #111D4A;
-$bg-box :rgba(17, 29, 74, 0.4);
-$white: #FFFFFF;
-$orange: #F7C59F;
-$beige: #EFEFD0;
+.leave {
+
+    position: absolute;
+    width: 100vw;
+    top: 2vh;
+    left: 5vw;
+
+    p{
+        text-decoration: none;
+        color: $white;
+        font-family: 'Satochi', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+
+    }
+
+    @media (max-width: 767.98px) {
+        top: 2vh;
+        left: 10vw;
+
+        p {
+            font-size: 12px;
+        }
+    }
+}
+

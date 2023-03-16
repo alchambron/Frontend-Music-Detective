@@ -22,7 +22,7 @@ export default function Countdown({ time, onFinish }) {
     }, []);
 
     return (
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '30em' }}>
+        <div className="game-counter">
             {countdown === 0 ? '' : countdown}
         </div>
     );

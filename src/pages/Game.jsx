@@ -22,18 +22,21 @@ export default function Game() {
   }
 
   return (
-    <div className="game">
-      <Play
-        searchResults={searchResults}
-        manageSearchBar={(e) => handleResetSearchBar(e)}
-        activateSearchBar={(e) => handleDisplaySearchBar(e)}
-      />
-      {display && (
-        <SearchBar
-          onSearchResults={handleSearchResults}
-          searchBarReset={searchBarReset}
+    <>
+      <div className="game">
+        <Play
+          searchResults={searchResults}
+          manageSearchBar={(e) => handleResetSearchBar(e)}
+          activateSearchBar={(e) => handleDisplaySearchBar(e)}
         />
-      )}
-    </div>
+        {display && (
+          <SearchBar
+            onSearchResults={handleSearchResults}
+            searchBarReset={searchBarReset}
+          />
+        )}
+      </div>
+      <div className="orange-background"></div>
+    </>
   );
 }
