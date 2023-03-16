@@ -35,7 +35,8 @@
   ],
 
   "lang": "fr",
-  "start_url": ".",
+  "start_url": "index.html",
+  "id": "/",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
