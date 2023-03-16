@@ -14,7 +14,7 @@ export default function Admin() {
 
   async function fetchPlaylistData() {
     const response = await fetch(
-      "https://musicdetective.herokuapp.com/playlists"
+      import.meta.env.VITE_BASE_URL + "/playlists"
     );
     const data = await response.json();
     setPlaylistData(data);
@@ -30,7 +30,7 @@ export default function Admin() {
     });
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     const params = {
       method: "POST",
       headers: {
@@ -40,17 +40,17 @@ export default function Admin() {
     }
     console.log(params)
 
-    try {
-      const data = await fetch("https://musicdetective.herokuapp.com/playlists", params)
+    try {
+      const data = await fetch(import.meta.env.VITE_BASE_URL + "/playlists", params)
       console.log(data)
 
-    } catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
 
-  async function handleAddSong(){
-    const data = await fetch("https://musicdetective.herokuapp.com/add_song")
+  async function handleAddSong() {
+    const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song")
     console.log(data)
   }
 

@@ -17,7 +17,7 @@ export default function MyAccount() {
             }
         }
         try {
-            const response = await fetch("https://musicdetective.herokuapp.com/member-data", params)
+            const response = await fetch(import.meta.env.VITE_BASE_URL + "/member-data", params)
             const data = await response.json();
             setNickname(data.user.nickname);
         } catch (error) {
@@ -38,7 +38,7 @@ export default function MyAccount() {
             },
         };
         try {
-            await fetch("https://musicdetective.herokuapp.com/users", params);
+            await fetch(import.meta.env.VITE_BASE_URL + "/users", params);
             handleClickLogOut()
         } catch (error) {
             console.log(error);
@@ -60,6 +60,9 @@ export default function MyAccount() {
             ) : (
                 <>
                     <p>Nickname: {nickname}</p>
+                    <NavLink to="/edit">
+                        <button>Edit Account</button>
+                    </NavLink>
                     <NavLink to="/" onClick={handleClickLogOut}>
                         <button>Log out</button>
                     </NavLink>

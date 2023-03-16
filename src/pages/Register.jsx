@@ -35,7 +35,7 @@ export default function Register() {
             body: JSON.stringify(form),
         };
         try {
-            const data = await useFetch("https://musicdetective.herokuapp.com/users/", sendData);
+            const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/", sendData);
             const token = data.token;
 
             Cookies.set("user_token", token);

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Admin from './pages/Admin'
 import ChoicePlaylist from './pages/ChoicePlaylist'
+import EditAccount from './pages/EditAccount'
 
 import Game from './pages/Game'
 import Home from './pages/Home'
@@ -22,6 +23,8 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myaccount" element={<MyAccount />} />
+        <Route path="/edit" element={<EditAccount />} />
+
       </Routes>
     </div>
   )

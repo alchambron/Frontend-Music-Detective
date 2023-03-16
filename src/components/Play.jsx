@@ -72,7 +72,7 @@ export default function Play({
     console.log("choose");
     try {
       const playlistNumber = window.location.pathname.match(/\/(\d+)$/)[1];
-      const apiURL = `https://musicdetective.herokuapp.com/playlist_contents?playlist_id=${playlistNumber}`;
+      const apiURL = import.meta.env.VITE_BASE_URL + `/playlist_contents?playlist_id=${playlistNumber}`;
       const response = await fetch(apiURL);
       const data = await response.json();
       const filteredData = data.filter(
