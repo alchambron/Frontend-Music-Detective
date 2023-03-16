@@ -46,8 +46,8 @@
 
     &__title {
 
-      margin-top: 3vh;
-      margin-bottom: 3vh;
+      margin-top: 5vh;
+      margin-bottom: 1vh;
 
       h1 {
         font-size: 32px;
@@ -57,7 +57,7 @@
     }
 
     &__body {
-      margin: 3vh;
+      margin: 1vh;
       border: solid 1px #EFEFD0;
       border-radius: 25px;
       background-color: $bg-box;
@@ -85,6 +85,7 @@
   }
 }
 
+
 .button {
   @media (max-width: 767.98px) {
     aspect-ratio: 1/1;
@@ -103,3 +104,4 @@ button:hover{
   cursor: pointer;
   background-color: $beige;
 }
+
