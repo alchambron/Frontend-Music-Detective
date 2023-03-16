@@ -30,12 +30,12 @@ export default function Home() {
 
           <div className="home__body__content__element1">
             <img src={homeSVG1} alt="" />
-            <p>Choisi ta playlist! </p>
+            <p>Choisis ta playlist! </p>
           </div>
 
           <div className="home__body__content__element2">
             <img src={homeSVG2} alt="" />
-            <p>Devine la musique !</p>
+            <p>Devines la musique !</p>
           </div>
 
           <div className="home__body__content__element3">
