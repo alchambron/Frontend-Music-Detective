@@ -7,6 +7,8 @@ export default function EditAccount() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     const token = Cookies.get("user_token");
     const navigate = useNavigate();
@@ -29,6 +31,11 @@ export default function EditAccount() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (password !== passwordConfirmation) {
+            setErrorMessage("The passwords do not match.");
+            return;
+        }
 
         const params = {
             method: 'PATCH',
@@ -115,6 +122,7 @@ export default function EditAccount() {
                 <div>
                     <button type="submit">Save changes</button>
                 </div>
+                {errorMessage}
             </form>
         </div>
     );
