@@ -1,0 +1,17 @@
+{
+  "name": "MusicDetective",
+  "icons": [
+    {
+      "src": "/src/assets/Yin_yang2.png",
+      "type": "image/png",
+      "sizes":"512x512"  
+    },
+    {
+      "src": "/src/assets/Yin_yang1.png",
+      "type": "image/png",
+      "sizes":"192x192"  
+    }
+  ],
+  "start_url" : "http://localhost:5173/?source=pwa",
+  "display": "standalone"
+}

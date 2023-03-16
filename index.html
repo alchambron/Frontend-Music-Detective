@@ -4,7 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/record-vinyl-solid.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json"/>
     <title>Music Detective</title>
+    <script>
+      window.addEventListener('load', () =>{
+        if("serviceWorker" in navigator){
+          navigator.serviceWorker.register('/sw.js')
+        }
+        
+      })
+    </script>
   </head>
   <body>
     <div id="root"></div>
