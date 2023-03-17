@@ -136,7 +136,7 @@ export default function Play({
   }
 
   function handleReplay() {
-    deletePoints();
+   
     stopPlayer();
     setTimeout(() => {
       launchPlayer();
@@ -144,11 +144,11 @@ export default function Play({
   }
 
   function addPoints() {
-    setPoints(points + 20);
+    setPoints(points + 100);
   }
 
   function deletePoints() {
-    setPoints(points - 5);
+    setPoints(points - 10);
   }
 
   function handleProgress(state) {
@@ -256,7 +256,7 @@ export default function Play({
                 Réponse
               </button>
             )}
-            {/* <button className="button-play" onClick={stopPlayer}>Stop</button> */}
+          
           </div>
         </>
       )}
