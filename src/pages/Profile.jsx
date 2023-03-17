@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../actions/userAction';
 import Sign from '../components/Log/Sign';
+import { getUserProfile } from '../services/userService';
 
 export default function Profile() {
     const [nickname, setNickname] = useState("");
