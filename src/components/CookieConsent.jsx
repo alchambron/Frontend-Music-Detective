@@ -31,8 +31,8 @@ export default function () {
           to="../Privacy"
           className="buttonPrivacy"
         >
-          
-          ici
+          {" "}
+          ici{" "}
         </NavLink>
         pour consulter notre politique de confidentialité.
       </CookieConsent>
