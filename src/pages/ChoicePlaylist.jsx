@@ -9,14 +9,17 @@ export default function ChoicePlaylist() {
   const navigate = useNavigate();
 
   async function ChoicePlaylist(id) {
-    const response = await fetch(`http://localhost:3000/games`, { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-    const score = await response.json()
+    // creer une nouvelle partie pour track le scrore
+    // handle l'url pour la producion
+    // pour la production ca ne devrait pas etre http://localhost:3000
 
+    const response = await fetch(import.meta.env.VITE_BASE_URL + `/games`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const score = await response.json();
 
     navigate(`/game/${id}/${score.id}`);
   }

@@ -22,7 +22,7 @@ export default function Play({
   const [progress, setProgress] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(0.25);
   const [points, setPoints] = useState(100);
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
@@ -135,15 +135,20 @@ export default function Play({
     stopPlayer();
     launchPlayer();
   }
+  // update le score
+  // handle l'url pour la producion
 
   const updateScore = async (pointNumber) => {
-    const response = await fetch(`http://localhost:3000/games/${scoreId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ score: pointNumber.toString() }),
-    });
+    const response = await fetch(
+      import.meta.env.VITE_BASE_URL + `/games/${scoreId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ score: pointNumber.toString() }),
+      }
+    );
     const score = await response.json();
     getScrore();
     console.log(score);

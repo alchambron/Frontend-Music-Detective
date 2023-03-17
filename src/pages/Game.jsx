@@ -26,7 +26,11 @@ export default function Game() {
 
   const getScrore = async () => {
     if (scoreId) {
-      const resp = await fetch(`http://localhost:3000/games/${scoreId}`);
+      // handle l'url pour la producion 
+
+      const resp = await fetch(
+        import.meta.env.VITE_BASE_URL + `/games/${scoreId}`
+      );
       const game = await resp.json()
       setScore(game.score)
     }
