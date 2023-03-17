@@ -11,7 +11,9 @@ import { Provider } from 'react-redux'
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { loginUser } from './actions/userAction'
-import {getUserProfile} from './services/userService'
+import { getUserProfile } from './services/userService'
+import CookieConsent from "./components/CookieConsent";
+import Privacy from "./pages/Privacy";
 
 export default function App() {
 
@@ -42,9 +44,10 @@ export default function App() {
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<EditAccount />} />
-        <Route path="/privacy" element={<Privacy/>} />        </Routes>
-       <CookieConsent/>
-    </div>
+          <Route path="/privacy" element={<Privacy />} />
+        </Routes>
+        <CookieConsent />
+      </div>
     </Provider>
   );
 }
