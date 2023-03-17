@@ -13,7 +13,7 @@ export default function ChoicePlaylist() {
     // handle l'url pour la producion
     // pour la production ca ne devrait pas etre http://localhost:3000
 
-    const response = await fetch(import.meta.env.VITE_BASE_URL + `/games`, {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

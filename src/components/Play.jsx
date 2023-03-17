@@ -140,7 +140,7 @@ export default function Play({
 
   const updateScore = async (pointNumber) => {
     const response = await fetch(
-      import.meta.env.VITE_BASE_URL + `/games/${scoreId}`,
+      `${import.meta.env.VITE_BASE_URL}games/${scoreId}`,
       {
         method: "PUT",
         headers: {
