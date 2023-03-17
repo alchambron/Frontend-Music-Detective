@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import Sign from '../components/Log/Sign';
 
 export default function MyAccount() {
     const [nickname, setNickname] = useState("");
@@ -49,14 +50,7 @@ export default function MyAccount() {
         <div>
             <h1>Mon compte</h1>
             {token == null || token == undefined ? (
-                <>
-                    <NavLink to="/register">
-                        <button>Sign up</button>
-                    </NavLink>
-                    <NavLink to="/login">
-                        <button>Login</button>
-                    </NavLink>
-                </>
+                <Sign />
             ) : (
                 <>
                     <p>Nickname: {nickname}</p>
