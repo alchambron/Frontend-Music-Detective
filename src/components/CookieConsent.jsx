@@ -25,16 +25,16 @@ export default function () {
         buttonText="Accepter"
         expires={365}
       >
-        Ce site utilise des cookies. Pour en savoir plus,cliquer sur
+        Ce site utilise des cookies. Pour en savoir plus, cliquez sur
         <NavLink
           style={{ color: "#FFFFFF" }}
           to="../Privacy"
           className="buttonPrivacy"
         >
-          {" "}
-          consulter{" "}
+          
+          ici
         </NavLink>
-        notre politique de confidentialité.
+        pour consulter notre politique de confidentialité.
       </CookieConsent>
     </div>
   );
