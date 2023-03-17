@@ -1,8 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import { UidContext } from './components/AppContext'
-import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
-
 import Admin from './pages/Admin'
 import ChoicePlaylist from './pages/ChoicePlaylist'
 import EditAccount from './pages/EditAccount'
@@ -10,24 +6,34 @@ import Game from './pages/Game'
 import Home from './pages/Home'
 import Results from './pages/Results'
 import Profile from './pages/Profile'
+import store from './store'
+import { Provider } from 'react-redux'
+import { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import { loginUser, logoutUser } from './actions/userAction'
+import { getUserProfile } from './services/userService'
 
 export default function App() {
-  const [uid, setUid] = useState(null);
 
   useEffect(() => {
-    const fetchToken = async () => {
-      const token = Cookies.get("user_token");
-      console.log("🚀 ~ file: App.jsx:20 ~ fetchToken ~ token:", token)
-      if (token !== null && token !== undefined) {
-        setUid(token)
+    const token = Cookies.get("user_token");
+    if (!token) {
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const user = await getUserProfile();
+        store.dispatch(loginUser(user))
+      } catch (error) {
+        console.error(error);
       }
     }
-    fetchToken();
-  }, [uid])
+    fetchData();
+  }, [])
 
   return (
-    <div className="App">
-      <UidContext.Provider value={uid}>
+    <Provider store={store}>
+      <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/admin' element={<Admin />} />
@@ -37,7 +43,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<EditAccount />} />
         </Routes>
-      </UidContext.Provider>
-    </div>
+      </div>
+    </Provider>
   )
 }
