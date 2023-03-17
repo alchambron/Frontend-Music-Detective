@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/src/assets/record-vinyl-solid.svg"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/src//assets/home_icon_1.svg" type="image/.svg" />
+    <link rel="apple-touch-icon" href="/src/assets/128x128.png" />
+    <meta name="theme-color" content="white" />
+    <title>Music Detective</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/src/assets/record-vinyl-solid.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="manifest" href="./public/manifest.json" />
-  <link rel="icon" href="/src//assets/home_icon_1.svg" type="image/.svg" />
-  <link rel="apple-touch-icon" href="/src/assets/128x128.png">
-  <meta name="theme-color" content="white" />
-  <title>Music Detective</title>
-  <script>
-    window.addEventListener('load', () => {
-
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./sw.js");
-      }
-    });
-
-  </script>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

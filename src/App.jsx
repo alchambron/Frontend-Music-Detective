@@ -12,6 +12,8 @@ import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { loginUser, logoutUser } from './actions/userAction'
 import { getUserProfile } from './services/userService'
+import CookieConsent from "./components/CookieConsent";
+import Privacy from "./pages/Privacy";
 
 export default function App() {
 
@@ -36,14 +38,15 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/admin' element={<Admin />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/game/:id" element={<Game />} />
           <Route path="/choice" element={<ChoicePlaylist />} />
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit" element={<EditAccount />} />
-        </Routes>
+          <Route path="/privacy" element={<Privacy />} />        </Routes>
+        <CookieConsent />
       </div>
     </Provider>
-  )
+  );
 }
