@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import useFetch from '../../services/useFetch'
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../actions/userAction";
 
 export default function SignUpForm() {
+    const dispatch = useDispatch();
+    const state = useSelector((state) => {
+        return state
+    })
+
     const [form, setForm] = useState({
         user: {
             email: " ",
@@ -35,11 +42,12 @@ export default function SignUpForm() {
         };
         const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/", sendData);
         const token = data.token;
-        if (token == null || token == undefined) {
-            setErrorMessage("Account creation failed.")
+        if (!token) {
+            setErrorMessage("Account creation failed.");
         } else {
             Cookies.set("user_token", token);
             navigate("/");
+            dispatch(loginUser(data.data.user));
         }
     }
 
