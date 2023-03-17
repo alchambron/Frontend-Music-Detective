@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useFetch from '../services/useFetch'
+import useFetch from '../../services/useFetch'
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function SignUpForm() {
     const [form, setForm] = useState({
         user: {
             email: " ",
