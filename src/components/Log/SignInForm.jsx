@@ -10,7 +10,6 @@ export default function SignInForm() {
     });
     const [errorMessage, setErrorMessage] = useState("");
 
-
     const navigate = useNavigate();
 
     function handleChange(e) {
@@ -44,6 +43,7 @@ export default function SignInForm() {
 
     return (
         <div>
+            <h1>SIGN IN</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>
                 <input
@@ -59,7 +59,7 @@ export default function SignInForm() {
                     id="password"
                     onChange={handleChange} />
 
-                <button type="submit">Login</button>
+                <button type="submit">SIGN IN</button>
             </form>
             {errorMessage}
         </div>
