@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import useFetch from '../../services/useFetch'
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../actions/userAction";
 
 export default function SignInForm() {
+    const dispatch = useDispatch();
+
+    const state = useSelector((state) => {
+        return state
+    })
+
     const [form, setForm] = useState({
         email: " ",
         password: " ",
@@ -33,11 +41,12 @@ export default function SignInForm() {
         };
         const data = await useFetch(import.meta.env.VITE_BASE_URL + "/users/sign_in", sendData);
         const token = data.token;
-        if (token == null || token == undefined) {
-            setErrorMessage("Your email or password was incorrect")
+        if (!token) {
+            setErrorMessage("Your email or password was incorrect");
         } else {
             Cookies.set("user_token", token);
             navigate("/");
+            dispatch(loginUser(data.data.user));
         }
     }
 
