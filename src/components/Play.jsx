@@ -9,6 +9,10 @@ export default function Play({
   searchResults,
   manageSearchBar,
   activateSearchBar,
+  score,
+  scoreId,
+  getScrore,
+  id,
 }) {
   const [display, setDisplay] = useState(false);
   const [displaySuccess, setDisplaySuccess] = useState(false);
@@ -40,26 +44,19 @@ export default function Play({
         setDisplayDanger(true);
         setTimeout(() => {
           setDisplayDanger(false);
-        }, 3000);
+        }, 2000);
       } else {
         setDisplaySuccess(true);
+        setDisplayDanger(false);
+        stopPlayer();
+        addPoints();
         setTimeout(() => {
           setDisplaySuccess(false);
-        }, 5000);
+          NextSong();
+        }, 2000);
       }
     }
   }, [searchResults]);
-
-  useEffect(() => {
-    if (matchingResults) {
-      stopPlayer();
-      addPoints();
-
-      setTimeout(() => {
-        NextSong();
-      }, 5000);
-    }
-  }, [matchingResults]);
 
   useEffect(() => {
     if (selectSong) {
@@ -83,18 +80,19 @@ export default function Play({
   async function chooseRandomSong() {
     console.log("choose");
     try {
-      const playlistNumber = window.location.pathname.match(/\/(\d+)$/)[1];
       const apiURL =
-        import.meta.env.VITE_BASE_URL +
-        `/playlist_contents?playlist_id=${playlistNumber}`;
+        import.meta.env.VITE_BASE_URL + `/playlist_contents?playlist_id=${id}`;
       const response = await fetch(apiURL);
       const data = await response.json();
       const filteredData = data.filter(
-        (item) => item.playlist_id === parseInt(playlistNumber)
+        (item) => item.playlist_id === parseInt(id)
       );
+      console.log(data);
       const randomIndex = Math.floor(Math.random() * filteredData.length);
       const randomSong = filteredData[randomIndex];
       setSelectSong(randomSong);
+
+      console.log(randomSong);
     } catch (error) {
       console.error(error);
     }
@@ -130,25 +128,33 @@ export default function Play({
     chooseRandomSong();
     activateSearchBar(true);
     setDisplay(true);
-    if (selectSong) {
-      launchPlayer();
-    }
+    launchPlayer();
   }
 
   function handleReplay() {
-   
     stopPlayer();
-    setTimeout(() => {
-      launchPlayer();
-    }, 2000);
+    launchPlayer();
   }
 
+  const updateScore = async (pointNumber) => {
+    const response = await fetch(`http://localhost:3000/games/${scoreId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ score: pointNumber.toString() }),
+    });
+    const score = await response.json();
+    getScrore();
+    console.log(score);
+  };
+
   function addPoints() {
-    setPoints(points + 100);
+    updateScore(score + 100);
   }
 
   function deletePoints() {
-    setPoints(points - 10);
+    updateScore(score - 10);
   }
 
   function handleProgress(state) {
@@ -164,9 +170,6 @@ export default function Play({
     setGiveUp(false);
     chooseRandomSong();
     manageSearchBar(true);
-    if (!matchingResults) {
-      deletePoints();
-    }
   }
   function handleAbandon() {
     setGiveUp(true);
@@ -204,7 +207,7 @@ export default function Play({
           <div className="play__display">
             <div className="play__display__infos">
               <p className="play__display__infos__points">
-                Score : {points} points
+                Score : {score} points
               </p>
               {giveUp && (
                 <p className="play__display__infos__answer">
@@ -256,7 +259,6 @@ export default function Play({
                 Réponse
               </button>
             )}
-          
           </div>
         </>
       )}

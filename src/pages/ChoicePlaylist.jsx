@@ -8,8 +8,17 @@ export default function ChoicePlaylist() {
   const [isloading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
-  function ChoicePlaylist(id) {
-    navigate(`/game/${id}`);
+  async function ChoicePlaylist(id) {
+    const response = await fetch(`http://localhost:3000/games`, { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    const score = await response.json()
+
+
+    navigate(`/game/${id}/${score.id}`);
   }
 
   useEffect(() => {
