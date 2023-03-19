@@ -1,16 +1,19 @@
-import Cookies from 'js-cookie'
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import { logoutUser } from '../actions/userAction';
 import Sign from '../components/Log/Sign';
+import DeleteProfile from '../components/Profile/DeleteProfil';
+import LogoutProfile from '../components/Profile/LogoutProfile';
 import { getUserProfile } from '../services/userService';
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie';
+import { logoutUser } from '../actions/userAction';
 
 export default function Profile() {
+    const dispatch = useDispatch();
+
     const [nickname, setNickname] = useState("");
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const token = Cookies.get("user_token");
-    const dispatch = useDispatch();
     const loggedUser = useSelector((state) => {
         return state.user
     })
@@ -21,11 +24,6 @@ export default function Profile() {
             setUserLoggedIn(false)
         }
     }, [loggedUser]);
-
-    const handleClickLogOut = () => {
-        Cookies.remove('user_token');
-        dispatch(logoutUser())
-    }
 
     const fetchData = async () => {
         try {
@@ -38,22 +36,11 @@ export default function Profile() {
 
     useEffect(() => {
         fetchData();
-
     }, [])
 
-    async function handleClickDeleteAccount(e) {
-        const params = {
-            method: "DELETE",
-            headers: {
-                Authorization: `${token}`,
-            },
-        };
-        try {
-            await fetch(import.meta.env.VITE_BASE_URL + "/users", params);
-            handleClickLogOut()
-        } catch (error) {
-            console.log(error);
-        }
+    const handleClickLogOut = () => {
+        Cookies.remove('user_token');
+        dispatch(logoutUser())
     }
 
     return (
@@ -63,19 +50,14 @@ export default function Profile() {
                 <Sign />
             ) : (
                 <>
-                    <p>Nickname: {nickname}</p>
-                    <NavLink to="/edit">
+                    <p>Welcome to your profile {nickname}</p>
+                    <NavLink to="/profile/edit">
                         <button>Edit Account</button>
                     </NavLink>
-                    <NavLink to="/" onClick={handleClickLogOut}>
-                        <button>Log out</button>
-                    </NavLink>
-                    <NavLink to="/" onClick={handleClickDeleteAccount}>
-                        <button>Delete my account</button>
-                    </NavLink>
+                    <DeleteProfile handleClickLogOut={handleClickLogOut} />
+                    <LogoutProfile handleClickLogOut={handleClickLogOut} />
                 </>
             )}
         </div>
     )
 }
-
