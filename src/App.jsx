@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Admin from './pages/Admin'
 import ChoicePlaylist from './pages/ChoicePlaylist'
-import EditAccount from './pages/EditAccount'
 import Game from './pages/Game'
 import Home from './pages/Home'
 import Results from './pages/Results'
@@ -45,7 +44,6 @@ export default function App() {
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/edit" element={<EditAccount />} />
           <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <CookieConsent />
