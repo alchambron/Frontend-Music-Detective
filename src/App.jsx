@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Admin from './pages/Admin'
 import ChoicePlaylist from './pages/ChoicePlaylist'
-import EditAccount from './pages/EditAccount'
 import Game from './pages/Game'
 import Home from './pages/Home'
 import Results from './pages/Results'
@@ -14,6 +13,7 @@ import { loginUser } from './actions/userAction'
 import { getUserProfile } from './services/userService'
 import CookieConsent from "./components/CookieConsent";
 import Privacy from "./pages/Privacy";
+import EditProfile from './components/Profile/EditProfile'
 
 export default function App() {
 
@@ -43,7 +43,7 @@ export default function App() {
           <Route path="/choice" element={<ChoicePlaylist />} />
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/edit" element={<EditAccount />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <CookieConsent />
