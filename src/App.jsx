@@ -14,6 +14,7 @@ import { loginUser } from './actions/userAction'
 import { getUserProfile } from './services/userService'
 import CookieConsent from "./components/CookieConsent";
 import Privacy from "./pages/Privacy";
+import EditProfile from './components/Profile/EditProfile'
 
 export default function App() {
 
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/choice" element={<ChoicePlaylist />} />
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/edit" element={<EditAccount />} />
           <Route path="/privacy" element={<Privacy />} />
         </Routes>
