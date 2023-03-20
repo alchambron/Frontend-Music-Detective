@@ -5,7 +5,6 @@
 
   &__title {
     margin-top: 5vh;
-
     h1 {
       color: $white;
       font-size: 64px;
@@ -19,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     background-color: $bg-box;
-    border: solid 1px #EFEFD0;
+    border: solid 1px #efefd0;
     border-radius: 25px;
     margin-top: 7vh;
     width: 70vw;
@@ -48,9 +47,7 @@
   }
 
   @media (max-width: 767.98px) {
-
     &__title {
-
       margin-top: 5vh;
       margin-bottom: 1vh;
 
@@ -63,7 +60,7 @@
 
     &__body {
       margin: 1vh;
-      border: solid 1px #EFEFD0;
+      border: solid 1px #efefd0;
       border-radius: 25px;
       background-color: $bg-box;
       display: flex;
@@ -86,12 +83,10 @@
             font-weight: 500;
           }
         }
-
       }
     }
   }
 }
-
 
 .button {
   @media (max-width: 767.98px) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { json, useParams } from 'react-router-dom';
+import { json, useParams } from "react-router-dom";
 import Play from "../components/Play";
 import SearchBar from "../components/SearchBar";
 
@@ -26,20 +26,19 @@ export default function Game() {
 
   const getScrore = async () => {
     if (scoreId) {
-      // handle l'url pour la producion 
+      // handle l'url pour la producion
 
       const resp = await fetch(
         `${import.meta.env.VITE_BASE_URL}games/${scoreId}`
       );
-      const game = await resp.json()
-      setScore(game.score)
+      const game = await resp.json();
+      setScore(game.score);
     }
-  }
-
+  };
 
   useEffect(() => {
-    getScrore()
-  }, [])
+    getScrore();
+  }, []);
 
   return (
     <>
