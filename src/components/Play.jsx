@@ -6,6 +6,7 @@ import Player from "./Play/Player";
 import { musicService } from "../services/musicService";
 import PlayVolume from "./Play/PlayVolume";
 import ProgressBar from "./Play/ProgressBar";
+import InteractiveResponse from "./Play/InteractiveResponse";
 
 export default function Play({
   searchResults,
@@ -194,18 +195,10 @@ export default function Play({
             <ProgressBar
               progress={progress}
             />
-            <div className="play__display__interactive">
-              {displayDanger && (
-                <div className="play__display__interactive__danger">
-                  <p>Mauvaise réponse : Recommencer</p>
-                </div>
-              )}
-              {displaySuccess && (
-                <div className="play__display__interactive__success">
-                  <p>Felicitation !</p>
-                </div>
-              )}
-            </div>
+            <InteractiveResponse
+              displayDanger={displayDanger}
+              displaySuccess={displaySuccess}
+            />
             <PlayVolume
               setVolume={setVolume}
               volume={volume}
