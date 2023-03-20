@@ -8,6 +8,8 @@ import PlayVolume from "./Play/PlayVolume";
 import ProgressBar from "./Play/ProgressBar";
 import InteractiveResponse from "./Play/InteractiveResponse";
 import ButtonReturn from "./Play/ButtonReturn";
+import PlayButtons from "./Play/PlayButtons";
+import PlayInfo from "./Play/PlayInfo";
 
 export default function Play({
   searchResults,
@@ -166,7 +168,10 @@ export default function Play({
 
   return (
     <div className="play">
-      <Countdown time={3} onFinish={handleCountdownFinish} />
+      <Countdown
+        time={3}
+        onFinish={handleCountdownFinish}
+      />
       {display && (
         <>
           {currentSong && (
@@ -179,19 +184,12 @@ export default function Play({
           )}
           <ButtonReturn />
           <div className="play__display">
-            <div className="play__display__infos">
-              <p className="play__display__infos__points">
-                Score : {score} points
-              </p>
-              {giveUp && (
-                <p className="play__display__infos__answer">
-                  Le titre de la musique est: {selectSong.youtube_title}
-                </p>
-              )}
-            </div>
-            <ProgressBar
-              progress={progress}
+            <PlayInfo
+              selectSong={selectSong}
+              score={score}
+              giveUp={giveUp}
             />
+            <ProgressBar progress={progress} />
             <InteractiveResponse
               displayDanger={displayDanger}
               displaySuccess={displaySuccess}
@@ -201,20 +199,13 @@ export default function Play({
               volume={volume}
             />
           </div>
-
-          <div className="play__buttons">
-            {songFinished && !abandon && !matchingResults && (
-              <button className="button-play" onClick={handleReplay}>
-                Réécouter
-              </button>
-            )}
-
-            {songFinished && !matchingResults && !abandon && (
-              <button className="button-play" onClick={handleAbandon}>
-                Réponse
-              </button>
-            )}
-          </div>
+          <PlayButtons
+            songFinished={songFinished}
+            abandon={abandon}
+            matchingResults={matchingResults}
+            handleReplay={handleReplay}
+            handleAbandon={handleAbandon}
+          />
         </>
       )}
     </div>
