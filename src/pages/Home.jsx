@@ -4,6 +4,8 @@ import ButtonMyAccount from "../components/ButtonMyAccount";
 import homeSVG1 from "../assets/home_icon_1.svg";
 import homeSVG2 from "../assets/home_icon_2.svg";
 import homeSVG3 from "../assets/home_icon_3.svg";
+import { useSelector } from "react-redux";
+import ButtonAdmin from "../components/Home/ButtonAdmin";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -12,8 +14,15 @@ export default function Home() {
     navigate("./choice/");
   }
 
+  const loggedUser = useSelector((state) => {
+    return state.user;
+  });
+
   return (
     <div className="home">
+      <div className="navBar">
+        <ButtonAdmin />
+      </div>
       <div className="navBar">
         <ButtonMyAccount />
       </div>
