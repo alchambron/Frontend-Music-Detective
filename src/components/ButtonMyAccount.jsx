@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 export default function ButtonMyAccount() {
     return (
         <div className='button-my-account'>
-            <NavLink to="/myaccount">
+            <NavLink to="/profile">
                 <h3>Mon compte</h3>
             </NavLink>
         </div>
