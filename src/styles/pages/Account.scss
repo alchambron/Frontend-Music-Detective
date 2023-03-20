@@ -1,0 +1,142 @@
+.account {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__buttons {
+
+      display: flex;
+      justify-content: center;
+
+      button {
+        color: $bg-color;
+        background: #EFEFD0;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+      }
+
+      &__off {
+        button {
+          background: none;
+          border: solid 1px $beige;
+          color: $white;
+        }
+      }
+    }
+
+    &__forms {
+
+      border: solid 1px #EFEFD0;
+      border-radius: 25px;
+      background-color: $bg-box;
+      height: 25vh;
+
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        label {
+          font-family: 'Satoshi', sans-serif;
+          font-weight: 500;
+        }
+
+        button {
+          display: flex;
+          justify-content: center;
+          background-color: $beige;
+          border-radius: 5px;
+          color: $white;
+          font-family: 'Satoshi', sans-serif;
+          margin: 2vh;
+          font-weight: 500;
+          font-size: 14px;
+          color: $bg-color;
+        }
+      }
+
+    }
+
+    &__logged{
+      display: flex;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    margin-top: 5vh;
+
+    &__title {
+      width: 70vw;
+
+      h1 {
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+
+    &__body {
+
+      &__buttons {
+        button {
+          width: 30vw;
+          border-radius: 21px;
+          height: 6vh;
+          margin: 1em;
+          font-weight: 700;
+          font-size: 16px;
+        }
+      }
+
+      &__forms {
+
+        width: 60vw;
+        padding: 1vh;
+
+        label {
+          font-weight: 500;
+          margin: 2vw;
+        }
+
+        input {
+          width: 50vw;
+          height: 3vh;
+          font-family: 'Satochi', sans-serif;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        button {
+          border: none;
+          width: 30vw;
+
+          h3 {
+            color: $bg-color;
+            align-items: center;
+          }
+        }
+
+        button:hover {
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+    }
+
+    &__logged {
+      margin-top: 3vh;
+
+      &__buttons{
+        margin-top: 3vh;
+      }
+
+    }
+
+  }
+}
