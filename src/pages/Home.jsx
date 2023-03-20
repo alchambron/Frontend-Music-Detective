@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonMyAccount from "../components/ButtonMyAccount";
 import homeSVG1 from "../assets/home_icon_1.svg";
@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import ButtonAdmin from "../components/Home/ButtonAdmin";
 
 export default function Home() {
+  const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
+
   const navigate = useNavigate();
 
   function Startplay() {
@@ -18,11 +20,20 @@ export default function Home() {
     return state.user;
   });
 
+  useEffect(() => {
+    if (loggedUser?.email === "admin@admin.fr") {
+      setAdminLoggedIn(true);
+    } else {
+      setAdminLoggedIn(false);
+    }
+  }, [loggedUser]);
   return (
     <div className="home">
-      <div className="navBar">
-        <ButtonAdmin />
-      </div>
+      {AdminLoggedIn &&
+        <div >
+          <ButtonAdmin />
+        </div>
+      }
       <div className="navBar">
         <ButtonMyAccount />
       </div>
