@@ -65,14 +65,18 @@ export default function Profile() {
                 <p>Bienvenue sur votre profil {nickname}</p>
               </div>
               <div className="account__logged__buttons">
-                <NavLink
-                  className="account__logged__buttons__edit"
-                  to="/profile/edit"
-                >
-                  <button>Editer votre profil</button>
-                </NavLink>
-                <DeleteProfile handleClickLogOut={handleClickLogOut} />
-                <LogoutProfile handleClickLogOut={handleClickLogOut} />
+                <div className="account__logged__buttons__up">
+                  <NavLink
+                    className="account__logged__buttons__up__edit"
+                    to="/profile/edit"
+                  >
+                    <button>Editer votre profil</button>
+                  </NavLink>
+                  <LogoutProfile handleClickLogOut={handleClickLogOut} />
+                </div>
+                <div className="account__logged__buttons_down">
+                  <DeleteProfile handleClickLogOut={handleClickLogOut} />
+                </div>
               </div>
             </div>
           </>
