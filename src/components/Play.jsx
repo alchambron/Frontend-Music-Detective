@@ -27,6 +27,7 @@ export default function Play({
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
   const navigate = useNavigate();
+  const [abandon, setAbandon] = useState(false);
 
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
@@ -102,7 +103,7 @@ export default function Play({
     setCurrentSong(selectSong);
     setMatchingResults(false);
     console.log(selectSong.youtube_title);
-    manageSongDuration(22000);
+    manageSongDuration(5000);
     setSongFinished(false);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -173,8 +174,10 @@ export default function Play({
     setGiveUp(false);
     chooseRandomSong();
     manageSearchBar(true);
+    setAbandon(false);
   }
   function handleAbandon() {
+    setAbandon(true);
     setGiveUp(true);
     stopPlayer();
     deletePoints();
@@ -253,13 +256,13 @@ export default function Play({
           </div>
 
           <div className="play__buttons">
-            {songFinished && (
+            {songFinished && !abandon && !matchingResults && (
               <button className="button-play" onClick={handleReplay}>
                 Réécouter
               </button>
             )}
 
-            {songFinished && !matchingResults && (
+            {songFinished && !matchingResults && !abandon && (
               <button className="button-play" onClick={handleAbandon}>
                 Réponse
               </button>
