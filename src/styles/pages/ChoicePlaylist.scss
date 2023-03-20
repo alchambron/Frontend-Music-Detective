@@ -24,14 +24,18 @@
     width: 70vw;
 
     h3 {
-      margin-top: 1vh;
+      margin: 1vh;
     }
 
     &__content {
       display: flex;
 
       &__card {
-        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1vh;
+        width: 8vw;
 
         h3 {
           text-align: center;
@@ -48,7 +52,7 @@
       margin-bottom: 1vh;
 
       h1 {
-        font-size: 32px;
+        font-size: 24px;
         font-weight: 900;
         color: $white;
       }
@@ -62,7 +66,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px;
       max-width: 80vw;
 
       &__content {
@@ -70,7 +73,10 @@
         grid-template-columns: repeat(3, 1fr);
 
         &__card {
-          margin: 5px;
+
+          margin: 0px;
+          width: 20vw;
+          max-width: 100%;
 
           h3 {
             font-size: 12px;
@@ -85,7 +91,7 @@
 .button {
   @media (max-width: 767.98px) {
     aspect-ratio: 1/1;
-    width: 10vh;
+    width: 9vh;
   }
 
   aspect-ratio: 1/1;
