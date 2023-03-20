@@ -19,8 +19,8 @@ export default function DeleteProfile({ handleClickLogOut }) {
         }
     }
     return (
-        <div>
-            <button onClick={handleClickDeleteAccount}>Delete my account</button>
+        <div className='account__logged__buttons__delete'>
+            <button onClick={handleClickDeleteAccount}>Supprimer votre compte</button>
         </div>
     )
 }
