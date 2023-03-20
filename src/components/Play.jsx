@@ -29,7 +29,6 @@ export default function Play({
   const navigate = useNavigate();
   const [abandon, setAbandon] = useState(false);
 
-
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
 
@@ -257,7 +256,7 @@ export default function Play({
           </div>
 
           <div className="play__buttons">
-            {songFinished && !abandon && !matchingResults  &&(
+            {songFinished && !abandon && !matchingResults && (
               <button className="button-play" onClick={handleReplay}>
                 Réécouter
               </button>
