@@ -3,7 +3,8 @@ import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import { NavLink, useNavigate } from "react-router-dom";
 import Player from "./Play/Player";
-import musicService from "../services/musicService";
+import { musicService } from "../services/musicService";
+
 
 export default function Play({
   searchResults,
