@@ -5,7 +5,7 @@
 
   &__title {
     margin-top: 5vh;
-    h1{
+    h1 {
       color: $white;
       font-size: 64px;
       font-weight: 900;
@@ -18,22 +18,22 @@
     flex-direction: column;
     align-items: center;
     background-color: $bg-box;
-    border: solid 1px #EFEFD0;
+    border: solid 1px #efefd0;
     border-radius: 25px;
     margin-top: 7vh;
     width: 70vw;
 
-    h3{
+    h3 {
       margin-top: 1vh;
     }
 
-    &__content{
+    &__content {
       display: flex;
 
-      &__card{
+      &__card {
         margin: 10px;
 
-        h3{
+        h3 {
           text-align: center;
           font-size: 16px;
           font-weight: 500;
@@ -43,9 +43,7 @@
   }
 
   @media (max-width: 767.98px) {
-
     &__title {
-
       margin-top: 5vh;
       margin-bottom: 1vh;
 
@@ -58,7 +56,7 @@
 
     &__body {
       margin: 1vh;
-      border: solid 1px #EFEFD0;
+      border: solid 1px #efefd0;
       border-radius: 25px;
       background-color: $bg-box;
       display: flex;
@@ -79,12 +77,10 @@
             font-weight: 500;
           }
         }
-
       }
     }
   }
 }
-
 
 .button {
   @media (max-width: 767.98px) {
@@ -100,8 +96,7 @@
   box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
   background-color: $beige;
 }
-

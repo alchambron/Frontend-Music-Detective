@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
-import Vinyl from "./Vinyl";
+
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Play({
@@ -135,8 +135,6 @@ export default function Play({
     stopPlayer();
     launchPlayer();
   }
-  // update le score
-  // handle l'url pour la producion
 
   const updateScore = async (pointNumber) => {
     const response = await fetch(
@@ -253,13 +251,15 @@ export default function Play({
               />
             </div>
           </div>
+
           <div className="play__buttons">
             {songFinished && (
               <button className="button-play" onClick={handleReplay}>
                 Réécouter
               </button>
             )}
-            {songFinished && (
+
+            {songFinished && !matchingResults && (
               <button className="button-play" onClick={handleAbandon}>
                 Réponse
               </button>

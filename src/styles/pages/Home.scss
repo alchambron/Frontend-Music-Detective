@@ -4,7 +4,7 @@
   width: 40vw;
   justify-content: flex-end;
   margin-bottom: 1vh;
-  h3{
+  h3 {
     text-decoration: none;
     color: $white;
     font-weight: 700;
@@ -50,7 +50,7 @@
     flex-direction: column;
     align-items: center;
     width: 40vw;
-    border: solid 1px #EFEFD0;
+    border: solid 1px #efefd0;
     border-radius: 25px;
     padding: 1%;
     background-color: $bg-box;
@@ -63,7 +63,6 @@
     }
 
     &__title {
-
       h1 {
         color: white;
         font-weight: 900;
@@ -107,7 +106,6 @@
         hr {
           width: 36vw;
         }
-
       }
 
       img {
@@ -139,7 +137,7 @@
 
       @media (max-width: 767.98px) {
         width: 60vw;
-        border: solid 1px #EFEFD0;
+        border: solid 1px #efefd0;
         border-radius: 25px;
         background-color: $bg-box;
 
@@ -177,19 +175,18 @@
         color: $beige;
         font-size: 40px;
       }
-
     }
   }
 
   &__cta {
     button {
       margin-top: 20px;
-      background: #EFEFD0;
+      background: #efefd0;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 21px;
       height: 40px;
       width: 110px;
-      font-family: 'Satoshi', sans-serif;
+      font-family: "Satoshi", sans-serif;
       font-weight: 700;
       border: none;
     }
