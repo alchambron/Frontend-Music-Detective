@@ -53,19 +53,26 @@ export default function SignInForm() {
     }
   }
 
-  return (
-    <div>
-      <h1>SIGN IN</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input type="email" name="" id="email" onChange={handleChange} />
+    return (
+        <div className="account__body__forms">
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    name=""
+                    id="email"
+                    onChange={handleChange} />
 
-        <label htmlFor="password">Password:</label>
-        <input type="password" name="" id="password" onChange={handleChange} />
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    name=""
+                    id="password"
+                    onChange={handleChange} />
 
-        <button type="submit">SIGN IN</button>
-      </form>
-      {errorMessage}
-    </div>
-  );
+                <button type="submit">Se Connecter</button>
+            </form>
+            {errorMessage}
+        </div>
+    )
 }

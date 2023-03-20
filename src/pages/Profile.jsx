@@ -44,20 +44,41 @@ export default function Profile() {
   };
 
   return (
-    <div>
-      <h1>Mon compte</h1>
-      {!userLoggedIn ? (
-        <Sign />
-      ) : (
-        <>
-          <p>Welcome to your profile {nickname}</p>
-          <NavLink to="/profile/edit">
-            <button>Edit Account</button>
-          </NavLink>
-          <DeleteProfile handleClickLogOut={handleClickLogOut} />
-          <LogoutProfile handleClickLogOut={handleClickLogOut} />
-        </>
-      )}
-    </div>
+    <>
+      <div className="leave">
+        <NavLink to="/">
+          <p>Retour</p>
+        </NavLink>
+      </div>
+      <div className="account">
+        {!userLoggedIn ? (
+          <>
+            <div className="account__title">
+              <h1>Inscivez et sauvegarder vos progressions !</h1>
+            </div>
+            <Sign />
+          </>
+        ) : (
+          <>
+            <div className="account__logged">
+              <div className="account__logged__subtitle">
+                <p>Bienvenue sur votre profil {nickname}</p>
+              </div>
+              <div className="account__logged__buttons">
+                <NavLink
+                  className="account__logged__buttons__edit"
+                  to="/profile/edit"
+                >
+                  <button>Editer votre profil</button>
+                </NavLink>
+                <DeleteProfile handleClickLogOut={handleClickLogOut} />
+                <LogoutProfile handleClickLogOut={handleClickLogOut} />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      <div className="orange-background"></div>
+    </>
   );
 }

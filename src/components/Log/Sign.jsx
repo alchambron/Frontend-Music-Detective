@@ -17,14 +17,34 @@ export default function Sign() {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={handleModals} id="register">
-          SIGN UP{" "}
-        </button>
-        <button onClick={handleModals} id="login">
-          SIGN IN
-        </button>
+    <div className="account__body">
+      <div className="account__body__buttons">
+        {signUpModal ? (
+          <div className="account__body__buttons__on">
+            <button onClick={handleModals} id="register">
+              S'inscrire{" "}
+            </button>
+          </div>
+        ) : (
+          <div className="account__body__buttons__off">
+            <button onClick={handleModals} id="register">
+              S'inscrire{" "}
+            </button>
+          </div>
+        )}
+        {signInModal ? (
+          <div className="account__body__buttons__on">
+            <button onClick={handleModals} id="login">
+              Se connecter
+            </button>
+          </div>
+        ) : (
+          <div className="account__body__buttons__off">
+            <button onClick={handleModals} id="login">
+              Se connecter
+            </button>
+          </div>
+        )}
       </div>
       {signUpModal && <SignUpForm />}
       {signInModal && <SignInForm />}
