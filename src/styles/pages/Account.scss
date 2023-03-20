@@ -19,6 +19,7 @@
         background: #EFEFD0;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border: none;
+
       }
 
       &__off {
@@ -36,7 +37,6 @@
       border-radius: 25px;
       background-color: $bg-box;
       height: 25vh;
-
 
       form {
         display: flex;
@@ -61,11 +61,48 @@
           color: $bg-color;
         }
       }
+    }
+  }
 
+  &__logged {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__subtitle{
+      font-size: 22px;
     }
 
-    &__logged{
+    &__buttons {
+      margin: 1em;
+
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 75vh;
+
+      button {
+        background-color: $beige;
+        border: none;
+        padding: 1em;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        width: 25vw;
+        font-size: 18px;
+        font-weight: 500;
+        margin: 1em;
+      }
+
+      &__down {
+        &__delete {
+          button {
+            background-color: $danger;
+            color: $white;
+          }
+        }
+      }
     }
   }
 
@@ -82,7 +119,6 @@
     }
 
     &__body {
-
       &__buttons {
         button {
           width: 30vw;
@@ -95,7 +131,6 @@
       }
 
       &__forms {
-
         width: 60vw;
         padding: 1vh;
 
@@ -126,17 +161,26 @@
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       }
-
     }
 
     &__logged {
       margin-top: 3vh;
 
-      &__buttons{
-        margin-top: 3vh;
+      &__subtitle{
+        font-size: 18px;
       }
 
-    }
+      &__buttons {
+        margin-top: 3vh;
+        height: 70vh;
 
+        button {
+          margin: 1em;
+          width: 50vw;
+          font-weight: 500;
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
