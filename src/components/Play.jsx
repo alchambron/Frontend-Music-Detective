@@ -4,7 +4,7 @@ import Countdown from "./Counter";
 import { NavLink, useNavigate } from "react-router-dom";
 import Player from "./Play/Player";
 import { musicService } from "../services/musicService";
-
+import PlayVolume from "./Play/PlayVolume";
 
 export default function Play({
   searchResults,
@@ -139,10 +139,6 @@ export default function Play({
     updateScore(score - 10);
   }
 
-  function handleVolumeChange(event) {
-    setVolume(parseFloat(event.target.value));
-  }
-
   function handleReplay() {
     stopPlayer();
     launchPlayer();
@@ -215,18 +211,10 @@ export default function Play({
                 </div>
               )}
             </div>
-            <div className="play__display__volume">
-              <h6>Volume</h6>
-              <input
-                className="play__display__volume__bar"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-              />
-            </div>
+            <PlayVolume
+              setVolume={setVolume}
+              volume={volume}
+            />
           </div>
 
           <div className="play__buttons">
