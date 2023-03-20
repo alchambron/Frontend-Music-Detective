@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Player from "./Play/Player";
 import { musicService } from "../services/musicService";
 import PlayVolume from "./Play/PlayVolume";
 import ProgressBar from "./Play/ProgressBar";
 import InteractiveResponse from "./Play/InteractiveResponse";
+import ButtonReturn from "./Play/ButtonReturn";
 
 export default function Play({
   searchResults,
@@ -176,11 +177,7 @@ export default function Play({
               setProgress={setProgress}
             />
           )}
-          <div className="leave">
-            <NavLink to="/choice">
-              <p>Retour</p>
-            </NavLink>
-          </div>
+          <ButtonReturn />
           <div className="play__display">
             <div className="play__display__infos">
               <p className="play__display__infos__points">
