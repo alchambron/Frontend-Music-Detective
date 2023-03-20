@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Player from "./Play/Player";
 import { musicService } from "../services/musicService";
 import PlayVolume from "./Play/PlayVolume";
+import ProgressBar from "./Play/ProgressBar";
 
 export default function Play({
   searchResults,
@@ -174,7 +175,6 @@ export default function Play({
               setProgress={setProgress}
             />
           )}
-
           <div className="leave">
             <NavLink to="/choice">
               <p>Retour</p>
@@ -191,14 +191,9 @@ export default function Play({
                 </p>
               )}
             </div>
-            <div className="play__display__elements">
-              <h3>Musique en cours</h3>
-              <progress
-                className="play__display__elements__progress"
-                value={progress}
-                max="20"
-              />
-            </div>
+            <ProgressBar
+              progress={progress}
+            />
             <div className="play__display__interactive">
               {displayDanger && (
                 <div className="play__display__interactive__danger">
