@@ -1,59 +1,55 @@
-$bg-color: #111D4A;
-$bg-box :rgba(17, 29, 74, 0.4);
-$orange: #F7C59F;
-$beige: #EFEFD0;
-$white: #FFFFFF;
+$bg-color: #111d4a;
+$bg-box: rgba(17, 29, 74, 0.4);
+$orange: #f7c59f;
+$beige: #efefd0;
+$white: #ffffff;
 
 * {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Satoshi', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Satoshi", sans-serif;
 }
 
 html {
-    background-color: #111D4A;
+  background-color: #111d4a;
 }
 
 .root {
-    height: 100vh;
-    max-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .orange-background {
-    -webkit-transform: translate3d(0, 0, 0);
-    position: absolute;
-    background-color: #F7C59F;
-    filter: blur(250px);
-    height: 55vh;
-    width: 90vw;
-    top: 25vh;
-    z-index: -1;
-
+  -webkit-transform: translate3d(0, 0, 0);
+  position: absolute;
+  background-color: #f7c59f;
+  filter: blur(250px);
+  height: 55vh;
+  width: 90vw;
+  top: 25vh;
+  z-index: -1;
 }
 
 .leave {
+  position: absolute;
+  width: 100vw;
+  top: 2vh;
+  left: 5vw;
 
-    position: absolute;
-    width: 100vw;
+  p {
+    text-decoration: none;
+    color: $white;
+    font-family: "Satochi", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 767.98px) {
     top: 2vh;
-    left: 5vw;
+    left: 10vw;
 
-    p{
-        text-decoration: none;
-        color: $white;
-        font-family: 'Satochi', sans-serif;
-        font-size: 18px;
-        font-weight: 700;
-
+    p {
+      font-size: 12px;
     }
-
-    @media (max-width: 767.98px) {
-        top: 2vh;
-        left: 10vw;
-
-        p {
-            font-size: 12px;
-        }
-    }
+  }
 }
-

@@ -13,9 +13,7 @@ export default function Admin() {
   });
 
   async function fetchPlaylistData() {
-    const response = await fetch(
-      import.meta.env.VITE_BASE_URL + "/playlists"
-    );
+    const response = await fetch(import.meta.env.VITE_BASE_URL + "/playlists");
     const data = await response.json();
     setPlaylistData(data);
   }
@@ -36,23 +34,25 @@ export default function Admin() {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(form)
-    }
-    console.log(params)
+      body: JSON.stringify(form),
+    };
+    console.log(params);
 
     try {
-      const data = await fetch(import.meta.env.VITE_BASE_URL + "/playlists", params)
-      
-      console.log(data)
+      const data = await fetch(
+        import.meta.env.VITE_BASE_URL + "/playlists",
+        params
+      );
 
+      console.log(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   async function handleAddSong() {
-    const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song")
-    console.log(data)
+    const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song");
+    console.log(data);
   }
 
   return (

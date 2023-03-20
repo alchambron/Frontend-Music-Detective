@@ -5,7 +5,6 @@
   margin: 1em;
   justify-content: flex-end;
   margin-bottom: 1vh;
-
   h3 {
     text-decoration: none;
     color: $white;
@@ -45,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     width: 40vw;
-    border: solid 1px #EFEFD0;
+    border: solid 1px #efefd0;
     border-radius: 25px;
     padding: 1%;
     background-color: $bg-box;
@@ -57,7 +56,6 @@
     }
 
     &__title {
-
       h1 {
         color: white;
         font-weight: 900;
@@ -101,7 +99,6 @@
           width: 36vw;
           max-width: 100%;
         }
-
       }
 
       img {
@@ -134,7 +131,7 @@
       @media (max-width: 767.98px) {
         height: 60vh;
         width: 60vw;
-        border: solid 1px #EFEFD0;
+        border: solid 1px #efefd0;
         border-radius: 25px;
         background-color: $bg-box;
 
@@ -172,7 +169,6 @@
         color: $beige;
         font-size: 40px;
       }
-
     }
   }
 
@@ -183,7 +179,7 @@
       }
 
       margin-top: 20px;
-      background: #EFEFD0;
+      background: #efefd0;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 21px;
       height: 8vh;

@@ -1,8 +1,8 @@
-import Cookies from 'js-cookie';
-import React from 'react'
+import Cookies from "js-cookie";
+import React from "react";
 
 export default function DeleteProfile({ handleClickLogOut }) {
-    const token = Cookies.get("user_token");
+  const token = Cookies.get("user_token");
 
     async function handleClickDeleteAccount(e) {
         const params = {
