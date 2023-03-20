@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ReactPlayer from "react-player";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
-
 import { NavLink, useNavigate } from "react-router-dom";
+import Player from "./Play/Player";
+import musicService from "../services/musicService";
 
 export default function Play({
   searchResults,
@@ -16,10 +16,10 @@ export default function Play({
 }) {
   const [display, setDisplay] = useState(false);
   const [displaySuccess, setDisplaySuccess] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [displayDanger, setDisplayDanger] = useState(false);
   const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
-  const [progress, setProgress] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.25);
@@ -66,12 +66,6 @@ export default function Play({
   }, [selectSong]);
 
   useEffect(() => {
-    if (songFinished) {
-      setProgress(0);
-    }
-  });
-
-  useEffect(() => {
     if (points < 0) {
       alert("Vous avez perdu !");
       navigate("../choice");
@@ -79,31 +73,19 @@ export default function Play({
   }, [points]);
 
   async function chooseRandomSong() {
-    console.log("choose");
-    try {
-      const apiURL =
-        import.meta.env.VITE_BASE_URL + `/playlist_contents?playlist_id=${id}`;
-      const response = await fetch(apiURL);
-      const data = await response.json();
-      const filteredData = data.filter(
-        (item) => item.playlist_id === parseInt(id)
-      );
-      console.log(data);
-      const randomIndex = Math.floor(Math.random() * filteredData.length);
-      const randomSong = filteredData[randomIndex];
-      setSelectSong(randomSong);
-
-      console.log(randomSong);
-    } catch (error) {
-      console.error(error);
-    }
+    const filteredData = await musicService(id);
+    console.log(filteredData)
+    const randomIndex = Math.floor(Math.random() * filteredData.length);
+    const randomSong = filteredData[randomIndex];
+    setSelectSong(randomSong);
+    console.log(randomSong);
   }
 
   function launchPlayer() {
     setCurrentSong(selectSong);
     setMatchingResults(false);
-    console.log(selectSong.youtube_title);
-    manageSongDuration(5000);
+    // console.log(selectSong.youtube_title);
+    manageSongDuration(22000);
     setSongFinished(false);
     if (currentSong) {
       const intervalId = setInterval(() => {
@@ -132,11 +114,6 @@ export default function Play({
     launchPlayer();
   }
 
-  function handleReplay() {
-    stopPlayer();
-    launchPlayer();
-  }
-
   const updateScore = async (pointNumber) => {
     const response = await fetch(
       `${import.meta.env.VITE_BASE_URL}games/${scoreId}`,
@@ -161,13 +138,13 @@ export default function Play({
     updateScore(score - 10);
   }
 
-  function handleProgress(state) {
-    const seconds = state.playedSeconds.toFixed(0);
-    setProgress(seconds);
-  }
-
   function handleVolumeChange(event) {
     setVolume(parseFloat(event.target.value));
+  }
+
+  function handleReplay() {
+    stopPlayer();
+    launchPlayer();
   }
 
   function NextSong() {
@@ -193,18 +170,14 @@ export default function Play({
       {display && (
         <>
           {currentSong && (
-            <div className="player" key={currentSong.youtube_id}>
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
-                playing={true}
-                onProgress={handleProgress}
-                style={{ margin: "auto" }}
-                width="0"
-                height="0"
-                volume={volume}
-              />
-            </div>
+            <Player
+              currentSong={currentSong}
+              volume={volume}
+              songFinished={songFinished}
+              setProgress={setProgress}
+            />
           )}
+
           <div className="leave">
             <NavLink to="/choice">
               <p>Retour</p>

@@ -55,16 +55,15 @@ export default function SignUpForm() {
   }
 
   return (
-    <div>
-      <h1>SIGN UP</h1>
+    <div className="account__body__forms">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input type="email" name="" id="email" onChange={handleChange} />
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Password</label>
         <input type="password" name="" id="password" onChange={handleChange} />
-        <button type="submit">SIGN UP</button>
+        <button type="submit">S'inscrire </button>
       </form>
-      {errorMessage}
+      <div>{errorMessage}</div>
     </div>
   );
 }
