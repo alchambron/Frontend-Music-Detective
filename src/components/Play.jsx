@@ -8,6 +8,7 @@ import PlayVolume from "./Play/PlayVolume";
 import ProgressBar from "./Play/ProgressBar";
 import InteractiveResponse from "./Play/InteractiveResponse";
 import ButtonReturn from "./Play/ButtonReturn";
+import PlayButtons from "./Play/PlayButtons";
 
 export default function Play({
   searchResults,
@@ -201,20 +202,13 @@ export default function Play({
               volume={volume}
             />
           </div>
-
-          <div className="play__buttons">
-            {songFinished && !abandon && !matchingResults && (
-              <button className="button-play" onClick={handleReplay}>
-                Réécouter
-              </button>
-            )}
-
-            {songFinished && !matchingResults && !abandon && (
-              <button className="button-play" onClick={handleAbandon}>
-                Réponse
-              </button>
-            )}
-          </div>
+          <PlayButtons
+            songFinished={songFinished}
+            abandon={abandon}
+            matchingResults={matchingResults}
+            handleReplay={handleReplay}
+            handleAbandon={handleAbandon}
+          />
         </>
       )}
     </div>
