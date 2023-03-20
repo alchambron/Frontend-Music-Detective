@@ -1,4 +1,4 @@
-export default async function musicService(id) {
+const musicService = async (id) => {
   const params = {
     headers: {
       "Content-Type": "application/json",
@@ -22,3 +22,5 @@ export default async function musicService(id) {
     console.error(error);
   }
 }
+
+export { musicService }

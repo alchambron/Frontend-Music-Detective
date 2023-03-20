@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Player from "./Play/Player";
-import musicService from "../services/musicService";
+import { musicService } from "../services/musicService";
+import PlayVolume from "./Play/PlayVolume";
+import ProgressBar from "./Play/ProgressBar";
+import InteractiveResponse from "./Play/InteractiveResponse";
+import ButtonReturn from "./Play/ButtonReturn";
 
 export default function Play({
   searchResults,
@@ -138,10 +142,6 @@ export default function Play({
     updateScore(score - 10);
   }
 
-  function handleVolumeChange(event) {
-    setVolume(parseFloat(event.target.value));
-  }
-
   function handleReplay() {
     stopPlayer();
     launchPlayer();
@@ -177,12 +177,7 @@ export default function Play({
               setProgress={setProgress}
             />
           )}
-
-          <div className="leave">
-            <NavLink to="/choice">
-              <p>Retour</p>
-            </NavLink>
-          </div>
+          <ButtonReturn />
           <div className="play__display">
             <div className="play__display__infos">
               <p className="play__display__infos__points">
@@ -194,38 +189,17 @@ export default function Play({
                 </p>
               )}
             </div>
-            <div className="play__display__elements">
-              <h3>Musique en cours</h3>
-              <progress
-                className="play__display__elements__progress"
-                value={progress}
-                max="20"
-              />
-            </div>
-            <div className="play__display__interactive">
-              {displayDanger && (
-                <div className="play__display__interactive__danger">
-                  <p>Mauvaise réponse : Recommencer</p>
-                </div>
-              )}
-              {displaySuccess && (
-                <div className="play__display__interactive__success">
-                  <p>Felicitation !</p>
-                </div>
-              )}
-            </div>
-            <div className="play__display__volume">
-              <h6>Volume</h6>
-              <input
-                className="play__display__volume__bar"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
-              />
-            </div>
+            <ProgressBar
+              progress={progress}
+            />
+            <InteractiveResponse
+              displayDanger={displayDanger}
+              displaySuccess={displaySuccess}
+            />
+            <PlayVolume
+              setVolume={setVolume}
+              volume={volume}
+            />
           </div>
 
           <div className="play__buttons">
