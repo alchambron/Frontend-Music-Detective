@@ -1,21 +1,21 @@
 .navBar {
   position: relative;
   display: flex;
-  width: 40vw;
+  width: 80vw;
+  margin: 1em;
   justify-content: flex-end;
   margin-bottom: 1vh;
-  h3{
+
+  h3 {
     text-decoration: none;
     color: $white;
     font-weight: 700;
   }
 
   @media (max-width: 767.98px) {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
     width: 80vw;
-    margin-top: 3vh;
+    margin-top: 2vh;
+
     .button-my-account {
       h3 {
         text-decoration: none;
@@ -29,18 +29,13 @@
 
 .home {
   position: relative;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   @media (max-width: 767.98px) {
-    display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    align-content: center;
-    width: 100%;
     height: 100%;
   }
 
@@ -59,7 +54,6 @@
       width: 300px;
       border: none;
       background: none;
-      top: 2vh;
     }
 
     &__title {
@@ -74,10 +68,9 @@
 
       @media (max-width: 767.98px) {
         width: 50%;
-        padding-bottom: 50px;
+        padding-bottom: 3vh;
 
         h1 {
-          text-align: center;
           position: relative;
           top: 20%;
           font-size: 32px;
@@ -106,6 +99,7 @@
 
         hr {
           width: 36vw;
+          max-width: 100%;
         }
 
       }
@@ -138,6 +132,7 @@
       }
 
       @media (max-width: 767.98px) {
+        height: 60vh;
         width: 60vw;
         border: solid 1px #EFEFD0;
         border-radius: 25px;
@@ -183,14 +178,20 @@
 
   &__cta {
     button {
+      @media (max-width: 767.98px) {
+        width: 30vw;
+      }
+
       margin-top: 20px;
       background: #EFEFD0;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 21px;
-      height: 40px;
-      width: 110px;
-      font-family: 'Satoshi', sans-serif;
+      height: 8vh;
+      width: 20vw;
+      font-family: 'Satoshi',
+      sans-serif;
       font-weight: 700;
+      font-size: 16px;
       border: none;
     }
   }
