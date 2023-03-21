@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import ButtonAdmin from "../components/Home/ButtonAdmin";
 
 export default function Home() {
-  const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,17 +19,24 @@ export default function Home() {
   const loggedUser = useSelector((state) => {
     return state.user;
   });
+  console.log("🚀 ~ file: Home.jsx:20 ~ loggedUser ~ loggedUser:", loggedUser)
 
   useEffect(() => {
     if (loggedUser?.email === "admin@admin.fr") {
-      setAdminLoggedIn(true);
+      setIsAdmin(true);
     } else {
-      setAdminLoggedIn(false);
+      setIsAdmin(false);
     }
   }, [loggedUser]);
+
+  // const loggedUser = useSelector((state) => {
+  //   return state.user;
+  // });
+
+  // const isAdmin = loggedUser?.email === "admin@admin.fr";
   return (
     <div className="home">
-      {AdminLoggedIn &&
+      {isAdmin &&
         <div >
           <ButtonAdmin />
         </div>

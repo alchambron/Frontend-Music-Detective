@@ -11,6 +11,7 @@ import { logoutUser } from "../actions/userAction";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const token = Cookies.get("user_token");
 
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -38,10 +39,26 @@ export default function Profile() {
     fetchData();
   }, []);
 
-  const handleClickLogOut = () => {
+  const handleClickLogOut = async () => {
     Cookies.remove("user_token");
     dispatch(logoutUser());
-  };
+    const params = {
+      method: "DELETE",
+      Authorization: `${token}`,
+
+    };
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + "/users/sign_out",
+        params
+      );
+      console.log("🚀 ~ file: Profile.jsx:53 ~ handleClickLogOut ~ response:", response)
+      await response.json();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
