@@ -54,7 +54,7 @@ export default function Profile() {
         {!userLoggedIn ? (
           <>
             <div className="account__title">
-              <h1>Inscivez et sauvegarder vos progressions !</h1>
+              <h1>Inscrivez et sauvegarder vos progressions !</h1>
             </div>
             <Sign />
           </>
