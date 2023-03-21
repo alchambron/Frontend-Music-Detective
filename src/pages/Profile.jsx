@@ -52,7 +52,6 @@ export default function Profile() {
         import.meta.env.VITE_BASE_URL + "/users/sign_out",
         params
       );
-      console.log("🚀 ~ file: Profile.jsx:53 ~ handleClickLogOut ~ response:", response)
       await response.json();
       navigate("/");
     } catch (error) {
