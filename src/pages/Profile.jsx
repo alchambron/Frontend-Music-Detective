@@ -13,6 +13,7 @@ export default function Profile() {
   const dispatch = useDispatch();
   const token = Cookies.get("user_token");
   const navigate = useNavigate;
+  const token = Cookies.get("user_token")
 
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -59,6 +60,19 @@ export default function Profile() {
       console.error(error);
     }
   }
+    const fetchDelete = async () => {
+      const params = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        }
+      }
+      const response = await fetch("http://localhost:3000/users/sign_out", params)
+      const data = await response.json()
+    }
+    fetchDelete();
+  };
 
   return (
     <>
