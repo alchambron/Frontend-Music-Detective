@@ -10,7 +10,6 @@
     align-items: center;
 
     &__buttons {
-
       display: flex;
       justify-content: center;
 
@@ -19,7 +18,6 @@
         background: #EFEFD0;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border: none;
-
       }
 
       &__off {
@@ -32,7 +30,6 @@
     }
 
     &__forms {
-
       border: solid 1px #EFEFD0;
       border-radius: 25px;
       background-color: $bg-box;
@@ -70,7 +67,7 @@
     flex-direction: column;
     align-items: center;
 
-    &__subtitle{
+    &__subtitle {
       font-size: 22px;
     }
 
@@ -166,7 +163,7 @@
     &__logged {
       margin-top: 3vh;
 
-      &__subtitle{
+      &__subtitle {
         font-size: 18px;
       }
 
