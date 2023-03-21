@@ -19,6 +19,7 @@ export default function Player({currentSong, volume, songFinished, setProgress})
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${currentSong.youtube_id}`}
         playing={true}
+        playsinline={true}
         onProgress={handleProgress}
         style={{ margin: "auto" }}
         width="0"
