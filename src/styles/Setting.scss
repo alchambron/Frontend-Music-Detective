@@ -3,6 +3,7 @@ $bg-box: rgba(17, 29, 74, 0.4);
 $orange: #f7c59f;
 $beige: #efefd0;
 $white: #ffffff;
+$danger:rgb(203, 48, 48);
 
 * {
   padding: 0px;
@@ -32,7 +33,6 @@ html {
 
 .leave {
   position: absolute;
-  width: 100vw;
   top: 2vh;
   left: 5vw;
 

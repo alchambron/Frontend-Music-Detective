@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5vh;
 
   &__body {
     display: flex;
@@ -10,12 +11,17 @@
     align-items: center;
 
     &__buttons {
-
       display: flex;
       justify-content: center;
 
       button {
         color: $bg-color;
+        margin: 1em;
+        width: 15vw;
+        font-size: 24px;
+        height: 5vh;
+        font-weight: 700;
+        border-radius: 20px;
         background: #EFEFD0;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border: none;
@@ -31,12 +37,15 @@
     }
 
     &__forms {
-
       border: solid 1px #EFEFD0;
       border-radius: 25px;
       background-color: $bg-box;
-      height: 25vh;
-
+      height: 30vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 40vw;
 
       form {
         display: flex;
@@ -45,27 +54,78 @@
 
         label {
           font-family: 'Satoshi', sans-serif;
+          font-size: 18px;
           font-weight: 500;
+          margin-top: 1em;
+          margin-bottom: 1vh;
+        }
+
+        input {
+          width: 30vw;
+          height: 3vh;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         button {
           display: flex;
           justify-content: center;
+          align-items: center;
           background-color: $beige;
           border-radius: 5px;
-          color: $white;
-          font-family: 'Satoshi', sans-serif;
-          margin: 2vh;
-          font-weight: 500;
-          font-size: 14px;
           color: $bg-color;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          margin: 4vh;
+          font-weight: 500;
+          font-size: 18px;
+          border: none;
+          width: 15vw;
+          height: 3vh;
         }
       }
+    }
+  }
 
+  &__logged {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__subtitle {
+      font-size: 22px;
     }
 
-    &__logged{
+    &__buttons {
+      margin: 1em;
+
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 75vh;
+
+      button {
+        background-color: $beige;
+        border: none;
+        padding: 1em;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        width: 25vw;
+        font-size: 18px;
+        font-weight: 500;
+        margin: 1em;
+      }
+
+      &__down {
+        &__delete {
+          button {
+            background-color: $danger;
+            color: $white;
+          }
+        }
+      }
     }
   }
 
@@ -82,43 +142,45 @@
     }
 
     &__body {
-
       &__buttons {
         button {
           width: 30vw;
-          border-radius: 21px;
           height: 6vh;
-          margin: 1em;
           font-weight: 700;
           font-size: 16px;
         }
       }
 
       &__forms {
-
         width: 60vw;
         padding: 1vh;
 
-        label {
-          font-weight: 500;
-          margin: 2vw;
-        }
+        margin: 1em;
 
-        input {
-          width: 50vw;
-          height: 3vh;
-          font-family: 'Satochi', sans-serif;
-          font-weight: 500;
-          font-size: 14px;
-        }
 
-        button {
-          border: none;
-          width: 30vw;
+        form {
+          label {
+            font-weight: 500;
+            margin: 2vw;
+          }
 
-          h3 {
-            color: $bg-color;
-            align-items: center;
+          input {
+            width: 50vw;
+            height: 3vh;
+            font-family: 'Satochi', sans-serif;
+            font-weight: 500;
+          }
+
+          button {
+            border: none;
+            width: 30vw;
+            height: 4vh;
+            font-size: 14px;
+
+            h3 {
+              color: $bg-color;
+              align-items: center;
+            }
           }
         }
 
@@ -126,17 +188,26 @@
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       }
-
     }
 
     &__logged {
       margin-top: 3vh;
 
-      &__buttons{
-        margin-top: 3vh;
+      &__subtitle {
+        font-size: 18px;
       }
 
-    }
+      &__buttons {
+        margin-top: 3vh;
+        height: 70vh;
 
+        button {
+          margin: 1em;
+          width: 50vw;
+          font-weight: 500;
+          font-size: 14px;
+        }
+      }
+    }
   }
 }

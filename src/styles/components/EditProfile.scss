@@ -1,0 +1,117 @@
+.edit {
+  color: $white;
+  display: flex;
+  margin-top: 5vh;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin: 1vh;
+  }
+
+  @media (max-width: 767.98px){
+  	h1{
+      font-size: 22px;
+    }
+  }
+
+  &__form {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    color: $beige;
+
+    h3 {
+      margin-top: 1vh;
+      font-size: 22px;
+
+    }
+
+    @media (max-width: 767.98px) {
+      h3 {
+        font-size: 14px;
+        font-weight: 500;
+
+      }
+    }
+
+    label {
+      color: $white;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    @media (min-width: 576px) {
+      label {
+        font-size: 16px;
+      }
+    }
+
+    input {
+      border: none;
+      border-radius: 5px;
+      height: 3vh;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 1vw;
+      width: 40vw;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+      @media (max-width: 767.98px) {
+        width: 60vw;
+      }
+
+    }
+
+    button {
+      background-color: $beige;
+      border: none;
+      width: 30vw;
+      border-radius: 21px;
+      height: 6vh;
+      margin: 1em;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &__user {
+      display: flex;
+      width: 60vw;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: $bg-box;
+      border: solid 1px #efefd0;
+      border-radius: 25px;
+      padding: 1em;
+
+      &__infos {
+        display: flex;
+        flex-direction: column;
+        margin: 1vh;
+
+      }
+    }
+
+    &__password {
+      align-items: center;
+      justify-content: center;
+      width: 60vw;
+      display: flex;
+      padding: 1em;
+      flex-direction: column;
+      background-color: $bg-box;
+      border: solid 1px #efefd0;
+      border-radius: 25px;
+
+      &__new {
+        display: flex;
+        flex-direction: column;
+        margin: 1vh;
+      }
+    }
+  }
+}

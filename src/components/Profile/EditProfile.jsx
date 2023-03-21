@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function EditProfile() {
   const [nickname, setNickname] = useState("");
@@ -88,52 +89,69 @@ export default function EditProfile() {
   }, []);
 
   return (
-    <div>
-      <h1>Edit Account</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="nickname">Nickname:</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            value={nickname}
-            onChange={handleNicknameChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email address:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">New password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password_confirmation">Confirm new password:</label>
-          <input
-            type="password"
-            id="password_confirmation"
-            name="password_confirmation"
-            onChange={handlePasswordConfirmationChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Save changes</button>
-        </div>
-        {errorMessage}
-      </form>
-    </div>
+    <>
+      <div className="leave">
+        <NavLink to="/">
+          <p>Retour</p>
+        </NavLink>
+      </div>
+
+      <div className="edit">
+        <h1>Modifier votre profil</h1>
+        <form className="edit__form" onSubmit={handleSubmit}>
+          <h3>Vos informations</h3>
+          <div className="edit__form__user">
+            <div className="edit__form__user__infos">
+              <label htmlFor="nickname">Pseudo</label>
+              <input
+                type="text"
+                id="nickname"
+                name="nickname"
+                value={nickname}
+                onChange={handleNicknameChange}
+              />
+            </div>
+            <div className="edit__form__user__infos">
+              <label htmlFor="email">Adresse mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </div>
+          </div>
+          <h3>Réinitialiser votre mot mot de passe</h3>
+          <div className="edit__form__password">
+            <div className="edit__form__password__new">
+              <label htmlFor="password">Nouveau mot de passe</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={handlePasswordChange}
+              />
+            </div>
+            <div className="edit__form__password__new">
+              <label htmlFor="password_confirmation">
+                Confirmer le mot de passe
+              </label>
+              <input
+                type="password"
+                id="password_confirmation"
+                name="password_confirmation"
+                onChange={handlePasswordConfirmationChange}
+              />
+            </div>
+          </div>
+          <div>
+            <button type="submit">Enregistrer</button>
+          </div>
+          {errorMessage}
+        </form>
+      </div>
+      <div className="orange-background"></div>
+    </>
   );
 }
