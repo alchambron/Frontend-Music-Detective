@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Game from "./Game";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
