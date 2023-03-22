@@ -67,10 +67,8 @@ export default function EditAdmin() {
 
   return isLoading ? null : (
     <>
-      <div className="admin__edit">
-        <div>EditForm</div>
-
-        <div className="editForm">
+      <div className="admin">
+        <div className="admin__form">
           <form onSubmit={handleSubmit}>
             <label>Titre de la playlist</label>
             <input
