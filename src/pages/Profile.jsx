@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Sign from "../components/Log/Sign";
 import DeleteProfile from "../components/Profile/DeleteProfil";
 import LogoutProfile from "../components/Profile/LogoutProfile";
@@ -8,11 +8,11 @@ import { getUserProfile } from "../services/userService";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../actions/userAction";
-
+import Forgot from "./Forgot";
 export default function Profile() {
   const dispatch = useDispatch();
-  const token = Cookies.get("user_token")
-
+  const token = Cookies.get("user_token");
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const loggedUser = useSelector((state) => {
@@ -47,14 +47,24 @@ export default function Profile() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": token
-        }
-      }
-      const response = await fetch("http://localhost:3000/users/sign_out", params)
-      const data = await response.json()
-    }
+          Authorization: token,
+        },
+      };
+      const response = await fetch(
+        "http://localhost:3000/users/sign_out",
+        params
+      );
+      const data = await response.json();
+    };
     fetchDelete();
   };
+
+
+  function handleForgot() {
+    navigate("./Forgot");}
+
+
+
 
   return (
     <>
@@ -70,6 +80,8 @@ export default function Profile() {
               <h1>Inscrivez et sauvegarder vos progressions !</h1>
             </div>
             <Sign />
+
+            <button onClick={handleForgot}>Mot de pass oublié</button>
           </>
         ) : (
           <>
