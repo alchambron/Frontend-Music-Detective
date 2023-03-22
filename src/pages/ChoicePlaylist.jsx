@@ -84,10 +84,13 @@ export default function ChoicePlaylist() {
               {playlists.map((list) =>
                 list.playlist_type == "Années" ? (
                   <div key={list.id} className="playlist__body__content__card">
-                    <button
+                    <img
+                      src={list.thumbnail_url}
+                      alt="playlist_thumbnail"
                       className="button"
                       onClick={() => ChoicePlaylist(list.id)}
-                    ></button>
+                    />
+
                     <h3>{list.title}</h3>
                   </div>
                 ) : null
@@ -101,10 +104,12 @@ export default function ChoicePlaylist() {
               {playlists.map((list) =>
                 list.playlist_type == "Genre" ? (
                   <div key={list.id} className="playlist__body__content__card">
-                    <button
+                    <img
+                      src={list.thumbnail_url}
+                      alt="playlist_thumbnail"
                       className="button"
                       onClick={() => ChoicePlaylist(list.id)}
-                    ></button>
+                    />
                     <h3>{list.title}</h3>
                   </div>
                 ) : null
