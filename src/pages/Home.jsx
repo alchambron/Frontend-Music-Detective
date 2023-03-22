@@ -9,6 +9,7 @@ import ButtonAdmin from "../components/Home/ButtonAdmin";
 
 export default function Home() {
   const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
+  console.log("🚀 ~ file: Home.jsx:12 ~ Home ~ AdminLoggedIn:", AdminLoggedIn)
 
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (loggedUser?.email === "admin@admin.fr") {
+    if (loggedUser && loggedUser.is_admin) {
       setAdminLoggedIn(true);
     } else {
       setAdminLoggedIn(false);
