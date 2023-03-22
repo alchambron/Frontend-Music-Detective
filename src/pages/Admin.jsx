@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Admin() {
   const [playlistData, setPlaylistData] = useState([]);
@@ -95,7 +96,10 @@ export default function Admin() {
         <h1>liste des playlist</h1>
         <div>
           {playlistData.map((playlist, index) => (
-            <p key={index}>{playlist.title}</p>
+            <div key={index}>
+              <p>{playlist.title}</p>
+              <NavLink to={`/admin/edit/${playlist.id}`}>Editer</NavLink>
+            </div>
           ))}
         </div>
       </div>
