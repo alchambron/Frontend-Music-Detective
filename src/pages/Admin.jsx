@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Admin() {
   const [playlistData, setPlaylistData] = useState([]);
+  const [newPlaylist, setNewPlaylist] = useState(false)
 
   const [form, setForm] = useState({
     title: " ",
@@ -44,66 +45,76 @@ export default function Admin() {
         import.meta.env.VITE_BASE_URL + "/playlists",
         params
       );
-
-      console.log(data);
+      setNewPlaylist(true)
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function handleAddSong() {
+  useEffect(() =>{
+    setTimeout(() => {
+      AddSong()
+    }, 1000)
+  }, [newPlaylist])
+
+  async function AddSong() {
     const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song");
-    console.log(data);
+    console.log("Sons ajouté");
   }
 
   return (
     <>
-      <div>Admin</div>
+      <div className="admin">
+        <div className="admin__form">
+          <h1>Ajouter une playlist</h1>
+          <hr />
+          <form onSubmit={handleSubmit}>
+            <label>Titre de la playlist</label>
+            <input type="text" id="title" onChange={handleChange} />
 
-      <form onSubmit={handleSubmit}>
-        <label>Titre de la playlist</label>
-        <input type="text" id="title" onChange={handleChange} />
+            <label>Type</label>
+            <select id="playlist_type" onChange={handleChange}>
+              <option>Selectionner un choix</option>
+              <option value="Années">Années</option>
+              <option value="Genre">Genre</option>
+            </select>
 
-        <label>Type</label>
-        <select id="playlist_type" onChange={handleChange}>
-          <option>Selectionner un choix</option>
-          <option value="Années">Années</option>
-          <option value="Genre">Genre</option>
-        </select>
+            <label>Country</label>
+            <select id="country" onChange={handleChange}>
+              <option>Selectionner un choix</option>
+              <option value="international">International</option>
+              <option value="france">France</option>
+            </select>
 
-        <label>Country</label>
-        <select id="country" onChange={handleChange}>
-          <option>Selectionner un choix</option>
-          <option value="international">International</option>
-          <option value="france">France</option>
-        </select>
+            <label>ID de la plylist</label>
+            <input type="text" id="playlist_url" onChange={handleChange} />
 
-        <label>ID de la plylist</label>
-        <input type="text" id="playlist_url" onChange={handleChange} />
+            <label>Lien de la thumbnail</label>
+            <input type="text" id="thumbnail_url" onChange={handleChange} />
 
-        <label>Lien de la thumbnail</label>
-        <input type="text" id="thumbnail_url" onChange={handleChange} />
+            <input type="submit" />
+          </form>
+        </div>
 
-        <input type="submit" />
-      </form>
+        <div className="admin__update">
+          <hr />
+          <h1>Update songs</h1>
+          <button onClick={AddSong}>Update</button>
+        </div>
 
-      <div>
-        <h1>Update songs</h1>
-        <button onClick={handleAddSong}>Update</button>
-      </div>
-
-      <div>
-        <h1>liste des playlist</h1>
-        <div>
-          {playlistData.map((playlist, index) => (
-            <div key={index}>
-              <p>{playlist.title}</p>
-              <NavLink to={`/admin/edit/${playlist.id}`}>Editer</NavLink>
-            </div>
-          ))}
+        <div className="admin__playlist">
+          <hr />
+          <h1>liste des playlist</h1>
+          <div>
+            {playlistData.map((playlist, index) => (
+              <div className="admin__playlist__elements" key={index}>
+                <h3>{playlist.title}</h3>
+                <NavLink to={`/admin/edit/${playlist.id}`}>Editer</NavLink>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
       <div className="orange-background"></div>
     </>
   );
