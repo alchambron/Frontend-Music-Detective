@@ -26,7 +26,7 @@ export default function Game() {
 
   const getScrore = async () => {
     if (gameId) {
-      // handle l'url pour la producion
+
 
       const resp = await fetch(
         `${import.meta.env.VITE_BASE_URL}/games/${gameId}`
