@@ -2,23 +2,41 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Game from "./Game";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function ChoicePlaylist() {
   const [playlists, setPlaylists] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const loggedUser = useSelector((state) => {
+    return state.user;
+  });
 
   async function ChoicePlaylist(id) {
-    // creer une nouvelle partie pour track le scrore
-    // handle l'url pour la producion
-    // pour la production ca ne devrait pas etre http://localhost:3000
+    let params = {};
+    if (loggedUser) {
+      params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: parseInt(loggedUser.id) }),
+      };
+    } else {
+      params = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: "000" }),
+      };
+    }
 
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}games`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BASE_URL}/games`,
+      params
+    );
+
     const score = await response.json();
 
     navigate(`/game/${id}/${score.id}`);

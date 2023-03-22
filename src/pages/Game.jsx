@@ -4,7 +4,7 @@ import Play from "../components/Play";
 import SearchBar from "../components/SearchBar";
 
 export default function Game() {
-  const { scoreId, id } = useParams();
+  const { gameId, id } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const [score, setScore] = useState();
   const [searchBarReset, setSearchBarReset] = useState(false);
@@ -25,11 +25,11 @@ export default function Game() {
   }
 
   const getScrore = async () => {
-    if (scoreId) {
+    if (gameId) {
       // handle l'url pour la producion
 
       const resp = await fetch(
-        `${import.meta.env.VITE_BASE_URL}games/${scoreId}`
+        `${import.meta.env.VITE_BASE_URL}/games/${gameId}`
       );
       const game = await resp.json();
       setScore(game.score);
@@ -50,7 +50,7 @@ export default function Game() {
           score={score}
           id={id}
           setScore={setScore}
-          scoreId={scoreId}
+          gameId={gameId}
           getScrore={getScrore}
         />
         {display && (
