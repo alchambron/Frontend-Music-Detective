@@ -38,7 +38,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/game/:id/:scoreId" element={<Game />} />
+          <Route path="/game/:id/:gameId" element={<Game />} />
           <Route path="/choice" element={<ChoicePlaylist />} />
           <Route path="/results/:id" element={<Results />} />
           <Route path="/profile" element={<Profile />} />

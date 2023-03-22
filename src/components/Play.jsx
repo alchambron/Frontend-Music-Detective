@@ -16,7 +16,7 @@ export default function Play({
   manageSearchBar,
   activateSearchBar,
   score,
-  scoreId,
+  gameId,
   getScrore,
   id,
 }) {
@@ -80,7 +80,7 @@ export default function Play({
 
   async function chooseRandomSong() {
     const filteredData = await musicService(id);
-    console.log(filteredData)
+    console.log(filteredData);
     const randomIndex = Math.floor(Math.random() * filteredData.length);
     const randomSong = filteredData[randomIndex];
     setSelectSong(randomSong);
@@ -90,7 +90,6 @@ export default function Play({
   function launchPlayer() {
     setCurrentSong(selectSong);
     setMatchingResults(false);
-    // console.log(selectSong.youtube_title);
     manageSongDuration(22000);
     setSongFinished(false);
     if (currentSong) {
@@ -106,8 +105,14 @@ export default function Play({
     setCurrentSong(null);
   }
 
+  useEffect(() => {
+    console.log("YOOOOOOOOOOOOO")
+
+  }, [matchingResults, ])
+
   function manageSongDuration(time) {
-    setTimeout(() => {
+    const duration = setTimeout(() => {
+      console.log("Manage duration")
       setSongFinished(true);
       stopPlayer();
     }, time);
@@ -122,7 +127,7 @@ export default function Play({
 
   const updateScore = async (pointNumber) => {
     const response = await fetch(
-      `${import.meta.env.VITE_BASE_URL}games/${scoreId}`,
+      `${import.meta.env.VITE_BASE_URL}/games/${gameId}`,
       {
         method: "PUT",
         headers: {
@@ -168,10 +173,7 @@ export default function Play({
 
   return (
     <div className="play">
-      <Countdown
-        time={3}
-        onFinish={handleCountdownFinish}
-      />
+      <Countdown time={3} onFinish={handleCountdownFinish} />
       {display && (
         <>
           {currentSong && (
@@ -184,20 +186,13 @@ export default function Play({
           )}
           <ButtonReturn />
           <div className="play__display">
-            <PlayInfo
-              selectSong={selectSong}
-              score={score}
-              giveUp={giveUp}
-            />
+            <PlayInfo selectSong={selectSong} score={score} giveUp={giveUp} />
             <ProgressBar progress={progress} />
             <InteractiveResponse
               displayDanger={displayDanger}
               displaySuccess={displaySuccess}
             />
-            <PlayVolume
-              setVolume={setVolume}
-              volume={volume}
-            />
+            <PlayVolume setVolume={setVolume} volume={volume} />
           </div>
           <PlayButtons
             songFinished={songFinished}
