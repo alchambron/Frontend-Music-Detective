@@ -14,6 +14,7 @@ import { getUserProfile } from "./services/userService";
 import CookieConsent from "./components/CookieConsent";
 import Privacy from "./pages/Privacy";
 import EditProfile from "./components/Profile/EditProfile";
+import EditAdmin from "./components/Admin/EditAdmin";
 
 export default function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/edit/:playlistID" element={<EditAdmin />} />
           <Route path="/game/:id/:gameId" element={<Game />} />
           <Route path="/choice" element={<ChoicePlaylist />} />
           <Route path="/results/:id" element={<Results />} />
