@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function EditAdmin() {
   const playlistID = useParams();
@@ -67,6 +68,11 @@ export default function EditAdmin() {
 
   return isLoading ? null : (
     <>
+      <div className="leave">
+            <NavLink to="/admin">
+              <p>Retour</p>
+            </NavLink>
+          </div>
       <div className="admin">
         <div className="admin__form">
           <form onSubmit={handleSubmit}>

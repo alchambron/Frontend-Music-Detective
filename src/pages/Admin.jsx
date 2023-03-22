@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Admin() {
   const [playlistData, setPlaylistData] = useState([]);
-  const [newPlaylist, setNewPlaylist] = useState(false)
+  const [newPlaylist, setNewPlaylist] = useState(false);
 
   const [form, setForm] = useState({
     title: " ",
@@ -45,17 +45,17 @@ export default function Admin() {
         import.meta.env.VITE_BASE_URL + "/playlists",
         params
       );
-      setNewPlaylist(true)
+      setNewPlaylist(true);
     } catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     setTimeout(() => {
-      AddSong()
-    }, 1000)
-  }, [newPlaylist])
+      AddSong();
+    }, 1000);
+  }, [newPlaylist]);
 
   async function AddSong() {
     const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song");
@@ -64,6 +64,11 @@ export default function Admin() {
 
   return (
     <>
+      <div className="leave">
+        <NavLink to="/">
+          <p>Retour</p>
+        </NavLink>
+      </div>
       <div className="admin">
         <div className="admin__form">
           <h1>Ajouter une playlist</h1>
