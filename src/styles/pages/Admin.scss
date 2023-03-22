@@ -1,0 +1,52 @@
+.admin {
+  color: $white;
+
+  hr {
+    width: 50vw;
+    margin: 1em;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        width: 35vw;
+        margin-bottom: 1vh;
+      }
+
+      select {
+        width: 35vw;
+        margin-bottom: 1vh;
+      }
+
+
+    }
+  }
+
+  &__update {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__elements {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
