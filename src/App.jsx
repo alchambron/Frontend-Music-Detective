@@ -50,16 +50,19 @@ export default function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-          <Route path="/admin/edit/:playlistID" element={<EditAdmin />} />
         <Route path="/game/:id/:gameId" element={<Game />} />
         <Route path="/choice" element={<ChoicePlaylist />} />
         <Route path="/results/:id" element={<Results />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/privacy" element={<Privacy />} />
-        {AdminLoggedIn && <Route path="/admin" element={<Admin />} />}
         <Route path="*" element={<Home />} />
-
+        {AdminLoggedIn &&
+          <>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/edit/:playlistID" element={<EditAdmin />} />
+          </>
+        }
       </Routes>
       <CookieConsent />
     </div>
