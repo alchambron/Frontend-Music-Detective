@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Admin() {
   const [playlistData, setPlaylistData] = useState([]);
   const [newPlaylist, setNewPlaylist] = useState(false);
 
   const [form, setForm] = useState({
-    title: " ",
     playlist_type: " ",
+    title: " ",
     country: " ",
     playlist_url: " ",
     thumbnail_url: " ",
@@ -38,10 +38,9 @@ export default function Admin() {
       },
       body: JSON.stringify(form),
     };
-    console.log(params);
 
     try {
-      const data = await fetch(
+      await fetch(
         import.meta.env.VITE_BASE_URL + "/playlists",
         params
       );
@@ -58,8 +57,8 @@ export default function Admin() {
   }, [newPlaylist]);
 
   async function AddSong() {
-    const data = await fetch(import.meta.env.VITE_BASE_URL + "/add_song");
-    console.log("Sons ajouté");
+    await fetch(import.meta.env.VITE_BASE_URL + "/add_song");
+
   }
 
   return (

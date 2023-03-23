@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default function ProgressBar ({progress}) {
     return  (
@@ -10,5 +10,5 @@ export default function ProgressBar ({progress}) {
           max="20"
         />
       </div>
-    )
+    );
 }
