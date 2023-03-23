@@ -2,37 +2,33 @@ import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { FieldEditEmail } from "./Edit/FieldEditEmail";
+import { FieldEditNickname } from "./Edit/FieldEditNickname";
+import { FieldEditPassword } from "./Edit/FieldEditPassword";
 
 export default function EditProfile() {
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
   const token = Cookies.get("user_token");
   const navigate = useNavigate();
 
-  const handleNicknameChange = (event) => {
-    setNickname(event.target.value);
-  };
+  const [errorMessage, setErrorMessage] = useState('')
+  const [formData, setFormData] = useState({
+    nickname: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handlePasswordConfirmationChange = (event) => {
-    setPasswordConfirmation(event.target.value);
+  const handleFormDataChange = (newData) => {
+    setFormData({
+      ...formData,
+      ...newData,
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (password !== passwordConfirmation) {
+    if (formData.password !== formData.passwordConfirmation) {
       setErrorMessage("The passwords do not match.");
       return;
     }
@@ -44,12 +40,7 @@ export default function EditProfile() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          nickname: nickname,
-          email: email,
-          password: password,
-          password_confirmation: passwordConfirmation,
-        },
+        user: formData,
       }),
     };
 
@@ -76,9 +67,8 @@ export default function EditProfile() {
         import.meta.env.VITE_BASE_URL + "/member-data",
         params
       );
-      const data = await response.json();
-      setNickname(data.user.nickname);
-      setEmail(data.user.email);
+      const { user } = await response.json();
+      setFormData(user);
     } catch (error) {
       console.error(error);
     }
@@ -99,58 +89,23 @@ export default function EditProfile() {
       <div className="edit">
         <h1>Modifier votre profil</h1>
         <form className="edit__form" onSubmit={handleSubmit}>
+
           <h3>Vos informations</h3>
-          <div className="edit__form__user">
-            <div className="edit__form__user__infos">
-              <label htmlFor="nickname">Pseudo</label>
-              <input
-                type="text"
-                id="nickname"
-                name="nickname"
-                value={nickname}
-                onChange={handleNicknameChange}
-              />
-            </div>
-            <div className="edit__form__user__infos">
-              <label htmlFor="email">Adresse mail</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
-          </div>
+          <FieldEditNickname onNicknameChange={handleFormDataChange} formData={formData} />
+          <FieldEditEmail onEmailChange={handleFormDataChange} formData={formData} />
+
           <h3>Réinitialiser votre mot mot de passe</h3>
-          <div className="edit__form__password">
-            <div className="edit__form__password__new">
-              <label htmlFor="password">Nouveau mot de passe</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                onChange={handlePasswordChange}
-              />
-            </div>
-            <div className="edit__form__password__new">
-              <label htmlFor="password_confirmation">
-                Confirmer le mot de passe
-              </label>
-              <input
-                type="password"
-                id="password_confirmation"
-                name="password_confirmation"
-                onChange={handlePasswordConfirmationChange}
-              />
-            </div>
-          </div>
+          <FieldEditPassword
+            onPasswordChange={handleFormDataChange}
+            onPasswordConfirmationChange={handleFormDataChange}
+            formData={formData}
+          />
           <div>
             <button type="submit">Enregistrer</button>
           </div>
           {errorMessage}
         </form>
-      </div>
+      </div >
       <div className="orange-background"></div>
     </>
   );
