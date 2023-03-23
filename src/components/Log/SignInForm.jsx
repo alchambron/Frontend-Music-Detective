@@ -7,7 +7,7 @@ import { loginUser } from "../../actions/userAction";
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-
+  const [popupLoading, setPopUpLoading] = useState(false);
   const state = useSelector((state) => {
     return state;
   });
@@ -53,26 +53,78 @@ export default function SignInForm() {
     }
   }
 
-    return (
-        <div className="account__body__forms">
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name=""
-                    id="email"
-                    onChange={handleChange} />
+  const sendpasswordinstructions = (e) => {
+  
+    const form = e.currentTarget;
 
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    name=""
-                    id="password"
-                    onChange={handleChange} />
+    
+        fetch(import.meta.env.VITE_BASE_URL + "/users/password", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            user: {
+              email: form.elements.sendemail.value,
+            },
+          }),
+        }).then((response) => {
+          return response.json();
+        });
+        
+      }
+ 
 
-                <button type="submit">Se Connecter</button>
-            </form>
-            {errorMessage}
-        </div>
-    )
+
+  return (
+    <>
+      
+      <div className="account__body__forms">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email</label>
+          <input
+           type="email"
+            name="" 
+            id="email" 
+            onChange={handleChange} />
+
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name=""
+            id="password"
+            onChange={handleChange}
+          />
+
+          <button type="submit">Se Connecter</button>
+          <p onClick={() => setPopUpLoading(true)} className="forgotpassword">
+            Mot de passe oublié ?
+          </p>
+        </form>
+        {errorMessage}
+      </div>
+    
+        {popupLoading ? (
+          <>
+            <div className="" onClick={() => setPopUpLoading(false)}></div>
+            <div className="account__title">
+              <h1>Mot de passe oublié</h1>
+            </div>
+            <div className="account__body__forms">
+              <form onSubmit={sendpasswordinstructions} className="">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  id="sendemail"
+                  autoComplete="off"
+                />
+                <button type="submit">Obtenir instruction</button>
+              </form>
+            </div>{" "}
+          </>
+        ) : null}
+      
+    </>
+  );
 }

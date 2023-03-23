@@ -8,7 +8,7 @@ import { getUserProfile } from "../services/userService";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../actions/userAction";
-import Forgot from "./Forgot";
+
 export default function Profile() {
   const dispatch = useDispatch();
   const token = Cookies.get("user_token");
@@ -51,20 +51,13 @@ export default function Profile() {
         },
       };
       const response = await fetch(
-        "http://localhost:3000/users/sign_out",
+        import.meta.env.VITE_BASE_URL + "/users/sign_out",
         params
       );
       const data = await response.json();
     };
     fetchDelete();
   };
-
-
-  function handleForgot() {
-    navigate("./Forgot");}
-
-
-
 
   return (
     <>
@@ -80,8 +73,6 @@ export default function Profile() {
               <h1>Inscrivez et sauvegarder vos progressions !</h1>
             </div>
             <Sign />
-
-            <button onClick={handleForgot}>Mot de pass oublié</button>
           </>
         ) : (
           <>

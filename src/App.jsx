@@ -15,7 +15,9 @@ import CookieConsent from "./components/CookieConsent";
 import Privacy from "./pages/Privacy";
 import EditProfile from "./components/Profile/EditProfile";
 import EditAdmin from "./components/Admin/EditAdmin";
-import Forgot from "./pages/Forgot";
+import PasswordInstruction from "./pages/PasswordInstruction"
+
+
 export default function App() {
   const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
   const loggedUser = useSelector((state) => {
@@ -55,8 +57,10 @@ export default function App() {
         <Route path="/results/:id" element={<Results />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<EditProfile />} />
-        <Route path="/profile/forgot" element={<Forgot/>} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route
+          path="/new_password/:tokenId" element={<PasswordInstruction/>}
+        />
         <Route path="*" element={<Home />} />
         {AdminLoggedIn && (
           <>
