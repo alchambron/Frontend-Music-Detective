@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import Sign from "../components/Log/Sign";
@@ -8,10 +8,11 @@ import { getUserProfile } from "../services/userService";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../actions/userAction";
+import UserStats from "../components/Profile/UserStats";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const token = Cookies.get("user_token");
+  const token = Cookies.get("user_token");;
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -89,6 +90,7 @@ export default function Profile() {
                     <button>Editer votre profil</button>
                   </NavLink>
                   <LogoutProfile handleClickLogOut={handleClickLogOut} />
+                  <UserStats />
                 </div>
                 <div className="account__logged__buttons_down">
                   <DeleteProfile handleClickLogOut={handleClickLogOut} />

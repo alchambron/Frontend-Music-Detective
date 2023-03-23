@@ -1,20 +1,20 @@
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Cookies from "js-cookie";
+import { getUserProfile } from "./services/userService";
+import { loginUser } from "./actions/userAction";
+import { useSelector } from "react-redux";
 import Admin from "./pages/Admin";
 import ChoicePlaylist from "./pages/ChoicePlaylist";
+import CookieConsent from "./components/CookieConsent";
+import EditAdmin from "./components/Admin/EditAdmin";
+import EditProfile from "./components/Profile/EditProfile";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
-import Results from "./pages/Results";
-import Profile from "./pages/Profile";
-import store from "./store";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { loginUser } from "./actions/userAction";
-import { getUserProfile } from "./services/userService";
-import CookieConsent from "./components/CookieConsent";
 import Privacy from "./pages/Privacy";
-import EditProfile from "./components/Profile/EditProfile";
-import EditAdmin from "./components/Admin/EditAdmin";
+import Profile from "./pages/Profile";
+import Results from "./pages/Results";
+import store from "./store";
 import PasswordInstruction from "./pages/PasswordInstruction"
 
 

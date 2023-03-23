@@ -22,6 +22,8 @@
     border-radius: 25px;
     margin-top: 7vh;
     width: 70vw;
+    padding: 1vh;
+    height: 25vh;
 
     h3 {
       margin: 1vh;
@@ -36,6 +38,13 @@
         align-items: center;
         margin: 1vh;
         width: 8vw;
+
+        img:hover{
+          cursor: pointer;
+          aspect-ratio: 1/1;
+          width: 7.5vw;
+          transition: ease-in-out;
+        }
 
         h3 {
           text-align: center;
@@ -67,6 +76,7 @@
       flex-direction: column;
       align-items: center;
       max-width: 80vw;
+      height: fit-content;
 
       &__content {
         display: grid;
