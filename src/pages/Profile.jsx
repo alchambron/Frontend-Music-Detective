@@ -8,6 +8,7 @@ import { getUserProfile } from "../services/userService";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../actions/userAction";
+import UserStats from "../components/Profile/UserStats";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -47,11 +48,14 @@ export default function Profile() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": token
-        }
+          Authorization: token,
+        },
       };
-      const response = await fetch("http://localhost:3000/users/sign_out", params);
-      await response.json();
+      const response = await fetch(
+        "http://localhost:3000/users/sign_out",
+        params
+      );
+      const data = await response.json();
     };
     fetchDelete();
   };
@@ -86,6 +90,7 @@ export default function Profile() {
                     <button>Editer votre profil</button>
                   </NavLink>
                   <LogoutProfile handleClickLogOut={handleClickLogOut} />
+                  <UserStats />
                 </div>
                 <div className="account__logged__buttons_down">
                   <DeleteProfile handleClickLogOut={handleClickLogOut} />
