@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import useFetch from "../../services/useFetch";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { loginUser } from "../../actions/userAction";
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-
-  const state = useSelector((state) => {
-    return state;
-  });
 
   const [form, setForm] = useState({
     email: " ",
@@ -74,5 +70,5 @@ export default function SignInForm() {
             </form>
             {errorMessage}
         </div>
-    )
+    );
 }

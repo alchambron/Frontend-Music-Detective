@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Sign from "../components/Log/Sign";
@@ -11,7 +11,7 @@ import { logoutUser } from "../actions/userAction";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const token = Cookies.get("user_token")
+  const token = Cookies.get("user_token");
 
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -49,10 +49,10 @@ export default function Profile() {
           "Content-Type": "application/json",
           "Authorization": token
         }
-      }
-      const response = await fetch("http://localhost:3000/users/sign_out", params)
-      const data = await response.json()
-    }
+      };
+      const response = await fetch("http://localhost:3000/users/sign_out", params);
+      await response.json();
+    };
     fetchDelete();
   };
 

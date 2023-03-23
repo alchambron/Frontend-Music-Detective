@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function EditAdmin() {
   const playlistID = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     title: " ",
@@ -36,11 +36,9 @@ export default function EditAdmin() {
     fetchPlaylistData();
   }, []);
 
-  console.log(form);
-
   async function handleSubmit(e) {
 
-    e.preventDefault()
+    e.preventDefault();
 
     const params = {
       method: "PATCH",
@@ -48,14 +46,12 @@ export default function EditAdmin() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(form)
-    }
+    };
     try {
-      const response = await fetch(import.meta.env.VITE_BASE_URL + `/playlists/${playlistID.playlistID}`, params)
-      navigate("/admin")
-
-      
+      await fetch(import.meta.env.VITE_BASE_URL + `/playlists/${playlistID.playlistID}`, params);
+      navigate("/admin");
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default function InteractiveResponse({ displayDanger, displaySuccess }) {
     return (
@@ -14,5 +14,5 @@ export default function InteractiveResponse({ displayDanger, displaySuccess }) {
                 </div>
             )}
         </div>
-    )
+    );
 }

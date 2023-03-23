@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function ButtonReturn() {
     return (
@@ -8,5 +8,5 @@ export default function ButtonReturn() {
                 <p>Retour</p>
             </NavLink>
         </div>
-    )
+    );
 }

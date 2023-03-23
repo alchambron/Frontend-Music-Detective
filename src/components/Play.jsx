@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect, useState } from "react";
 import Compare from "../services/Compare";
 import Countdown from "./Counter";
 import { useNavigate } from "react-router-dom";
@@ -26,14 +26,13 @@ export default function Play({
   const [displayDanger, setDisplayDanger] = useState(false);
   const [selectSong, setSelectSong] = useState(null);
   const [currentSong, setCurrentSong] = useState(null);
-  const [userChoice, setUserChoice] = useState("");
   const [matchingResults, setMatchingResults] = useState(false);
   const [volume, setVolume] = useState(0.25);
-  const [points, setPoints] = useState(100);
   const [giveUp, setGiveUp] = useState(false);
   const [songFinished, setSongFinished] = useState(false);
-  const navigate = useNavigate();
   const [abandon, setAbandon] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const searchSongResult = `${searchResults.title} ${searchResults.artist}`;
@@ -43,10 +42,8 @@ export default function Play({
         searchSongResult,
         selectSong.youtube_title
       );
-      setUserChoice(searchSongResult);
       setMatchingResults(matchingResults);
       manageSearchBar(true);
-      console.log(matchingResults);
       if (!matchingResults) {
         setDisplayDanger(true);
         setTimeout(() => {
@@ -72,19 +69,17 @@ export default function Play({
   }, [selectSong]);
 
   useEffect(() => {
-    if (points < 0) {
+    if (score < 0) {
       alert("Vous avez perdu !");
       navigate("../choice");
     }
-  }, [points]);
+  }, [score]);
 
   async function chooseRandomSong() {
     const filteredData = await musicService(id);
-    console.log(filteredData);
     const randomIndex = Math.floor(Math.random() * filteredData.length);
     const randomSong = filteredData[randomIndex];
     setSelectSong(randomSong);
-    console.log(randomSong);
   }
 
   function launchPlayer() {
@@ -96,7 +91,6 @@ export default function Play({
       const intervalId = setInterval(() => {
         setProgress((prevProgress) => prevProgress + 1);
       }, 1000);
-      console.log(currentSong);
       return () => clearInterval(intervalId);
     }
   }
@@ -106,13 +100,11 @@ export default function Play({
   }
 
   useEffect(() => {
-    console.log("YOOOOOOOOOOOOO")
 
-  }, [matchingResults, ])
+  }, [matchingResults, ]);
 
   function manageSongDuration(time) {
-    const duration = setTimeout(() => {
-      console.log("Manage duration")
+    setTimeout(() => {
       setSongFinished(true);
       stopPlayer();
     }, time);
@@ -138,7 +130,6 @@ export default function Play({
     );
     const score = await response.json();
     getScrore();
-    console.log(score);
   };
 
   function addPoints() {

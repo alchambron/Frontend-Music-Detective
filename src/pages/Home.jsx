@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonMyAccount from "../components/ButtonMyAccount";
 import homeSVG1 from "../assets/home_icon_1.svg";
@@ -9,7 +9,6 @@ import ButtonAdmin from "../components/Home/ButtonAdmin";
 
 export default function Home() {
   const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
-  console.log("🚀 ~ file: Home.jsx:12 ~ Home ~ AdminLoggedIn:", AdminLoggedIn)
 
   const navigate = useNavigate();
 

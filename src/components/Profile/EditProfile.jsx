@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { FieldEditEmail } from "./Edit/FieldEditEmail";
@@ -10,7 +10,7 @@ export default function EditProfile() {
   const token = Cookies.get("user_token");
   const navigate = useNavigate();
 
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState();
   const [formData, setFormData] = useState({
     nickname: "",
     email: "",

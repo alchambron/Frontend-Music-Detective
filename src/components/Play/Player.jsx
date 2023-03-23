@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 
 export default function Player({currentSong, volume, songFinished, setProgress}) {
 
