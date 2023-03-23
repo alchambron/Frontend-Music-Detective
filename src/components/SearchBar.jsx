@@ -35,7 +35,6 @@ export default function SearchBar({ onSearchResults, searchBarReset }) {
   };
 
   useEffect(() => {
-    console.log(searchBarReset);
     if (searchBarReset) {
       setSearchTerm(" ");
     }

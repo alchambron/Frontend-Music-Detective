@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export default function PlayVolume({ setVolume, volume }) {
     const handleVolumeChange = (event) => {
@@ -18,5 +18,5 @@ export default function PlayVolume({ setVolume, volume }) {
                 onChange={handleVolumeChange}
             />
         </div>
-    )
+    );
 }

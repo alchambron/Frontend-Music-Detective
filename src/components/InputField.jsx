@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function InputField({ label, type, id, value, onChange }) {
 
     return (

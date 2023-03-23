@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import InputField from "../../InputField";
 
 export const FieldEditNickname = ({ onNicknameChange, formData }) => {

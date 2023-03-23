@@ -4,7 +4,7 @@ import React from "react";
 export default function DeleteProfile({ handleClickLogOut }) {
   const token = Cookies.get("user_token");
 
-    async function handleClickDeleteAccount(e) {
+    async function handleClickDeleteAccount() {
         const params = {
             method: "DELETE",
             headers: {
@@ -13,14 +13,13 @@ export default function DeleteProfile({ handleClickLogOut }) {
         };
         try {
             await fetch(import.meta.env.VITE_BASE_URL + "/users", params);
-            handleClickLogOut()
+            handleClickLogOut();
         } catch (error) {
-            console.log(error);
         }
     }
     return (
         <div className='account__logged__buttons__down__delete'>
             <button onClick={handleClickDeleteAccount}>Supprimer votre compte</button>
         </div>
-    )
+    );
 }
