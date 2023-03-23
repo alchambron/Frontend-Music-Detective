@@ -32,7 +32,7 @@ const Passwordinstructions = () => {
         toast.success("Password modify !", {
         
         });
-        navigate("/login");
+    
       })
       .catch((error) => console.log(error));
   };
