@@ -13,11 +13,11 @@ export default function UserStats() {
 
   useEffect(() => {
     fetchUserData();
-
-    if (!isLoading) {
-      countGeneralStats();
-    }
   }, []);
+
+  useEffect(() => {
+    countGeneralStats();
+  }, [isLoading]);
 
   async function fetchUserData() {
     const params = {
