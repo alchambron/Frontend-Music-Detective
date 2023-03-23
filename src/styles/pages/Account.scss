@@ -118,6 +118,58 @@
         margin: 1em;
       }
 
+      &__up{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__stats{
+  
+          margin-top: 2vh;
+          border: solid 1px $beige;
+          border-radius: 20px;
+          height: 20vh;
+          width: 25vw;
+          background-color: $bg-box;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          h1{
+            margin: 1vh;
+            font-size: 24px;
+          }
+          p{
+          font-size: 16px; 
+          }
+
+          b{
+            color: $beige;
+          }
+
+          hr{
+            width: 10vw;
+          }
+
+          &__score{
+            margin-top: 2vh;
+            height: 100%;
+
+            &__already{
+              margin: 1vw;
+            }
+
+            &__never{
+              display: flex;
+              text-align: center;
+              margin: 1vw;
+          
+            }
+          }
+        }
+      }
+
       &__down {
         &__delete {
           button {
@@ -200,6 +252,23 @@
       &__buttons {
         margin-top: 3vh;
         height: 70vh;
+
+        &__up{
+          &__stats{
+            height: 30vh;
+            width: 50vw;
+
+            h1{
+              text-align: center;
+              font-size: 18px;
+            }
+
+            p{
+              font-size: 14px;
+            }
+          }
+
+        }
 
         button {
           margin: 1em;
