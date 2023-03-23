@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { useNavigate, useParams } from "react-router-dom";
 
 const Passwordinstructions = () => {
   const token = useParams().tokenId;
   const navigate = useNavigate();
 
-  const changePassword = (e) => {
+  const changePassword = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
 
-    const resp = awaitfetch(`${import.meta.env.VITE_BASE_URL}/users/password`, {
+    const instruction = {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -24,17 +23,16 @@ const Passwordinstructions = () => {
           password_confirmation: form.elements.confirmnewpassword.value,
         },
       }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then(() => {
-        toast.success("Password modify !", {
-        
-        });
-    
-      })
-      .catch((error) => console.log(error));
+    };
+    try {
+      await fetch(
+        import.meta.env.VITE_BASE_URL + "/users/password",
+        instruction
+      );
+      navigate('/profile')
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,7 +64,6 @@ const Passwordinstructions = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
