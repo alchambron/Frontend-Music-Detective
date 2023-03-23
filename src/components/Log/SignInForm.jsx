@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFetch from "../../services/useFetch";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userAction";
 
 export default function SignInForm() {
@@ -53,10 +53,10 @@ export default function SignInForm() {
     }
   }
 
-  const sendpasswordinstructions = (e) => {
+  const sendpasswordinstructions = async (e) => {
     const form = e.currentTarget;
-
-    fetch(import.meta.env.VITE_BASE_URL + "/users/password", {
+    
+    const sendInstruction = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,9 +67,14 @@ export default function SignInForm() {
           email: form.elements.sendemail.value,
         },
       }),
-    }).then((response) => {
-      return response.json();
-    });
+    };
+
+    const sendPassword = await fetch(
+      import.meta.env.VITE_BASE_URL + "/users/password",
+      sendInstruction
+    );
+    const instructionPassword = await sendPassword.json();
+    return instructionPassword;
   };
 
   return (
