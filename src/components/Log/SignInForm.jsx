@@ -45,7 +45,7 @@ export default function SignInForm() {
     );
     const token = data.token;
     if (!token) {
-      setErrorMessage("Your email or password was incorrect");
+      setErrorMessage("Votre email ou votre mot de passe est incorect");
     } else {
       Cookies.set("user_token", token);
       navigate("/");
@@ -105,11 +105,11 @@ export default function SignInForm() {
             <form onSubmit={sendpasswordinstructions} className="">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Renseignez votre email"
                 id="sendemail"
                 autoComplete="off"
               />
-              <button type="submit">Obtenir instruction</button>
+              <button type="submit">Envoyer</button>
             </form>
           </div>{" "}
         </>
