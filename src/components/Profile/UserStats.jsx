@@ -17,7 +17,7 @@ export default function UserStats() {
     if (!isLoading) {
       countGeneralStats();
     }
-  }, [isLoading]);
+  }, []);
 
   async function fetchUserData() {
     const params = {
@@ -36,6 +36,7 @@ export default function UserStats() {
     );
     const statsData = await response.json();
     setData(statsData);
+
     setIsLoading(false);
   }
 

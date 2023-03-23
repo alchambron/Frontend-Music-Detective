@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Sign from "../components/Log/Sign";
 import DeleteProfile from "../components/Profile/DeleteProfil";
 import LogoutProfile from "../components/Profile/LogoutProfile";
@@ -12,8 +12,8 @@ import UserStats from "../components/Profile/UserStats";
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const token = Cookies.get("user_token");
-
+  const token = Cookies.get("user_token");;
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const loggedUser = useSelector((state) => {
@@ -52,7 +52,7 @@ export default function Profile() {
         },
       };
       const response = await fetch(
-        "http://localhost:3000/users/sign_out",
+        import.meta.env.VITE_BASE_URL + "/users/sign_out",
         params
       );
       const data = await response.json();

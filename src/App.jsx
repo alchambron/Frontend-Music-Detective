@@ -15,6 +15,8 @@ import Privacy from "./pages/Privacy";
 import Profile from "./pages/Profile";
 import Results from "./pages/Results";
 import store from "./store";
+import PasswordInstruction from "./pages/PasswordInstruction"
+
 
 export default function App() {
   const [AdminLoggedIn, setAdminLoggedIn] = useState(false);
@@ -56,14 +58,16 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route
+          path="/new_password/:tokenId" element={<PasswordInstruction/>}
+        />
         <Route path="*" element={<Home />} />
         {AdminLoggedIn && (
           <>
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/edit/:playlistID" element={<EditAdmin />} />
           </>
-        )
-        }
+        )}
       </Routes>
       <CookieConsent />
     </div>
