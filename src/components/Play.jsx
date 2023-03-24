@@ -69,7 +69,7 @@ export default function Play({
   }, [selectSong]);
 
   useEffect(() => {
-    if (score < 0) {
+    if (score <= 0) {
       alert("Vous avez perdu !");
       navigate("../choice");
     }
