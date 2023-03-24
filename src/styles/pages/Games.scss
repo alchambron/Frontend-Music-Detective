@@ -28,11 +28,23 @@
 
     &__infos {
       margin: 1vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      p {
+      &__points {
         font-size: 18px;
         font-weight: 700;
         color: $beige;
+      }
+
+      &__answer {
+        color: $white;
+        font-weight: 700;
+        text-align: center;
+        border: solid 1px $orange;
+        margin-top: 1vh;
+        padding: 1vw;
       }
     }
 
@@ -103,10 +115,17 @@
       &__infos {
         margin: 1vh;
 
-        p {
+
+        &__points {
+
           font-size: 12px;
           font-weight: 700;
           color: $beige;
+        }
+
+        &__answer{
+          color: $white;
+          font-size: 14px;
         }
       }
 
