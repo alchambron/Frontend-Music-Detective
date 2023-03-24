@@ -76,7 +76,7 @@ export default function ChoicePlaylist() {
           </div>
 
           <div className="playlist__title">
-            <h1>Choisi ta playlist !</h1>
+            <h1>Choisis ta playlist !</h1>
           </div>
 
           <div className="playlist__body">
