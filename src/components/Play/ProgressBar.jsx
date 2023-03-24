@@ -7,7 +7,7 @@ export default function ProgressBar ({progress}) {
         <progress
           className="play__display__elements__progress"
           value={progress}
-          max="20"
+          max="18"
         />
       </div>
     );
