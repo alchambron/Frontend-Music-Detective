@@ -47,7 +47,7 @@ export default function UserStats() {
   }, [totalScore]);
 
   function countGeneralStats() {
-    if (!isLoading) {
+    if (!isLoading && data.length > 0) {
       setTotalScore(
         data
           .map((element) => parseInt(element.score))
