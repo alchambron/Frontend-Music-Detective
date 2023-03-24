@@ -12,7 +12,7 @@ $danger:rgb(203, 48, 48);
 }
 
 html {
-  background-color: #111d4a;
+  background-color: $bg-color;
 }
 
 .root {
@@ -23,12 +23,18 @@ html {
 .orange-background {
   -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
-  background-color: #f7c59f;
+  background-color: $orange;
   filter: blur(250px);
   height: 55vh;
   width: 90vw;
   top: 25vh;
   z-index: -1;
+}
+
+.error{
+  p{
+    color: red;
+  }
 }
 
 .leave {
