@@ -61,7 +61,7 @@ export default function Privacy() {
         désactivation des cookies entraine une periodicité de connection de 30
         min.
       </p>
-      *<h1>Article 11 : Durée du contrat</h1>
+      <h1>Article 7 : Durée du contrat</h1>
       <p>
         Le présent contrat est valable pour une durée indéterminée. Le début de
         l’utilisation des services du site marque l’application du contrat à
