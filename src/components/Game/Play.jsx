@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Compare from "../../services/Compare";
 import Countdown from "./Counter";
 import { useNavigate } from "react-router-dom";
-import Player from "../Play/Player";
+import Player from "./Player";
 import { musicService } from "../../services/musicService";
-import PlayVolume from "../Play/PlayVolume";
-import ProgressBar from "../Play/ProgressBar";
-import InteractiveResponse from "../Play/InteractiveResponse";
-import ButtonReturn from "../Play/ButtonReturn";
-import PlayButtons from "../Play/PlayButtons";
-import PlayInfo from "../Play/PlayInfo";
+import PlayVolume from "./PlayVolume";
+import ProgressBar from "./ProgressBar";
+import InteractiveResponse from "./InteractiveResponse";
+import ButtonReturn from "./ButtonReturn";
+import PlayButtons from "./PlayButtons";
+import PlayInfo from "./PlayInfo";
 
 export default function Play({
   searchResults,
@@ -99,7 +99,7 @@ export default function Play({
     setCurrentSong(null);
   }
 
-  useEffect(() => {}, [matchingResults]);
+  useEffect(() => { }, [matchingResults]);
 
   function manageSongDuration(time) {
     setTimeout(() => {

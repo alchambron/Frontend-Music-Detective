@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import LoggedUser from "./LoggedUser";
+import LoggedUser from "../StationUtility/LoggedUser";
 
 export default function ButtonMyAccount() {
   const userLoggedIn = LoggedUser();
