@@ -1,15 +1,15 @@
-import React, {  useEffect, useState } from "react";
-import Compare from "../services/Compare";
+import React, { useEffect, useState } from "react";
+import Compare from "../../services/Compare";
 import Countdown from "./Counter";
 import { useNavigate } from "react-router-dom";
-import Player from "./Play/Player";
-import { musicService } from "../services/musicService";
-import PlayVolume from "./Play/PlayVolume";
-import ProgressBar from "./Play/ProgressBar";
-import InteractiveResponse from "./Play/InteractiveResponse";
-import ButtonReturn from "./Play/ButtonReturn";
-import PlayButtons from "./Play/PlayButtons";
-import PlayInfo from "./Play/PlayInfo";
+import Player from "../Play/Player";
+import { musicService } from "../../services/musicService";
+import PlayVolume from "../Play/PlayVolume";
+import ProgressBar from "../Play/ProgressBar";
+import InteractiveResponse from "../Play/InteractiveResponse";
+import ButtonReturn from "../Play/ButtonReturn";
+import PlayButtons from "../Play/PlayButtons";
+import PlayInfo from "../Play/PlayInfo";
 
 export default function Play({
   searchResults,
@@ -69,7 +69,7 @@ export default function Play({
   }, [selectSong]);
 
   useEffect(() => {
-    if (score < 0) {
+    if (score <= 0) {
       alert("Vous avez perdu !");
       navigate("../choice");
     }
@@ -99,9 +99,7 @@ export default function Play({
     setCurrentSong(null);
   }
 
-  useEffect(() => {
-
-  }, [matchingResults, ]);
+  useEffect(() => {}, [matchingResults]);
 
   function manageSongDuration(time) {
     setTimeout(() => {

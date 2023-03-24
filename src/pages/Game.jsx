@@ -1,7 +1,7 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Play from "../components/Play";
-import SearchBar from "../components/SearchBar";
+import Play from "../components/StationUtility/Play";
+import SearchBar from "../components/StationUtility/SearchBar";
 
 export default function Game() {
   const { gameId, id } = useParams();
@@ -26,8 +26,6 @@ export default function Game() {
 
   const getScrore = async () => {
     if (gameId) {
-
-
       const resp = await fetch(
         `${import.meta.env.VITE_BASE_URL}/games/${gameId}`
       );
