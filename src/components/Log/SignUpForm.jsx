@@ -56,7 +56,7 @@ export default function SignUpForm() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input type="email" name="" id="email" onChange={handleChange} />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Mot de passe</label>
         <input type="password" name="" id="password" onChange={handleChange} />
         <button type="submit">S'inscrire </button>
       </form>
