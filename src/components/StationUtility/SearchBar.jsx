@@ -45,7 +45,7 @@ export default function SearchBar({ onSearchResults, searchBarReset }) {
       <input
         className="search__input"
         type="text"
-        placeholder="Ecriver un titre..."
+        placeholder="Ecrivez un titre..."
         value={searchTerm}
         onChange={handleSearchChange}
       />

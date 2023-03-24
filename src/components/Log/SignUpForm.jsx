@@ -43,7 +43,11 @@ export default function SignUpForm() {
     );
     const token = data.token;
     if (!token) {
-      setErrorMessage("La création du compte à échouer, veuillez réessayer");
+      setErrorMessage(
+        <div className="error">
+          <p>La création du compte à échouer, veuillez réessayer</p>
+        </div>
+      );
     } else {
       Cookies.set("user_token", token);
       navigate("/");
