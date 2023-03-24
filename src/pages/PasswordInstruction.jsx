@@ -44,7 +44,7 @@ const Passwordinstructions = () => {
 
         <div className="">
           <div className="">
-            <h2>Change your password</h2>
+            <h2>Changer le mot de passe</h2>
           </div>
           <br></br>
           <div>
@@ -59,7 +59,7 @@ const Passwordinstructions = () => {
                 type="password"
                 id="confirmnewpassword"
               />
-              <button type="submit">Change password</button>
+              <button type="submit">Valider changement</button>
             </form>
           </div>
         </div>
