@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Play from "../components/StationUtility/Play";
-import SearchBar from "../components/StationUtility/SearchBar";
+import Play from "../components/Game/Play";
+import SearchBar from "../components/Game/SearchBar";
 
 export default function Game() {
   const { gameId, id } = useParams();
