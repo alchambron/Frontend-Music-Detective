@@ -45,7 +45,11 @@ export default function SignInForm() {
     );
     const token = data.token;
     if (!token) {
-      setErrorMessage("Votre email ou votre mot de passe est incorect");
+      setErrorMessage(
+        <div className="error">
+          <p>Votre email ou votre mot de passe est incorect</p>
+        </div>
+      );
     } else {
       Cookies.set("user_token", token);
       navigate("/");
