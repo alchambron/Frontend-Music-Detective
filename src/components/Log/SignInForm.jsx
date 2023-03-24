@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFetch from "../../services/useFetch";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../actions/userAction";
 
 export default function SignInForm() {
@@ -88,20 +88,23 @@ export default function SignInForm() {
           />
 
           <button type="submit">Se Connecter</button>
-          <p onClick={() => setPopUpLoading(true)} className="forgotpassword">
-            Mot de passe oublié ?
-          </p>
+          <div className="account__body__forms__forget">
+            <p onClick={() => setPopUpLoading(true)} className="forgotpassword">
+              Mot de passe oublié ?
+            </p>
+          </div>
         </form>
+
         {errorMessage}
       </div>
 
       {popupLoading ? (
         <>
           <div className="" onClick={() => setPopUpLoading(false)}></div>
-          <div className="account__title">
+          <div className="account__body__forms__forget__title">
             <h1>Mot de passe oublié</h1>
           </div>
-          <div className="account__body__forms">
+          <div className="account__body__forms__forget__content">
             <form onSubmit={sendpasswordinstructions} className="">
               <input
                 type="email"
