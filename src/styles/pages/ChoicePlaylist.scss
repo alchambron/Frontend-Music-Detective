@@ -5,6 +5,7 @@
 
   &__title {
     margin-top: 5vh;
+
     h1 {
       color: $white;
       font-size: 64px;
@@ -39,7 +40,7 @@
         margin: 1vh;
         width: 8vw;
 
-        img:hover{
+        img:hover {
           cursor: pointer;
           aspect-ratio: 1/1;
           width: 7.5vw;
@@ -87,6 +88,13 @@
           margin: 0px;
           width: 20vw;
           max-width: 100%;
+
+          @media (hover: none) {
+
+            img: {
+              width: 20vw;
+            }
+          }
 
           h3 {
             font-size: 12px;
