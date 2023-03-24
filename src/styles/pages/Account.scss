@@ -47,6 +47,67 @@
       justify-content: center;
       width: 40vw;
 
+      &__forget {
+        margin-top: 1vh;
+
+        p {
+          cursor: pointer;
+          font-size: 12px;
+        }
+
+        &__title {
+          margin: 1em;
+          margin-top: 2em;
+
+        }
+
+        &__content {
+          border: solid 1px #EFEFD0;
+          border-radius: 25px;
+          background-color: $bg-box;
+          height: 15vh;
+          width: 40vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input {
+              width: 30vw;
+              height: 3vh;
+              border-radius: 5px;
+              border: none;
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              padding: 1vw;
+              height: 1vh;
+            }
+
+            button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: $beige;
+              border-radius: 5px;
+              color: $bg-color;
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              margin-top: 2vh;
+              font-weight: 500;
+              font-size: 18px;
+              border: none;
+              width: 15vw;
+              height: 3vh;
+            }
+          }
+
+        }
+      }
+
+
+
       form {
         display: flex;
         flex-direction: column;
@@ -76,7 +137,7 @@
           border-radius: 5px;
           color: $bg-color;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          margin: 4vh;
+          margin-top: 4vh;
           font-weight: 500;
           font-size: 18px;
           border: none;
@@ -118,13 +179,14 @@
         margin: 1em;
       }
 
-      &__up{
+      &__up {
 
         display: flex;
         flex-direction: column;
         align-items: center;
-        &__stats{
-  
+
+        &__stats {
+
           margin-top: 2vh;
           border: solid 1px $beige;
           border-radius: 20px;
@@ -136,35 +198,36 @@
           flex-direction: column;
           align-items: center;
 
-          h1{
+          h1 {
             margin: 1vh;
             font-size: 24px;
           }
-          p{
-          font-size: 16px; 
+
+          p {
+            font-size: 16px;
           }
 
-          b{
+          b {
             color: $beige;
           }
 
-          hr{
+          hr {
             width: 10vw;
           }
 
-          &__score{
+          &__score {
             margin-top: 2vh;
             height: 100%;
 
-            &__already{
+            &__already {
               margin: 1vw;
             }
 
-            &__never{
+            &__never {
               display: flex;
               text-align: center;
               margin: 1vw;
-          
+
             }
           }
         }
@@ -205,10 +268,14 @@
 
       &__forms {
         width: 60vw;
-        padding: 1vh;
-
+        padding: 2vh;
         margin: 1em;
 
+
+        p {
+          font-size: 12px;
+          cursor: pointer;
+        }
 
         form {
           label {
@@ -239,6 +306,34 @@
         button:hover {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
+
+        &__forget {
+
+          &__title {
+            margin-top: 1em;
+          }
+
+          &__content {
+            width: 65vw;
+
+            form {
+
+              input {
+                width: 40vw;
+                height: 3vh;
+                font-family: 'Satochi', sans-serif;
+                font-weight: 500;
+                font-size: 12px;
+              }
+
+              button {
+                font-size: 12px;
+              }
+            }
+
+
+          }
+        }
       }
     }
 
@@ -253,17 +348,17 @@
         margin-top: 3vh;
         height: 70vh;
 
-        &__up{
-          &__stats{
+        &__up {
+          &__stats {
             height: 30vh;
             width: 50vw;
 
-            h1{
+            h1 {
               text-align: center;
               font-size: 18px;
             }
 
-            p{
+            p {
               font-size: 14px;
             }
           }

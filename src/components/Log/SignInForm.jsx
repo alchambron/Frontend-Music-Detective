@@ -45,7 +45,11 @@ export default function SignInForm() {
     );
     const token = data.token;
     if (!token) {
-      setErrorMessage("Your email or password was incorrect");
+      setErrorMessage(
+        <div className="error">
+          <p>Votre email ou votre mot de passe est incorect</p>
+        </div>
+      );
     } else {
       Cookies.set("user_token", token);
       navigate("/");
@@ -93,28 +97,31 @@ export default function SignInForm() {
           />
 
           <button type="submit">Se Connecter</button>
-          <p onClick={() => setPopUpLoading(true)} className="forgotpassword">
-            Mot de passe oublié ?
-          </p>
+          <div className="account__body__forms__forget">
+            <p onClick={() => setPopUpLoading(true)} className="forgotpassword">
+              Mot de passe oublié ?
+            </p>
+          </div>
         </form>
+
         {errorMessage}
       </div>
 
       {popupLoading ? (
         <>
           <div className="" onClick={() => setPopUpLoading(false)}></div>
-          <div className="account__title">
+          <div className="account__body__forms__forget__title">
             <h1>Mot de passe oublié</h1>
           </div>
-          <div className="account__body__forms">
+          <div className="account__body__forms__forget__content">
             <form onSubmit={sendpasswordinstructions} className="">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Renseignez votre email"
                 id="sendemail"
                 autoComplete="off"
               />
-              <button type="submit">Obtenir instruction</button>
+              <button type="submit">Envoyer</button>
             </form>
           </div>{" "}
         </>

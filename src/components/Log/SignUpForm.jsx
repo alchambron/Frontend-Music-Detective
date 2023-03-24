@@ -43,7 +43,7 @@ export default function SignUpForm() {
     );
     const token = data.token;
     if (!token) {
-      setErrorMessage("Account creation failed.");
+      setErrorMessage("La création du compte à échouer, veuillez réessayer");
     } else {
       Cookies.set("user_token", token);
       navigate("/");
