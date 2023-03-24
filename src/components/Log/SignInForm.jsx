@@ -57,10 +57,10 @@ export default function SignInForm() {
     }
   }
 
-  const sendpasswordinstructions = (e) => {
+  const sendpasswordinstructions = async (e) => {
     const form = e.currentTarget;
-
-    fetch(import.meta.env.VITE_BASE_URL + "/users/password", {
+    
+    const sendInstruction = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,9 +71,14 @@ export default function SignInForm() {
           email: form.elements.sendemail.value,
         },
       }),
-    }).then((response) => {
-      return response.json();
-    });
+    };
+
+    const sendPassword = await fetch(
+      import.meta.env.VITE_BASE_URL + "/users/password",
+      sendInstruction
+    );
+    const instructionPassword = await sendPassword.json();
+    return instructionPassword;
   };
 
   return (

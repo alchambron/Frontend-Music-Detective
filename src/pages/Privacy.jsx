@@ -12,8 +12,7 @@ export default function Privacy() {
         L’édition du site https://musicdetective.vercel.app/ est assurée par les
         stagiaires de l'établissement d'enseignement "The Hacking Project" dont
         le siège social est localisé au 83 Bd Macdonald, 75019 Paris, France
-        Métropolitaine. Les hébergeurs du site
-        https://musicdetective.vercel.app/.fr sont: -La société Heroku, siege :
+        Métropolitaine. Les hébergeurs du site sont: -La société Heroku, siege :
         Market, Suite 300, San Francisco, CA 94105, United States. -La société
         Vercel, siége : 340 S Lemon Ave #4133, Walnut, CA 91789.
       </p>
@@ -41,10 +40,10 @@ export default function Privacy() {
       <h1>Article 5 : Opposition au données personnelles</h1>
       <p>
         L'opposition des données personnelles n'impact aucunement la possibilité
-        d'utilisation du service. Cepandant le refus d'utilisation des données
+        d'utilisation du service. Cependant le refus d'utilisation des données
         personnelles énumérées (Article 4) aura pour effet la non possibilité de
         créer un compte qui aura comme impact: -Pas de surnom attribué -Pas de
-        souvegarde de score -Pas d'enregistrement de cookies
+        sauvegarde de score -Pas d'enregistrement de cookies
       </p>
       <h1>Article 6: Cookies</h1>
       <p>
