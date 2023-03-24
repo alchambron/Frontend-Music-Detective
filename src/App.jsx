@@ -6,7 +6,7 @@ import { loginUser } from "./actions/userAction";
 import { useSelector } from "react-redux";
 import Admin from "./pages/Admin";
 import ChoicePlaylist from "./pages/ChoicePlaylist";
-import CookieConsent from "./components/CookieConsent";
+import CookieConsent from "./components/StationUtility/CookieConsent";
 import EditAdmin from "./components/Admin/EditAdmin";
 import EditProfile from "./components/Profile/EditProfile";
 import Game from "./pages/Game";
