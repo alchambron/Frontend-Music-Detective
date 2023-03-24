@@ -1,6 +1,6 @@
 export default function Privacy() {
   return (
-    <>
+    <div className="privacy">
       <h1>Article 1 : Objet</h1>
       <p>
         Les présentes CGU ou Conditions Générales d’Utilisation encadrent
@@ -68,6 +68,7 @@ export default function Privacy() {
         l’utilisation des services du site marque l’application du contrat à
         l’égard de l’Utilisateur.
       </p>
-    </>
+      <div className="orange-background"></div>
+    </div>
   );
 }
