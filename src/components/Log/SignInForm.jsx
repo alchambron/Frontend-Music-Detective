@@ -47,7 +47,7 @@ export default function SignInForm() {
     if (!token) {
       setErrorMessage(
         <div className="error">
-          <p>Votre email ou votre mot de passe est incorect</p>
+          <p>Votre email ou votre mot de passe est incorrect</p>
         </div>
       );
     } else {
