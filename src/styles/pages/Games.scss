@@ -198,6 +198,8 @@
     list-style-type: none;
     margin-top: 2vh;
     width: 30vw;
+  
+
 
     li {
       font-family: "Satochi", sans-serif;
@@ -205,6 +207,15 @@
       border-radius: 5px;
       border: solid 1px $orange;
       background-color: $bg-box;
+      padding: 1em;
+      margin-top: 1vh;
+    }
+    li:hover {
+      font-family: "Satochi", sans-serif;
+      width: 90%;
+      border-radius: 5px;
+      border: solid 1px $orange;
+      background-color: $bg-color2;
       padding: 1em;
       margin-top: 1vh;
     }
