@@ -85,6 +85,7 @@ export default function Play({
   function launchPlayer() {
     setCurrentSong(selectSong);
     setMatchingResults(false);
+    console.log(selectSong.youtube_title)
     manageSongDuration(22000);
     setSongFinished(false);
     if (currentSong) {
