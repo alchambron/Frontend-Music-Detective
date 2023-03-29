@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Admin() {
   const [playlistData, setPlaylistData] = useState([]);
   const [newPlaylist, setNewPlaylist] = useState(false);
+  const navigate = useNavigate()
 
   const [form, setForm] = useState({
     playlist_type: " ",
@@ -47,6 +48,24 @@ export default function Admin() {
       setNewPlaylist(true);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function handleDelete(e){
+    console.log(e)
+    const params = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }
+    try {
+      await fetch(import.meta.env.VITE_BASE_URL + `/playlists/${e.target.id}`, params)
+      navigate("/")
+      
+      
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -114,6 +133,7 @@ export default function Admin() {
               <div className="admin__playlist__elements" key={index}>
                 <h3>{playlist.title}</h3>
                 <NavLink to={`/admin/edit/${playlist.id}`}>Editer</NavLink>
+                <button id={playlist.id} onClick={handleDelete}>Supprimer</button>
               </div>
             ))}
           </div>
